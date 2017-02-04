@@ -3,6 +3,7 @@ require('styles/App.css');
 
 import TopNav from './TopNav';
 import SidePanel from './SidePanel';
+import ComponentButtonGroup from './ComponentButtonGroup';
 
 import {Grid, Row, Col, Button} from 'react-bootstrap';
 
@@ -21,7 +22,8 @@ class AppComponent extends React.Component {
         <TopNav/>
         <Grid fluid={true}>
           <Row>
-            <Col sm={3} md={2} lg={1}>
+            <Col sm={3} md={2} lg={2}>
+              <ComponentButtonGroup />
               <SidePanel />
             </Col>
 
