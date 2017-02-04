@@ -8,7 +8,7 @@ import React from 'react';
 class TopNav extends React.Component {
   render() {
     return (
-        <Navbar inverse collapseOnSelect>
+        <Navbar inverse collapseOnSelect fluid={true}>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#">React-Bootstrap</a>

@@ -3,6 +3,7 @@ require('styles/App.css');
 
 import TopNav from './TopNav';
 import SidePanel from './SidePanel';
+import EditPane from './EditPane';
 import ComponentButtonGroup from './ComponentButtonGroup';
 
 import {Grid, Row, Col, Button} from 'react-bootstrap';
@@ -27,11 +28,15 @@ class AppComponent extends React.Component {
               <SidePanel />
             </Col>
 
-            <Col sm={6} md={3} lg={9}>
+            <Col sm={6} md={8} lg={8}>
               <img src={yeomanImage} alt='Yeoman Generator'/>
               <div className='notice'>Please edit <code>src/components/Main.js</code> to get started!</div>
 
               {buttonsInstance}
+            </Col>
+
+            <Col sm={3} md={2} lg={2}>
+              <EditPane />
             </Col>
           </Row>
         </Grid>
