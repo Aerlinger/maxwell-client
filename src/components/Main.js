@@ -1,4 +1,4 @@
-require('normalize.css/normalize.css');
+require('!!raw!normalize.css/normalize.css');
 require('styles/App.css');
 
 import TopNav from './TopNav';

@@ -25,8 +25,12 @@ function getDefaultModules() {
     ],
     loaders: [
       {
-        test: /\.css$/,
+        test: /node_modules.*\.css$/,
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /src.*\.css$/,
+        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
       },
       {
         test: /\.sass/,

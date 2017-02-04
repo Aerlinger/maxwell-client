@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './components/Main';
 
 // import 'jquery/dist/jquery';
+
+// import js from '!!raw!./GlobalSelectors.js';
+// import css from '!!raw!./GlobalSelectors.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 
