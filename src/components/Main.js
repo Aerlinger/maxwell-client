@@ -2,8 +2,9 @@ require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import TopNav from './TopNav';
+import SidePanel from './SidePanel';
 
-import { Button } from 'react-bootstrap';
+import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 import React from 'react';
 
@@ -18,17 +19,25 @@ class AppComponent extends React.Component {
     return (
       <div className='index'>
         <TopNav/>
+        <Grid fluid={true}>
+          <Row>
+            <Col sm={3} md={2} lg={1}>
+              <SidePanel />
+            </Col>
 
-        <img src={yeomanImage} alt='Yeoman Generator' />
-        <div className='notice'>Please edit <code>src/components/Main.js</code> to get started!</div>
+            <Col sm={6} md={3} lg={9}>
+              <img src={yeomanImage} alt='Yeoman Generator'/>
+              <div className='notice'>Please edit <code>src/components/Main.js</code> to get started!</div>
 
-        {buttonsInstance}
+              {buttonsInstance}
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
 }
 
-AppComponent.defaultProps = {
-};
+AppComponent.defaultProps = {};
 
 export default AppComponent;
