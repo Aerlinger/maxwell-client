@@ -1,4 +1,4 @@
-require('!!raw!normalize.css/normalize.css');
+require('normalize.css/normalize.css');
 
 import { Accordion, Panel } from 'react-bootstrap';
 import ComponentButton from './ComponentButton';
@@ -10,11 +10,13 @@ class ComponentButtonGroup extends React.Component {
     return (
       <Accordion activeKey={'1'} defaultActiveKey={'1'}>
         <Panel header='Collapsible Group Item #1' eventKey='1' expanded={true} defaultExpanded={true}>
-          <ComponentButton />
-          <ComponentButton />
-          <ComponentButton />
-          <ComponentButton />
-          <ComponentButton />
+          <ComponentButton hotkey="W">Transformer</ComponentButton>
+          <ComponentButton hotkey="X">Transformer</ComponentButton>
+          <ComponentButton hotkey="M">Transformer</ComponentButton>
+          <ComponentButton hotkey="Y"></ComponentButton>
+          <ComponentButton ></ComponentButton>
+          <ComponentButton hotkey="Y">Resistor</ComponentButton>
+          <ComponentButton></ComponentButton>
         </Panel>
         <Panel header='Collapsible Group Item #2' eventKey='2'>
           <ComponentButton />

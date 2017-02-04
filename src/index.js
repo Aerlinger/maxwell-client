@@ -5,8 +5,8 @@ import App from './components/Main';
 
 // import 'jquery/dist/jquery';
 
-// import js from '!!raw!./GlobalSelectors.js';
-// import css from '!!raw!./GlobalSelectors.css';
+// import js from './GlobalSelectors.js';
+// import css from './GlobalSelectors.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 

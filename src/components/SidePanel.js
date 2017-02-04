@@ -1,4 +1,6 @@
-require('!!raw!normalize.css/normalize.css');
+require('normalize.css/normalize.css');
+
+import SidePanelStyle from '../styles/SidePanel.css';
 
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
@@ -7,7 +9,7 @@ import React from 'react';
 class SidePanel extends React.Component {
   render() {
     return (
-      <ListGroup>
+      <ListGroup className={SidePanelStyle.root}>
         <ListGroupItem href="#" active>Link 1</ListGroupItem>
         <ListGroupItem href="#">Link 2</ListGroupItem>
         <ListGroupItem href="#" disabled>Link 3</ListGroupItem>

@@ -1,4 +1,4 @@
-require('!!raw!normalize.css/normalize.css');
+require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import { Nav, Navbar, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';

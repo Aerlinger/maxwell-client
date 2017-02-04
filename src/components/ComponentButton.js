@@ -1,18 +1,36 @@
-require('!!raw!normalize.css/normalize.css');
+require('normalize.css/normalize.css');
 
 import ButtonStyle from '../styles/ComponentButton.css';
 
-import { Button } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-let yeomanImage = require('../images/yeoman.png');
+let TransformerImage = require('../images/Transformer2.png');
 import React from 'react';
 
 class ComponentButton extends React.Component {
+  hotkey() {
+    if (this.props.hotkey) {
+      return <span className={ButtonStyle.hotkey}>{this.props.hotkey}</span>
+    }
+  }
+
   render() {
+    let props = this.props;
+
+    let tooltip = <Tooltip id="tooltip">Tooltip <strong>{props.children}</strong> {props.children}</Tooltip>
+
     return (
-      <Button className={ButtonStyle.root}>
-        <img src={yeomanImage} width='20px' height='20px' alt='Yeoman Generator'/>
-      </Button>
+        <div className={ButtonStyle.root} ref="placing">
+          <OverlayTrigger placement="bottom" overlay={tooltip}>
+            <Button >
+              <img className={ButtonStyle.icon} src={TransformerImage} alt={props.children}/>
+
+              {this.hotkey.bind(this)()}
+            </Button>
+          </OverlayTrigger>
+
+          <div className={ButtonStyle.component_label}>{props.children}</div>
+        </div>
     );
   }
 }
