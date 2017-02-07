@@ -1,7 +1,7 @@
 let express = require('express');
 let path = require('path');
 
-let routesApi = require('./index.js');
+let routesApi = require('./routes.js');
 
 const port = 8888;
 
