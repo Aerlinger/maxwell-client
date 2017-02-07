@@ -131,26 +131,33 @@ module.exports.login = function(req, res) {
 
   const validationResult = validateLoginForm(req.body);
 
-  passport.authenticate('local', function(err, user, info){
-    var token;
+  if (!validationResult.success) {
+    return res.status(400).json({
+      success: false,
+      message: validationResult.message,
+      errors: validationResult.errors
+    });
+  } else {
+    passport.authenticate('local', function (err, user, info) {
+      var token;
 
-    // If Passport throws/catches an error
-    if (err) {
-      res.status(401).json(err);
-      return;
-    }
+      // If Passport throws/catches an error
+      if (err) {
+        res.status(401).json(err);
+        return;
+      }
 
-    // If a user is found
-    if(user){
-      token = user.generateJwt();
-      res.status(200);
-      res.json({
-        "token" : token
-      });
-    } else {
-      // If user is not found
-      res.status(401).json(info);
-    }
-  })(req, res);
-
+      // If a user is found
+      if (user) {
+        token = user.generateJwt();
+        res.status(200);
+        res.json({
+          "token": token
+        });
+      } else {
+        // If user is not found
+        res.status(401).json(info);
+      }
+    })(req, res);
+  }
 };
