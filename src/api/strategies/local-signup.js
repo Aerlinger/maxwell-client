@@ -4,7 +4,11 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 
 
 /**
- * Return the Passport Local Strategy object.
+ * Passport Local Strategy for local-signup.
+ *
+ * Create a new user from the provided name, email, and password hash.
+ *
+ * Passes an error if the email or password is invalid, or if the provided email already exists.
  */
 module.exports = new PassportLocalStrategy({
   usernameField: 'email',
@@ -20,7 +24,8 @@ module.exports = new PassportLocalStrategy({
 
   const newUser = new User(userData);
   newUser.save((err) => {
-    if (err) { return done(err); }
+    if (err)
+      return done(err);
 
     return done(null);
   });

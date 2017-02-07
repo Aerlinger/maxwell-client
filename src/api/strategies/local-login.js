@@ -5,7 +5,12 @@ const config = require('../config');
 
 
 /**
- * Return the Passport Local Strategy object.
+ * Passport Local Strategy object for local-login.
+ *
+ * Receives an email and password hash and fetches the matching user. Once found, the provided password hash is verified
+ * with the hash stored.
+ *
+ * Passes an error down the chain if a user isn't found, or if the password doesn't match
  */
 module.exports = new PassportLocalStrategy({
   usernameField: 'email',

@@ -13,27 +13,20 @@ const router = new express.Router();
  */
 function validateSignupForm(payload) {
   const errors = {};
-  let isFormValid = true;
   let message = '';
 
-  if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
-    isFormValid = false;
+  if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email))
     errors.email = 'Please provide a correct email address.';
-  }
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
-    isFormValid = false;
-    errors.password = 'Password must have at least 8 characters.';
-  }
+  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 7)
+    errors.password = 'Password must have at least 7 characters.';
 
-  if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
-    isFormValid = false;
+  if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0)
     errors.name = 'Please provide your name.';
-  }
 
-  if (!isFormValid) {
+  let isFormValid = Object.keys(errors).length > 0;
+  if (!isFormValid)
     message = 'Check the form for errors.';
-  }
 
   return {
     success: isFormValid,
@@ -51,22 +44,17 @@ function validateSignupForm(payload) {
  */
 function validateLoginForm(payload) {
   const errors = {};
-  let isFormValid = true;
   let message = '';
 
-  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
-    isFormValid = false;
+  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0)
     errors.email = 'Please provide your email address.';
-  }
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length === 0) {
-    isFormValid = false;
+  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length === 0)
     errors.password = 'Please provide your password.';
-  }
 
-  if (!isFormValid) {
+  let isFormValid = Object.keys(errors).length > 0;
+  if (!isFormValid)
     message = 'Check the form for errors.';
-  }
 
   return {
     success: isFormValid,
@@ -77,6 +65,7 @@ function validateLoginForm(payload) {
 
 router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
+
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
@@ -84,7 +73,6 @@ router.post('/signup', (req, res, next) => {
       errors: validationResult.errors
     });
   }
-
 
   return passport.authenticate('local-signup', (err) => {
     if (err) {
@@ -113,6 +101,7 @@ router.post('/signup', (req, res, next) => {
   })(req, res, next);
 });
 
+
 router.post('/login', (req, res, next) => {
   const validationResult = validateLoginForm(req.body);
   if (!validationResult.success) {
@@ -134,10 +123,9 @@ router.post('/login', (req, res, next) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        message: `Could not process the form: ${err.message}`
       });
     }
-
 
     return res.json({
       success: true,
