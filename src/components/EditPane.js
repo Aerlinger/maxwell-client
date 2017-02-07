@@ -17,9 +17,30 @@ class EditPane extends React.Component {
   render() {
     return (
         <form style={{background: '#EEE'}}>
-          <img src={TransformerImage} width='60px' height='60px'/>
+
           <h4>Transformer</h4>
+
+          <Bootstrap.PageHeader><img src={TransformerImage} width='60px' height='60px'/><small>Subtext for header</small></Bootstrap.PageHeader>
           <hr />
+
+          <Bootstrap.Table striped bordered condensed hover>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            </tbody>
+          </Bootstrap.Table>
 
           <Bootstrap.FormGroup controlId='formValidationSuccess1' validationState='success'>
             <Bootstrap.ControlLabel>Input with success</Bootstrap.ControlLabel>
