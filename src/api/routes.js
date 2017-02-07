@@ -7,7 +7,7 @@ var auth = jwt({
 });
 
 // var ctrlProfile = require('../controllers/profile');
-// var ctrlAuth = require('../controllers/authentication');
+var ctrlAuth = require('../controllers/authentication');
 
 router.get('/test', function(req, res) {
   res.status(200);
@@ -25,18 +25,7 @@ router.get('/profile', auth, function(req, res) {
 });
 
 // authentication
-router.post('/register', function(req, res) {
-  res.status(200);
-  res.json({
-    "register" : "register"
-  });
-});
-
-router.post('/login', function(req, res) {
-  res.status(200);
-  res.json({
-    "login" : "login"
-  });
-});
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
 module.exports = router;
