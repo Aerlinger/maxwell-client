@@ -7,6 +7,8 @@ import EditPane from './EditPane';
 import ComponentButtonGroup from './ComponentButtonGroup';
 import AlertDismissable from './AlertDismissable';
 import ModalDismissable from './ModalDismissable';
+import LoginModal from './modals/LoginModal';
+import RegistrationModal from './modals/RegistrationModal';
 
 import {Grid, Row, Col} from 'react-bootstrap';
 
@@ -22,14 +24,16 @@ class AppComponent extends React.Component {
 
         <Grid fluid={true}>
           <Row>
-            <Col sm={3} md={2} lg={2}>
+            <Col sm={3} md={2} lg={2}>E
               <ComponentButtonGroup />
               <SidePanel />
             </Col>
 
             <Col sm={6} md={8} lg={8}>
               <AlertDismissable />
-              <ModalDismissable />
+
+              <LoginModal />
+              <RegistrationModal />
 
               <img src={yeomanImage} alt='Yeoman Generator'/>
               <div className='notice'>Please edit <code>src/components/Main.js</code> to get started!</div>
