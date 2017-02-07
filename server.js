@@ -14,8 +14,9 @@ let isInitialCompilation = true;
 
 const compiler = webpack(config);
 
-new WebpackDevServer(compiler, config.devServer)
-.listen(config.port, 'localhost', (err) => {
+let server = new WebpackDevServer(compiler, config.devServer);
+
+server.listen(config.port, 'localhost', (err) => {
   if (err) {
     console.log(err);
   }
@@ -32,5 +33,6 @@ compiler.plugin('done', () => {
       console.log('  \x1b[33mHMR is active\x1b[0m. The bundle will automatically rebuild and live-update on changes.')
     }, 350);
   }
+
   isInitialCompilation = false;
 });
