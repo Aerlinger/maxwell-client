@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import LoginForm from '../components/LoginForm.js';
+import Auth from '../modules/Auth';
 
 
 class LoginPage extends React.Component {
@@ -62,7 +63,9 @@ class LoginPage extends React.Component {
           errors: {}
         });
 
-        console.log('The form is valid');
+        Auth.authenticateUser(xhr.response.token);
+
+        this.context.router.replace('/');
       } else {
         // failure
 
