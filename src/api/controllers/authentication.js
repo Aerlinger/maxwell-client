@@ -1,9 +1,9 @@
-var passport = require('passport');
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+let passport = require('passport');
+let mongoose = require('mongoose');
+let User = mongoose.model('User');
 const validator = require('validator');
 
-var sendJSONresponse = function(res, status, content) {
+let sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
@@ -107,7 +107,7 @@ module.exports.register = function(req, res) {
     user.save(function (err) {
       if (!err) {
 
-        var token;
+        let token;
         token = user.generateJwt();
         res.status(200);
         res.json({
@@ -139,7 +139,7 @@ module.exports.login = function(req, res) {
     });
   } else {
     passport.authenticate('local', function (err, user, info) {
-      var token;
+      let token;
 
       // If Passport throws/catches an error
       if (err) {

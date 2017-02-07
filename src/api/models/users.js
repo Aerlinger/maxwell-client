@@ -16,6 +16,31 @@ var userSchema = new mongoose.Schema({
   salt: String
 });
 
+/**
+ * The pre-save hook method.
+
+userSchema.pre('save', function saveHook(next) {
+  const user = this;
+
+  // proceed further only if the password is modified or the user is new
+  if (!user.isModified('password')) return next();
+
+
+  return bcrypt.genSalt((saltError, salt) => {
+    if (saltError) { return next(saltError); }
+
+    return bcrypt.hash(user.password, salt, (hashError, hash) => {
+      if (hashError) { return next(hashError); }
+
+      // replace a password string with hash value
+      user.password = hash;
+
+      return next();
+    });
+  });
+});
+ */
+
 userSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');
   this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');

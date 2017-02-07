@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost/meanAuth';
 if (process.env.NODE_ENV === 'production') {
@@ -6,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 mongoose.connect(dbURI);
+mongoose.Promise = global.Promise;
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {
@@ -13,6 +15,7 @@ mongoose.connection.on('connected', function() {
 });
 mongoose.connection.on('error', function(err) {
   console.log('Mongoose connection error: ' + err);
+  process.exit(1);
 });
 mongoose.connection.on('disconnected', function() {
   console.log('Mongoose disconnected');
