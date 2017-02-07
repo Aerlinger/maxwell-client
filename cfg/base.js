@@ -23,9 +23,18 @@ module.exports = {
     contentBase: './src/',
     historyApiFallback: true,
     hot: true,
+    inline: true,
+    host: 'localhost',
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
-    noInfo: false
+    noInfo: false,
+    proxy: {
+      '/api': {
+        logLevel: 'debug',
+        target: 'http://localhost:8888/',
+        secure: false
+      }
+    }
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],

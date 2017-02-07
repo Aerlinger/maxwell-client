@@ -5,17 +5,15 @@ import TopNav from './TopNav';
 import SidePanel from './SidePanel';
 import EditPane from './EditPane';
 import ComponentButtonGroup from './ComponentButtonGroup';
-import AlertDismissable from './AlertDismissable';
-import ModalDismissable from './ModalDismissable';
-import LoginModal from './modals/LoginModal';
-import RegistrationModal from './modals/RegistrationModal';
+// import AlertDismissable from './AlertDismissable';
+// import ModalDismissable from './ModalDismissable';
+// import LoginModal from './modals/LoginModal';
+// import RegistrationModal from './modals/RegistrationModal';
 import SignUpForm from './SignUpForm';
 
 import {Grid, Row, Col} from 'react-bootstrap';
 
 import React from 'react';
-
-let yeomanImage = require('../images/yeoman.png');
 
 class AppComponent extends React.Component {
   render() {

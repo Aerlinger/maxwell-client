@@ -17,7 +17,9 @@ let config = Object.assign({}, baseConfig, {
   cache: true,
   devtool: 'eval-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      multiStep: true
+    }),
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false

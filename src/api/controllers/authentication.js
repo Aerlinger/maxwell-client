@@ -16,7 +16,9 @@ module.exports.register = function(req, res) {
   //   return;
   // }
 
-  var user = new User();
+  console.log("REGISTER req:", req.body);
+
+  let user = new User();
 
   user.name = req.body.name;
   user.email = req.body.email;
@@ -24,12 +26,17 @@ module.exports.register = function(req, res) {
   user.setPassword(req.body.password);
 
   user.save(function(err) {
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
-    });
+    if (!err) {
+
+      var token;
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token": token
+      });
+    } else {
+      console.error(err);
+    }
   });
 
 };
