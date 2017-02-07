@@ -9,6 +9,7 @@ import AlertDismissable from './AlertDismissable';
 import ModalDismissable from './ModalDismissable';
 import LoginModal from './modals/LoginModal';
 import RegistrationModal from './modals/RegistrationModal';
+import SignUpForm from './SignUpForm';
 
 import {Grid, Row, Col} from 'react-bootstrap';
 
@@ -24,19 +25,19 @@ class AppComponent extends React.Component {
 
         <Grid fluid={true}>
           <Row>
-            <Col sm={3} md={2} lg={2}>E
+            <Col sm={3} md={2} lg={2}>
               <ComponentButtonGroup />
               <SidePanel />
             </Col>
 
             <Col sm={6} md={8} lg={8}>
-              <AlertDismissable />
+              {/*<AlertDismissable />*/}
 
-              <LoginModal />
-              <RegistrationModal />
+              {/*<LoginModal />*/}
+              {/*<RegistrationModal />*/}
 
-              <img src={yeomanImage} alt='Yeoman Generator'/>
-              <div className='notice'>Please edit <code>src/components/Main.js</code> to get started!</div>
+              <SignUpForm onSubmit={(e) => console.log('submitted')} onChange={(e) => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}
+              />
             </Col>
 
             <Col sm={3} md={2} lg={2}>

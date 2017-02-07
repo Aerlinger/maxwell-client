@@ -1,13 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var jwt = require('express-jwt');
-var auth = jwt({
+let express = require('express');
+let router = express.Router();
+let jwt = require('express-jwt');
+let auth = jwt({
   secret: 'MY_SECRET',
   userProperty: 'payload'
 });
 
-// var ctrlProfile = require('../controllers/profile');
-var ctrlAuth = require('../controllers/authentication');
+let User = require('./models/users');
+
+// let ctrlProfile = require('../controllers/profile');
+let ctrlAuth = require('./controllers/authentication');
 
 router.get('/test', function(req, res) {
   res.status(200);
