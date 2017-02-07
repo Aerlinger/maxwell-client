@@ -33,6 +33,11 @@ module.exports = {
         logLevel: 'debug',
         target: 'http://localhost:8888/',
         secure: false
+      },
+      '/auth': {
+        logLevel: 'debug',
+        target: 'http://localhost:8888/',
+        secure: false
       }
     }
   },

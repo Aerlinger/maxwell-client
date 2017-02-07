@@ -1,11 +1,13 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
+let config = require("../config");
 
-var gracefulShutdown;
-var dbURI = 'mongodb://localhost/meanAuth';
+let gracefulShutdown;
+let dbURI = config.dbUri;
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
 }
 
+// Establish a connection to the database
 mongoose.connect(dbURI);
 mongoose.Promise = global.Promise;
 
@@ -52,4 +54,4 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./users');
+require('./user');
