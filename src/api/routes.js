@@ -1,15 +1,10 @@
 let express = require('express');
 let router = express.Router();
-let jwt = require('express-jwt');
-let auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
-});
-
-let User = require('./models/users');
+let passport = require('passport');
 
 // let ctrlProfile = require('../controllers/profile');
-let ctrlAuth = require('./controllers/authentication');
+let dashboardRoutes = require('./controllers/dashboard');
+let authRoutes = require('./controllers/auth');
 
 router.get('/test', function(req, res) {
   res.status(200);
@@ -18,13 +13,10 @@ router.get('/test', function(req, res) {
   });
 });
 
-// profile
-router.get('/profile', auth, function(req, res) {
-  res.status(200);
-  res.json({
-    "profile" : "profile"
-  });
-});
+/*
+const authCheckMiddleware = require('./server/middleware/auth-check');
+app.use('/api', authCheckMiddleware);
+*/
 
 // authentication
 router.post('/register', ctrlAuth.register);

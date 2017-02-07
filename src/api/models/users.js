@@ -1,8 +1,7 @@
-var mongoose = require( 'mongoose' );
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
+let mongoose = require( 'mongoose' );
+let bcrypt = require('bcrypt');
 
-var userSchema = new mongoose.Schema({
+let UserSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
@@ -17,9 +16,19 @@ var userSchema = new mongoose.Schema({
 });
 
 /**
- * The pre-save hook method.
+ * Compare the passed password with the value in the database. A model method.
+ *
+ * @param {string} password
+ * @returns {object} callback
+ */
+UserSchema.methods.comparePassword = function comparePassword(password, callback) {
+  bcrypt.compare(password, this.password, callback);
+};
 
-userSchema.pre('save', function saveHook(next) {
+/**
+ * The pre-save hook method.
+*/
+UserSchema.pre('save', function saveHook(next) {
   const user = this;
 
   // proceed further only if the password is modified or the user is new
@@ -39,28 +48,5 @@ userSchema.pre('save', function saveHook(next) {
     });
   });
 });
- */
 
-userSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-};
-
-userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-  return this.hash === hash;
-};
-
-userSchema.methods.generateJwt = function() {
-  var expiry = new Date();
-  expiry.setDate(expiry.getDate() + 7);
-
-  return jwt.sign({
-    _id: this._id,
-    email: this.email,
-    name: this.name,
-    exp: parseInt(expiry.getTime() / 1000),
-  }, "MY_SECRET"); // TODO: Change secret
-};
-
-mongoose.model('User', userSchema);
+mongoose.model('User', UserSchema);

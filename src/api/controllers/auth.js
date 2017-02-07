@@ -1,12 +1,8 @@
-let passport = require('passport');
-let mongoose = require('mongoose');
-let User = mongoose.model('User');
+const express = require('express');
 const validator = require('validator');
+const passport = require('passport');
 
-let sendJSONresponse = function(res, status, content) {
-  res.status(status);
-  res.json(content);
-};
+const router = new express.Router();
 
 /**
  * Validate the sign up form
@@ -79,85 +75,78 @@ function validateLoginForm(payload) {
   };
 }
 
-module.exports.register = function(req, res) {
-
-  // if(!req.body.name || !req.body.email || !req.body.password) {
-  //   sendJSONresponse(res, 400, {
-  //     "message": "All fields required"
-  //   });
-  //   return;
-  // }
-
+router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
-
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
       message: validationResult.message,
       errors: validationResult.errors
     });
-  } else {
-    let user = new User();
-
-    user.name = req.body.name;
-    user.email = req.body.email;
-
-    user.setPassword(req.body.password);
-
-    user.save(function (err) {
-      if (!err) {
-
-        let token;
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-          "token": token
-        });
-      } else {
-        console.error(err);
-      }
-    });
   }
-};
 
-module.exports.login = function(req, res) {
 
-  // if(!req.body.email || !req.body.password) {
-  //   sendJSONresponse(res, 400, {
-  //     "message": "All fields required"
-  //   });
-  //   return;
-  // }
+  return passport.authenticate('local-signup', (err) => {
+    if (err) {
+      if (err.name === 'MongoError' && err.code === 11000) {
+        // the 11000 Mongo code is for a duplication email error
+        // the 409 HTTP status code is for conflict error
+        return res.status(409).json({
+          success: false,
+          message: 'Check the form for errors.',
+          errors: {
+            email: 'This email is already taken.'
+          }
+        });
+      }
 
+      return res.status(400).json({
+        success: false,
+        message: 'Could not process the form.'
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'You have successfully signed up! Now you should be able to log in.'
+    });
+  })(req, res, next);
+});
+
+router.post('/login', (req, res, next) => {
   const validationResult = validateLoginForm(req.body);
-
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
       message: validationResult.message,
       errors: validationResult.errors
     });
-  } else {
-    passport.authenticate('local', function (err, user, info) {
-      let token;
-
-      // If Passport throws/catches an error
-      if (err) {
-        res.status(401).json(err);
-        return;
-      }
-
-      // If a user is found
-      if (user) {
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-          "token": token
-        });
-      } else {
-        // If user is not found
-        res.status(401).json(info);
-      }
-    })(req, res);
   }
-};
+
+
+  return passport.authenticate('local-login', (err, token, userData) => {
+    if (err) {
+      if (err.name === 'IncorrectCredentialsError') {
+        return res.status(400).json({
+          success: false,
+          message: err.message
+        });
+      }
+
+      return res.status(400).json({
+        success: false,
+        message: 'Could not process the form.'
+      });
+    }
+
+
+    return res.json({
+      success: true,
+      message: 'You have successfully logged in!',
+      token,
+      user: userData
+    });
+  })(req, res, next);
+});
+
+module.exports = router;

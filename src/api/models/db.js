@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var gracefulShutdown;
-var dbURI = 'mongodb://localhost/meanAuth';
+let gracefulShutdown;
+let dbURI = 'mongodb://localhost/meanAuth';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
 }
