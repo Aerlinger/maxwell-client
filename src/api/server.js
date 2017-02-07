@@ -35,7 +35,7 @@ app.use('/api/dashboard', authCheckMiddleware);
 
 // Configure routes
 app.use('/api', dashboardRoutes);
-app.use('/api/auth/', authRoutes);
+app.use('/auth/', authRoutes);
 
 
 // Start the server

@@ -51,7 +51,7 @@ class LoginPage extends React.Component {
     };
 
 
-    xhr.open('post', '/api/auth/login');
+    xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {

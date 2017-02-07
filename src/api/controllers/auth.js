@@ -24,7 +24,7 @@ function validateSignupForm(payload) {
   if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0)
     errors.name = 'Please provide your name.';
 
-  let isFormValid = Object.keys(errors).length > 0;
+  let isFormValid = Object.keys(errors).length == 0;
   if (!isFormValid)
     message = 'Check the form for errors.';
 
@@ -52,7 +52,7 @@ function validateLoginForm(payload) {
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length === 0)
     errors.password = 'Please provide your password.';
 
-  let isFormValid = Object.keys(errors).length > 0;
+  let isFormValid = Object.keys(errors).length == 0;
   if (!isFormValid)
     message = 'Check the form for errors.';
 
@@ -101,6 +101,12 @@ router.post('/signup', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/test', (req, res, next) => {
+  res.status(200);
+  res.json({
+    "result": "success"
+  });
+});
 
 router.post('/login', (req, res, next) => {
   const validationResult = validateLoginForm(req.body);

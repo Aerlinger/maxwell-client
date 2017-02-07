@@ -58,7 +58,7 @@ class SignUpPage extends React.Component {
 
     // create an AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open('post', '/api/auth/signup');
+    xhr.open('post', '/auth/signup');
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -77,7 +77,6 @@ class SignUpPage extends React.Component {
         this.context.router.replace('/login');
       } else {
         // failure
-
         const errors = xhr.response.errors ? xhr.response.errors : {};
         errors.summary = xhr.response.message;
 
