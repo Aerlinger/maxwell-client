@@ -7,8 +7,8 @@ class SignUpPage extends React.Component {
   /**
    * Class constructor.
    */
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     // set the initial component state
     this.state = {
@@ -105,5 +105,9 @@ class SignUpPage extends React.Component {
   }
 
 }
+
+SignUpPage.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default SignUpPage;

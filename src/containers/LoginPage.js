@@ -7,12 +7,21 @@ class LoginPage extends React.Component {
   /**
    * Class constructor.
    */
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
+    const storedMessage = localStorage.getItem('successMessage');
+    let successMessage = '';
+
+    if (storedMessage) {
+      successMessage = storedMessage;
+      localStorage.removeItem('successMessage');
+    }
 
     // set the initial component state
     this.state = {
       errors: {},
+      successMessage,
       user: {
         email: '',
         password: ''
@@ -36,12 +45,12 @@ class LoginPage extends React.Component {
     const xhr = new XMLHttpRequest();
 
     const formData = {
-      email: encodeURIComponent(this.state.user.email),
+      email: this.state.user.email,
       password: encodeURIComponent(this.state.user.password)
     };
 
 
-    xhr.open('post', '/api/login');
+    xhr.open('post', '/api/auth/login');
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -94,11 +103,15 @@ class LoginPage extends React.Component {
             onSubmit={this.processForm}
             onChange={this.changeUser}
             errors={this.state.errors}
+            successMessage={this.state.successMessage}
             user={this.state.user}
         />
     );
   }
-
 }
+
+LoginPage.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default LoginPage;
