@@ -40,6 +40,7 @@ module.exports = new PassportLocalStrategy({
         return done(error);
       }
 
+      // Encrypt user ID within signed token
       const payload = {
         sub: user._id
       };
