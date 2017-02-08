@@ -50,7 +50,6 @@ class LoginPage extends React.Component {
       password: encodeURIComponent(this.state.user.password)
     };
 
-
     xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.responseType = 'json';

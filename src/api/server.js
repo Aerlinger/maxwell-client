@@ -8,8 +8,9 @@ let express = require('express');
 const bodyParser = require('body-parser');
 let passport = require('passport');
 let logger = require('morgan');
+let config = require('./config');
 
-require('./models/db');
+let db = require('./models/db').connect(config.dbUri);
 
 let dashboardRoutes = require('./controllers/dashboard');
 let authRoutes = require('./controllers/auth');
