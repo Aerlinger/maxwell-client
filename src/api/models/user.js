@@ -1,4 +1,4 @@
-let mongoose = require( 'mongoose' );
+let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
 let UserSchema = new mongoose.Schema({
@@ -14,6 +14,12 @@ let UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  created_at: {
+    type: Date
+  },
+  updated_at: {
+    type: Date
   }
 });
 
@@ -31,7 +37,7 @@ UserSchema.methods.comparePassword = function comparePassword(password, callback
  * The pre-save hook method.
  *
  * If this user has a new or changed password then hash & salt it and store it in password.
-*/
+ */
 UserSchema.pre('save', function saveHook(next) {
   const user = this;
 
@@ -55,4 +61,15 @@ UserSchema.pre('save', function saveHook(next) {
   });
 });
 
-mongoose.model('User', UserSchema);
+UserSchema.pre('save', function saveHook(next) {
+  let now = new Date();
+
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+
+  next();
+});
+
+module.exports = mongoose.model('User', UserSchema);

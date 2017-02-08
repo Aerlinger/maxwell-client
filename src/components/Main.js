@@ -1,5 +1,6 @@
 require('normalize.css/normalize.css');
 require('styles/App.css');
+let mongoose = require( 'mongoose' );
 
 import TopNav from './TopNav';
 import SidePanel from './SidePanel';
