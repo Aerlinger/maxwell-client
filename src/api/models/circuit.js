@@ -1,17 +1,19 @@
 let mongoose = require( 'mongoose' );
 
-var SimParamsSchema = new mongoose.Schema({
+let SimParamsSchema = new mongoose.Schema({
   name: String,
+  timeStep: Number,
   simSpeed: Number,
   currentSpeed: Number,
   voltageRange: Number,
   powerRange: Number,
   flags: Number,
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+  scope_speed: Number
 });
 
-var ComponentParamsSchema = new mongoose.Schema({
+let ComponentParamsSchema = new mongoose.Schema({
   name: String,
   pos: [Number],
   flags: Number,
@@ -20,7 +22,9 @@ var ComponentParamsSchema = new mongoose.Schema({
 
 let CircuitSchema = new mongoose.Schema({
   params: SimParamsSchema,
-  components: [ComponentParamsSchema]
+  components: [ComponentParamsSchema],
+  previous_version: [CircuitSchema],
+  slug: String
 });
 
 module.exports = mongoose.model('Circuit', CircuitSchema);

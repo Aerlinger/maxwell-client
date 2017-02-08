@@ -22,7 +22,7 @@ describe('User Model', function () {
     done()
   });
 
-  it('saving a user successfully', function (done) {
+  it('saves a user successfully', function (done) {
     let expectedResult = { status: true };
     this.UserMock.expects('save').yields(expectedResult, null);
 
@@ -35,7 +35,7 @@ describe('User Model', function () {
     });
   });
 
-  it('saving a user unsuccessfully', function (done) {
+  it('saves a user unsuccessfully', function (done) {
     let expectedResult = { status: false };
 
     this.UserMock.expects('save').yields(expectedResult, null);

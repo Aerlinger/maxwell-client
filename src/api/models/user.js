@@ -1,6 +1,9 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
+let CircuitSchema = require('./circuit');
+let DisplayPreferencesSchema = require('./display_preferences');
+
 let UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -20,7 +23,9 @@ let UserSchema = new mongoose.Schema({
   },
   updated_at: {
     type: Date
-  }
+  },
+  circuits: [CircuitSchema],
+  display_preferences: DisplayPreferencesSchema
 });
 
 /**
