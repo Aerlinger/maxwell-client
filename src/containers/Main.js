@@ -7,6 +7,8 @@ import EditPane from '../components/EditPane';
 import ComponentButtonGroup from '../components/ComponentButtonGroup';
 import SignUpForm from '../components/SignUpForm';
 import CircuitToolbar from '../components/Toolbar';
+import AlertDismissable from '../components/AlertDismissable';
+import ModalDismissable from '../components/ModalDismissable';
 
 import {Grid, Row, Col} from 'react-bootstrap';
 
@@ -19,25 +21,23 @@ class AppComponent extends React.Component {
         {/*<TopNav/>*/}
         <CircuitToolbar/>
 
-        <Row>
           <Col sm={3} md={2} lg={2}>
             <ComponentButtonGroup />
             <SidePanel />
           </Col>
 
           <Col sm={6} md={8} lg={8}>
-            {/*<AlertDismissable />*/}
+            <AlertDismissable />
 
-            {/*<LoginModal />*/}
+            <ModalDismissable/>
             {/*<RegistrationModal />*/}
 
-            {/*<SignUpForm onSubmit={(e) => console.log('submitted')} onChange={(e) => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}/>*/}
+            <SignUpForm onSubmit={(e) => console.log('submitted')} onChange={(e) => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}/>
           </Col>
 
           <Col sm={3} md={2} lg={2}>
             <EditPane />
           </Col>
-        </Row>
       </div>
     );
   }

@@ -1,59 +1,49 @@
 import React from 'react';
 
-import {Modal, Button, Popover, Tooltip, OverlayTrigger} from 'react-bootstrap';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class ModalDismissable extends React.Component {
-  constructor() {
-    super();
+  state = {
+    open: false,
+  };
 
-    this.state = {
-      showModal: false
-    };
-  }
+  handleOpen = () => {
+    this.setState({open: true});
+  };
 
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
+  handleClose = () => {
+    this.setState({open: false});
+  };
 
   render() {
-    const popover = (
-        <Popover id='modal-popover' title='popover'>
-          very popover. such engagement
-        </Popover>
-    );
-    const tooltip = (
-        <Tooltip id='modal-tooltip'>
-          wow.
-        </Tooltip>
-    );
+    const actions = [
+      <FlatButton
+          label="Cancel"
+          primary={true}
+          onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+          label="Submit"
+          primary={true}
+          keyboardFocused={true}
+          onTouchTap={this.handleClose}
+      />,
+    ];
 
     return (
         <div>
-          <p>Click to get the full Modal experience!</p>
-
-          <Button
-              bsStyle='primary'
-              bsSize='large'
-              onClick={this.open.bind(this)}
+          <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
+          <Dialog
+              title="Dialog With Actions"
+              actions={actions}
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.handleClose}
           >
-            Launch demo modal
-          </Button>
-
-          <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {this.props.children}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.close.bind(this)}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+            The actions in this window were passed in as an array of React objects.
+          </Dialog>
         </div>
     );
   }
@@ -62,4 +52,3 @@ class ModalDismissable extends React.Component {
 ModalDismissable.defaultProps = {};
 
 export default ModalDismissable;
-
