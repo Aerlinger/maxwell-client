@@ -69,7 +69,7 @@ const ElementButtonGroup = (
     expanded,
     buttonData
 ) => (
-    <Card expandable={true} initiallyExpanded={true}>
+    <Card expandable={true} initiallyExpanded={true} key={sectionName}>
       <CardHeader title={sectionName} actAsExpander={true} showExpandableButton={true}/>
       <CardText expandable={true} style={{padding: 5}}>
         <div style={styles.root}>
