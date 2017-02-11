@@ -23,27 +23,25 @@ class AppComponent extends React.Component {
         {/*<TopNav/>*/}
         <CircuitToolbar/>
 
-        <Grid fluid={true}>
-          <Row>
-            <Col sm={3} md={2} lg={2}>
-              <ComponentButtonGroup />
-              <SidePanel />
-            </Col>
+        <Row>
+          <Col sm={3} md={2} lg={2}>
+            <ComponentButtonGroup />
+            <SidePanel />
+          </Col>
 
-            <Col sm={6} md={8} lg={8}>
-              {/*<AlertDismissable />*/}
+          <Col sm={6} md={8} lg={8}>
+            {/*<AlertDismissable />*/}
 
-              {/*<LoginModal />*/}
-              {/*<RegistrationModal />*/}
+            {/*<LoginModal />*/}
+            {/*<RegistrationModal />*/}
 
-              {/*<SignUpForm onSubmit={(e) => console.log('submitted')} onChange={(e) => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}/>*/}
-            </Col>
+            {/*<SignUpForm onSubmit={(e) => console.log('submitted')} onChange={(e) => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}/>*/}
+          </Col>
 
-            <Col sm={3} md={2} lg={2}>
-              <EditPane />
-            </Col>
-          </Row>
-        </Grid>
+          <Col sm={3} md={2} lg={2}>
+            <EditPane />
+          </Col>
+        </Row>
       </div>
     );
   }
