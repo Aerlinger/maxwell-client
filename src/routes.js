@@ -3,14 +3,7 @@ import Dashboard from './containers/SettingsPage';
 import Main from './containers/Main';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
-import UiPage from './containers/UiPage';
 import Auth from './modules/Auth';
-
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap';
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 const routes = {
   // base component (wrapper for the whole application).
@@ -25,10 +18,6 @@ const routes = {
           callback(null, Main);
         }
       }
-    },
-    {
-      path: '/ui',
-      component: UiPage
     },
 
     {

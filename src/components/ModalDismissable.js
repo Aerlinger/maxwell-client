@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class ModalDismissable extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleOpen = () => {
@@ -29,7 +29,7 @@ class ModalDismissable extends React.Component {
           primary={true}
           keyboardFocused={true}
           onTouchTap={this.handleClose}
-      />,
+      />
     ];
 
     return (
