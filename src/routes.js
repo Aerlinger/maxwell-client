@@ -3,6 +3,7 @@ import Dashboard from './containers/DashboardPage';
 import Main from './components/Main';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
+import UiPage from './containers/UiPage';
 import Auth from './modules/Auth';
 
 
@@ -19,6 +20,11 @@ const routes = {
           callback(null, Main);
         }
       }
+    },
+
+    {
+      path: '/ui',
+      component: UiPage
     },
 
     {
