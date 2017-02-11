@@ -1,17 +1,12 @@
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
-import Checkbox from 'material-ui/Checkbox';
-import Toggle from 'material-ui/Toggle';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import Drawer from 'material-ui/Drawer';
-
 import React from 'react';
+
+import Subheader from 'material-ui/Subheader';
+import Drawer from 'material-ui/Drawer';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+
+import ComponentButton from '../components/ComponentButton'
 
 const styles = {
   root: {
@@ -28,7 +23,7 @@ const styles = {
 
 const tilesData = [
   {
-    img: 'images/yeoman.jpg',
+    img: 'images/yeoman.png',
     title: 'Breakfast',
     author: 'jill111',
   },
@@ -72,21 +67,15 @@ const tilesData = [
 class ElementPane extends React.Component {
   render() {
     return (
-      <Drawer width={300} open={true} >
+      <Drawer width={150} open={true} docked={true}>
         <div style={styles.root}>
-          <GridList cellHeight={100} cellWidth={100} style={styles.gridList}>
-            <Subheader>December</Subheader>
-            {tilesData.map((tile) => (
-                <GridTile
-                    key={tile.img}
-                    title={tile.title}
-                    subtitle={<span>by <b>{tile.author}</b></span>}
-                    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                >
-                  <img src={tile.img} />
-                </GridTile>
-            ))}
-          </GridList>
+          <Subheader>December</Subheader>
+          {tilesData.map((tile, i) => (
+
+            <ComponentButton hotkey="W" key={i}>
+              Transformer
+            </ComponentButton>
+          ))}
         </div>
       </Drawer>
     );
