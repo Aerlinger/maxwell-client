@@ -5,10 +5,6 @@ import TopNav from '../components/TopNav';
 import SidePanel from '../components/SidePanel';
 import EditPane from '../components/EditPane';
 import ComponentButtonGroup from '../components/ComponentButtonGroup';
-// import AlertDismissable from './AlertDismissable';
-// import ModalDismissable from './ModalDismissable';
-// import LoginModal from './modals/LoginModal';
-// import RegistrationModal from './modals/RegistrationModal';
 import SignUpForm from '../components/SignUpForm';
 import CircuitToolbar from '../components/Toolbar';
 

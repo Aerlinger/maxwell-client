@@ -6,6 +6,12 @@ import SignUpPage from './containers/SignUpPage';
 import UiPage from './containers/UiPage';
 import Auth from './modules/Auth';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap';
+
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const routes = {
   // base component (wrapper for the whole application).
@@ -21,7 +27,6 @@ const routes = {
         }
       }
     },
-
     {
       path: '/ui',
       component: UiPage
@@ -36,7 +41,6 @@ const routes = {
       path: '/signup',
       component: SignUpPage
     },
-
     {
       path: '/logout',
       onEnter: (nextState, replace) => {

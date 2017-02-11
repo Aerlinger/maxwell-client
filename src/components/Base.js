@@ -1,30 +1,51 @@
-import React, { PropTypes } from 'react';
-import { Link, IndexLink } from 'react-router';
+import React, {PropTypes} from 'react';
+import {Link, IndexLink} from 'react-router';
 import Auth from '../modules/Auth';
+import FontIcon from 'material-ui/FontIcon';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
 
 
-const Base = ({ children }) => (
+const Base = ({children}) => (
     <div>
-      <div className="top-bar">
-        <div className="top-bar-left">
-          <IndexLink to="/">React App</IndexLink>
-        </div>
+      <Toolbar>
+        <ToolbarGroup firstChild={true}>
+          <ToolbarTitle text="Maxwell"/>
+        </ToolbarGroup>
 
-        {Auth.isUserAuthenticated() ? (
-                <div className="top-bar-right">
-                  <Link to="/logout">Log out</Link>
-                </div>
-            ) : (
-                <div className="top-bar-right">
-                  <Link to="/login">Log in</Link>
-                  <Link to="/signup">Sign up</Link>
-                </div>
-            )}
+        <ToolbarGroup>
+          <FontIcon className="muidocs-icon-custom-sort"/>
+          <ToolbarSeparator />
 
-      </div>
+          {
+            Auth.isUserAuthenticated() ? (
+                    <FlatButton
+                        href="/logout"
+                        primary={true}
+                        label="Logout"
+                    />
+
+                ) : (
+                  <div>
+                    <FlatButton
+                        href="/login"
+                        primary={true}
+                        label="Login"
+                    />
+
+                    <FlatButton
+                      href="/signup"
+                      primary={false}
+                      label="Sign Up"
+                    />
+                  </div>
+                )
+          }
+
+        </ToolbarGroup>
+      </Toolbar>
 
       {children}
-
     </div>
 );
 
