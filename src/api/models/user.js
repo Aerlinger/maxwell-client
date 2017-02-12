@@ -4,6 +4,7 @@ let bcrypt = require('bcrypt');
 let CircuitSchema = require('./circuit');
 let DisplayPreferencesSchema = require('./display_preferences');
 
+
 let UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -77,4 +78,6 @@ UserSchema.pre('save', function saveHook(next) {
   next();
 });
 
-module.exports = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);
+
+module.exports = UserSchema;

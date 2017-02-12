@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
-const Dashboard = ({ secretData }) => (
+const Dashboard = ({ secretData, reqData }) => (
     <Card className="container">
       <CardTitle
           title="Dashboard"
@@ -10,6 +10,10 @@ const Dashboard = ({ secretData }) => (
       />
 
       {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
+
+      <pre>
+        {JSON.stringify(reqData)}
+      </pre>
     </Card>
 );
 

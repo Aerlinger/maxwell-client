@@ -10,18 +10,22 @@ import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import {CardText} from 'material-ui/Card';
+
+
 import Chip from 'material-ui/Chip';
 import {blue300, indigo900} from 'material-ui/styles/colors';
-
 
 import update from 'immutability-helper';
 
 const styles = {
   chip: {
     margin: 0
+  },
+  chip_label: {
+    fontSize: '8px'
   }
 };
-
 
 function getTruth(x) {
   if (typeof(x) == 'string')
@@ -222,21 +226,23 @@ class EditPanel extends React.Component {
                 leftAvatar={<Avatar src='images/yeoman.png'/>}
                 secondaryText='Description'
             />
+
             <ListItem
                 primaryText={this.state.name}
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
-            />
-
-            <Chip
-                backgroundColor={blue300}
-                style={styles.chip}
             >
-              <Avatar size={16} color={blue300} backgroundColor={indigo900}>
-                MB
-              </Avatar>
-              Select
-            </Chip>
+              <Chip
+                  backgroundColor={blue300}
+                  style={styles.chip}
+                  labelStyle={styles.labelStyle}
+              >
+                <Avatar size={24} color={blue300} backgroundColor={indigo900}>
+                  MB
+                </Avatar>
+                Select
+              </Chip>
+            </ListItem>
 
             <Divider />
             <Table selectable={false}>
@@ -272,13 +278,15 @@ class EditPanel extends React.Component {
             </Table>
             <Divider />
 
-            {
-              this.state.params.map((paramObj) => (
-                  addField(paramObj)
-              ))
-            }
+            <CardText>
+              {
+                this.state.params.map((paramObj) => (
+                    addField(paramObj)
+                ))
+              }
 
-            <RaisedButton label='Update' fullWidth={true} primary={true}/>
+              <RaisedButton label='Update' fullWidth={true} primary={true}/>
+            </CardText>
 
           </List>
         </Drawer>

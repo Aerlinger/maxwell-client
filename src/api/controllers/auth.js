@@ -103,9 +103,7 @@ router.post('/signup', (req, res, next) => {
 
 router.get('/test', (req, res, next) => {
   res.status(200);
-  res.json({
-    "result": "success"
-  });
+  res.json(req.User);
 });
 
 router.post('/login', (req, res, next) => {

@@ -52,4 +52,5 @@ module.exports.connect = (uri) => {
 // BRING IN YOUR SCHEMAS & MODELS
   require('./user');
   require('./circuit');
+  require('./display_preferences');
 };

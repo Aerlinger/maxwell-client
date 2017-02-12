@@ -40,4 +40,6 @@ let DisplayPreferencesSchema = mongoose.Schema({
   selection_color: String
 });
 
-module.exports = mongoose.model('DisplayPreferences', DisplayPreferencesSchema);
+mongoose.model('DisplayPreferences', DisplayPreferencesSchema);
+
+module.exports = DisplayPreferencesSchema;

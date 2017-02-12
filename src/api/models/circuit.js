@@ -23,8 +23,7 @@ let ComponentParamsSchema = new mongoose.Schema({
 let CircuitSchema = new mongoose.Schema({
   params: SimParamsSchema,
   components: [ComponentParamsSchema],
-  previous_version: [CircuitSchema],
   slug: String
 });
 
-module.exports = mongoose.model('Circuit', CircuitSchema);
+module.exports = CircuitSchema;
