@@ -11,18 +11,14 @@ import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Chip from 'material-ui/Chip';
-import FontIcon from 'material-ui/FontIcon';
-import SvgIconFace from 'material-ui/svg-icons/action/face';
 import {blue300, indigo900} from 'material-ui/styles/colors';
 
-
-import Slider from 'material-ui/Slider';
 
 import update from 'immutability-helper';
 
 const styles = {
   chip: {
-    margin: 0,
+    margin: 0
   }
 };
 
@@ -44,8 +40,8 @@ const fields = {
   power: 1,
   info: [
     {
-      label: "Mode",
-      value: "Forward-Active"
+      label: 'Mode',
+      value: 'Forward-Active'
     }
   ],
   params: [
@@ -130,7 +126,7 @@ class EditPanel extends React.Component {
     if (paramIdx >= 0) {
       this.setState({
         params: update(this.state.params, changeObj)
-      }, () => console.log("change:", this.state, key, paramIdx, changeObj, value));
+      }, () => console.log('change:', this.state, key, paramIdx, changeObj, value));
     }
   }
 
@@ -139,18 +135,14 @@ class EditPanel extends React.Component {
       title,
       hint,
       value,
-      default_value,
-      data_type,
-      field_type,
       select_values
   }) {
-    let raw_value = value ? value : default_value;
-
     return (
         <SelectField
             key={name}
             floatingLabelText={title}
-            value={raw_value}
+            errorText={hint}
+            value={value}
             onChange={this.handleChange.bind(this, name)}
         >
           {
@@ -166,10 +158,7 @@ class EditPanel extends React.Component {
       name,
       title,
       hint,
-      value,
-      default_value,
-      data_type,
-      field_type
+      value
   }) {
     return (<TextField
         key={name}
@@ -186,16 +175,22 @@ class EditPanel extends React.Component {
   addBooleanField({
       name,
       title,
-      hint,
-      value,
-      default_value,
-      data_type
+      value
   }) {
-    return (<Toggle label={title} key={name} labelPosition='right' value={value}
+    return (<Toggle label={title}
+                    key={name}
+                    labelPosition='right'
+                    value={value}
                     onChange={this.handleChange.bind(this, name)}/>);
   }
 
   addField(obj) {
+    let value = obj['value'];
+    let default_value = obj['default_value'];
+    let raw_value = value ? value : default_value;
+
+    obj['value'] = raw_value;
+
     if (obj['field_type'] == 'select')
       return this.addSelectField(obj);
     else if (obj['field_type'] == 'boolean')
@@ -248,8 +243,8 @@ class EditPanel extends React.Component {
               <TableBody displayRowCheckbox={false}>
                 <TableRow>
                   <TableRowColumn>Voltage</TableRowColumn>
-                  <TableRowColumn><span className="quantity">{this.state.voltage}</span><span
-                      className="symbol">V</span></TableRowColumn>
+                  <TableRowColumn><span className='quantity'>{this.state.voltage}</span><span
+                      className='symbol'>V</span></TableRowColumn>
                   <TableRowColumn>{this.state.voltage}</TableRowColumn>
                 </TableRow>
                 <TableRow>
@@ -283,7 +278,7 @@ class EditPanel extends React.Component {
               ))
             }
 
-            <RaisedButton label="Update" fullWidth={true} primary={true}/>
+            <RaisedButton label='Update' fullWidth={true} primary={true}/>
 
           </List>
         </Drawer>

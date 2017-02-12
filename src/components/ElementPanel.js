@@ -5,8 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 
-
-import SidePaneStyles from '../styles/SidePane.css';
+// import SidePaneStyles from '../styles/SidePane.css';
 
 const styles = {
   root: {
@@ -23,7 +22,7 @@ const styles = {
 
 const tilesData = [
   {
-    sectionName: "Basic",
+    sectionName: 'Basic',
     expanded: true,
     components: [
       {
@@ -44,7 +43,7 @@ const tilesData = [
     ]
   },
   {
-    sectionName: "Digital",
+    sectionName: 'Digital',
     expanded: true,
     components: [
       {
@@ -92,7 +91,7 @@ class ElementPanel extends React.Component {
     return (
         <Drawer width={200} open={true} docked={true}>
           {
-            tilesData.map((item, i) => (
+            tilesData.map((item) => (
                 ElementButtonGroup(item.sectionName, true, item.components)
             ))
           }

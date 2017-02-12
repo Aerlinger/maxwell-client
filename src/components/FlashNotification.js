@@ -10,19 +10,19 @@ class FlashNotification extends React.Component {
     this.state = {
       autoHideDuration: 4000,
       message: 'Event added to your calendar',
-      open: false,
+      open: false
     };
   }
 
   handleTouchTap = () => {
     this.setState({
-      open: true,
+      open: true
     });
   };
 
   handleActionTouchTap = () => {
     this.setState({
-      open: false,
+      open: false
     });
     alert('Event removed from your calendar.');
   };
@@ -30,13 +30,13 @@ class FlashNotification extends React.Component {
   handleChangeDuration = (event) => {
     const value = event.target.value;
     this.setState({
-      autoHideDuration: value.length > 0 ? parseInt(value) : 0,
+      autoHideDuration: value.length > 0 ? parseInt(value) : 0
     });
   };
 
   handleRequestClose = () => {
     this.setState({
-      open: false,
+      open: false
     });
   };
 

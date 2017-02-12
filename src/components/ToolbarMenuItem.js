@@ -1,19 +1,11 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
-
-const style = {
-  display: 'inline-block',
-  float: 'left',
-  margin: '16px 32px 16px 0',
-};
 
 class ToolbarMenuItem extends React.Component {
 
@@ -21,7 +13,7 @@ class ToolbarMenuItem extends React.Component {
     super(props);
 
     this.state = {
-      open: false,
+      open: false
     };
   }
 
@@ -31,13 +23,13 @@ class ToolbarMenuItem extends React.Component {
 
     this.setState({
       open: true,
-      anchorEl: event.currentTarget,
+      anchorEl: event.currentTarget
     });
   };
 
   handleRequestClose = () => {
     this.setState({
-      open: false,
+      open: false
     });
   };
 
@@ -78,7 +70,7 @@ class ToolbarMenuItem extends React.Component {
                     <MenuItem primaryText="Show Level 2" />,
                     <MenuItem primaryText="Grid lines" checked={true} />,
                     <MenuItem primaryText="Page breaks" insetChildren={true} />,
-                    <MenuItem primaryText="Rules" checked={true} />,
+                    <MenuItem primaryText="Rules" checked={true} />
                   ]}
               />
             </Menu>
