@@ -39,7 +39,7 @@ class ModalDismissable extends React.Component {
               title="Dialog With Actions"
               actions={actions}
               modal={false}
-              open={this.state.open}
+              open={true}
               onRequestClose={this.handleClose}
           >
             The actions in this window were passed in as an array of React objects.

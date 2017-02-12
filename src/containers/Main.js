@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import EditPane from '../components/EditPane';
 import SignUpForm from '../components/SignUpForm';
-import CircuitToolbar from '../components/Toolbar';
+// import CircuitToolbar from '../components/Toolbar';
 import AlertDismissable from '../components/AlertDismissable';
 import ModalDismissable from '../components/ModalDismissable';
 
@@ -16,6 +16,11 @@ class AppComponent extends React.Component {
     return (
       <div className='index'>
         <ElementPane />
+
+        <br />
+        <br />
+        <br />
+        <br />
 
         <AlertDismissable />
         <ModalDismissable/>

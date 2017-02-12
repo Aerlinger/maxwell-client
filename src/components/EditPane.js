@@ -132,11 +132,7 @@ class EditPane extends React.Component {
                 labelStyle={styles.labelStyle}
             />
 
-            <Toggle
-                label="Label on the right"
-                labelPosition="right"
-                style={styles.toggle}
-            />
+            <Toggle label="Label on the right" labelPosition="right" style={styles.toggle}/>
 
             <Slider defaultValue={0.5} axis="x-reverse" />
           </List>
