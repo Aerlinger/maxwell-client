@@ -84,7 +84,7 @@ const fields = {
   ]
 };
 
-class EditPane extends React.Component {
+class EditPanel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -196,6 +196,6 @@ class EditPane extends React.Component {
   }
 }
 
-EditPane.defaultProps = {};
+EditPanel.defaultProps = {};
 
-export default EditPane;
+export default EditPanel;

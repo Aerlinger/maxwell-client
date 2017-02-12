@@ -87,7 +87,7 @@ const ElementButtonGroup = (
     </Card>
 );
 
-class ElementPane extends React.Component {
+class ElementPanel extends React.Component {
   render() {
     return (
         <Drawer width={200} open={true} docked={true}>
@@ -101,6 +101,6 @@ class ElementPane extends React.Component {
   }
 }
 
-ElementPane.defaultProps = {};
+ElementPanel.defaultProps = {};
 
-export default ElementPane;
+export default ElementPanel;
