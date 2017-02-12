@@ -24,7 +24,15 @@ class Dashboard extends React.Component {
 
     obj[paramName] = paramValue;
 
+    console.log(obj);
+
     this.setState(obj);
+  }
+
+  updateTextParam(paramName, evt, newValue) {
+    console.log("TEXT UPDATE", paramName, newValue);
+
+    this.updateParam(paramName, newValue);
   }
 
   colorSettingWidget(display_preferences, label, key) {
@@ -43,6 +51,7 @@ class Dashboard extends React.Component {
         <div>
           <TextField
               defaultValue={display_preferences[key]}
+              onChange={this.updateTextParam.bind(this, key)}
               floatingLabelText={label}
           />
         </div>
@@ -55,7 +64,7 @@ class Dashboard extends React.Component {
           <Toggle label={label}
                   labelPosition='right'
                   defaultToggled={display_preferences[key]}
-                  onChange={this.updateParam.bind(this, key)}/>
+                  onToggle={this.updateTextParam.bind(this, key)}/>
           <Divider />
         </div>
     );
