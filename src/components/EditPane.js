@@ -1,6 +1,5 @@
 import React from 'react';
 import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
@@ -12,29 +11,31 @@ import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Slider from 'material-ui/Slider';
 
+import SidePaneStyles from '../styles/SidePane.css';
+
 
 const styles = {
   block: {
-    maxWidth: 250,
+    maxWidth: 250
   },
   toggle: {
-    marginBottom: 16,
+    marginBottom: 16
   },
   thumbOff: {
-    backgroundColor: '#ffcccc',
+    backgroundColor: '#ffcccc'
   },
   trackOff: {
-    backgroundColor: '#ff9d9d',
+    backgroundColor: '#ff9d9d'
   },
   thumbSwitched: {
-    backgroundColor: 'red',
+    backgroundColor: 'red'
   },
   trackSwitched: {
-    backgroundColor: '#ff9d9d',
+    backgroundColor: '#ff9d9d'
   },
   labelStyle: {
-    color: 'red',
-  },
+    color: 'red'
+  }
 };
 
 class EditPane extends React.Component {
@@ -91,12 +92,6 @@ class EditPane extends React.Component {
               />
             </ListItem>
 
-            <ListItem
-                leftCheckbox={<Checkbox />}
-                primaryText="Notifications"
-                secondaryText="Allow notifications"
-            />
-            <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />}/>
             <ListItem primaryText="Events and reminders" rightToggle={<Toggle />}/>
 
             <ListItem>

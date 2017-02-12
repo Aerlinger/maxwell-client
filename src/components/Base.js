@@ -4,10 +4,12 @@ import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 
+import MainToolbarStyle from '../styles/MainToolbar.css';
+
 
 const Base = ({children}) => (
     <div>
-      <Toolbar>
+      <Toolbar className={MainToolbarStyle.root}>
         <ToolbarGroup firstChild={true}>
           <ToolbarTitle text="Maxwell"/>
         </ToolbarGroup>

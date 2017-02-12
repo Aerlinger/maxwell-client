@@ -5,6 +5,9 @@ import Drawer from 'material-ui/Drawer';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 
+
+import SidePaneStyles from '../styles/SidePane.css';
+
 const styles = {
   root: {
     display: 'flex',
@@ -62,7 +65,6 @@ const tilesData = [
     ]
   }
 ];
-
 
 const ElementButtonGroup = (
     sectionName,

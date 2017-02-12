@@ -7,6 +7,8 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
+import MainToolbarStyle from '../styles/MainToolbar.css';
+
 class CircuitToolbar extends React.Component {
 
   constructor(props) {
@@ -18,7 +20,7 @@ class CircuitToolbar extends React.Component {
 
   render() {
     return (
-        <Toolbar>
+        <Toolbar style={{position: "relative", zIndex: 100}}>
           <ToolbarGroup firstChild={true}>
           </ToolbarGroup>
           <ToolbarGroup>
