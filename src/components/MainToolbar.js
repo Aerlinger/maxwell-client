@@ -7,9 +7,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import FlatButton from 'material-ui/FlatButton';
 
 import MainToolbarStyle from '../styles/MainToolbar.css';
-
-import ToolbarMenu from './ToolbarMenu';
-
+import ToolbarMenuItem from './ToolbarMenuItem';
 
 class MainToolbar extends React.Component {
 
@@ -25,55 +23,60 @@ class MainToolbar extends React.Component {
   }
 
   render() {
-    return (<Toolbar className={MainToolbarStyle.root}>
-      <ToolbarGroup firstChild={true}>
-        <ToolbarTitle text="Maxwell"/>
+    return (
+        <Toolbar className={MainToolbarStyle.root}>
+          <ToolbarGroup firstChild={true}>
+            <ToolbarTitle text="Maxwell"/>
 
-        <DropDownMenu value={this.state.value} onChange={this.handleChange.bind(this)}>
-          <MenuItem value={1} primaryText="All Broadcasts"/>
-          <MenuItem value={2} primaryText="All Voice"/>
-          <MenuItem value={3} primaryText="All Text"/>
-          <MenuItem value={4} primaryText="Complete Voice"/>
-          <MenuItem value={5} primaryText="Complete Text"/>
-          <MenuItem value={6} primaryText="Active Voice"/>
-          <MenuItem value={7} primaryText="Active Text"/>
-        </DropDownMenu>
+            <DropDownMenu value={this.state.value} onChange={this.handleChange.bind(this)}>
+              <MenuItem value={1} primaryText="All Broadcasts"/>
+              <MenuItem value={2} primaryText="All Voice"/>
+              <MenuItem value={3} primaryText="All Text"/>
+              <MenuItem value={4} primaryText="Complete Voice"/>
+              <MenuItem value={5} primaryText="Complete Text"/>
+              <MenuItem value={6} primaryText="Active Voice"/>
+              <MenuItem value={7} primaryText="Active Text"/>
+            </DropDownMenu>
 
-        <ToolbarMenu />
+            <ToolbarMenuItem />
+            <ToolbarMenuItem />
+            <ToolbarMenuItem />
 
-      </ToolbarGroup>
 
-      <ToolbarGroup>
-        <FontIcon className="muidocs-icon-custom-sort"/>
-        <ToolbarSeparator />
+          </ToolbarGroup>
 
-        {
-          Auth.isUserAuthenticated() ? (
-                  <FlatButton
-                      href="/logout"
-                      primary={true}
-                      label="Logout"
-                  />
+          <ToolbarGroup>
+            <FontIcon className="muidocs-icon-custom-sort"/>
+            <ToolbarSeparator />
 
-              ) : (
-                  <div>
-                    <FlatButton
-                        href="/login"
-                        primary={true}
-                        label="Login"
-                    />
+            {
+              Auth.isUserAuthenticated() ? (
+                      <FlatButton
+                          href="/logout"
+                          primary={true}
+                          label="Logout"
+                      />
 
-                    <FlatButton
-                        href="/signup"
-                        primary={false}
-                        label="Sign Up"
-                    />
-                  </div>
-              )
-        }
+                  ) : (
+                      <div>
+                        <FlatButton
+                            href="/login"
+                            primary={true}
+                            label="Login"
+                        />
 
-      </ToolbarGroup>
-    </Toolbar>);
+                        <FlatButton
+                            href="/signup"
+                            primary={false}
+                            label="Sign Up"
+                        />
+                      </div>
+                  )
+            }
+
+          </ToolbarGroup>
+        </Toolbar>
+    );
   }
 }
 

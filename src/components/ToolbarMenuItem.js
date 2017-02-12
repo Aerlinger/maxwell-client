@@ -1,4 +1,5 @@
 import React from 'react';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
@@ -7,13 +8,14 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
+
 const style = {
   display: 'inline-block',
   float: 'left',
   margin: '16px 32px 16px 0',
 };
 
-class ToolbarMenu extends React.Component {
+class ToolbarMenuItem extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,7 +44,7 @@ class ToolbarMenu extends React.Component {
   render() {
     return (
         <div>
-          <RaisedButton
+          <FlatButton
               onTouchTap={this.handleTouchTap}
               label="Click me"
           />
@@ -86,4 +88,4 @@ class ToolbarMenu extends React.Component {
   }
 }
 
-module.exports = ToolbarMenu;
+module.exports = ToolbarMenuItem;
