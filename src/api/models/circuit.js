@@ -23,7 +23,11 @@ let ComponentParamsSchema = new mongoose.Schema({
 let CircuitSchema = new mongoose.Schema({
   params: SimParamsSchema,
   components: [ComponentParamsSchema],
-  slug: String
+  slug: String,
+  private: { type: Boolean, default: true }
+},
+{
+  timestamps: true
 });
 
 module.exports = CircuitSchema;

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
+import ColorPickerButon from './ColorPickerButton'
 
-const Dashboard = ({ secretData, reqData }) => (
+const Dashboard = ({ secretData, user }) => (
     <Card className="container">
       <CardTitle
           title="Dashboard"
@@ -12,8 +13,13 @@ const Dashboard = ({ secretData, reqData }) => (
       {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
 
       <pre>
-        {JSON.stringify(reqData)}
+        {JSON.stringify(user, null, 4)}
       </pre>
+
+      <form>
+        <ColorPickerButon label="Color item" color="rgba(255,0,0,0.8)"/>
+      </form>
+
     </Card>
 );
 
