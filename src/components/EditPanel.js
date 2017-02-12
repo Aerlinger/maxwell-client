@@ -8,7 +8,10 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 import Slider from 'material-ui/Slider';
+
+import update from 'immutability-helper';
 
 
 const fields = {
@@ -88,22 +91,23 @@ class EditPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: 'BJT',
-      icon: 'BJT.png',
-      description: 'Description of component',
-      label: 'user_label',
-      voltage: 10,
-      current: 5,
-      power: 1,
-      params: {
-        polarity: 1,
-        vbe: 1,
-        vbc: 0.05,
-        beta: 100,
-        show_current: true,
-        duty_cycle: 50
-      }
+    this.state = fields;
+  }
+
+  findParam(name) {
+    return this.state.params.findIndex((item) => item['name'] == name);
+  }
+
+  handleChange(key, changeObj, value) {
+    let paramIdx = this.findParam(key);
+
+    var changeObj = {};
+    changeObj[paramIdx] = {value: {$set: value}};
+
+    if (paramIdx >= 0) {
+      this.setState({
+        params: update(this.state.params, changeObj)
+      }, () => console.log("change:", this.state, key, paramIdx, changeObj, value));
     }
   }
 
@@ -121,8 +125,10 @@ class EditPanel extends React.Component {
 
     return (
         <SelectField
+            key={name}
             floatingLabelText={title}
             value={raw_value}
+            onChange={this.handleChange.bind(this, name)}
         >
           {
             Object.keys(select_values).map((key, index) => (
@@ -143,10 +149,12 @@ class EditPanel extends React.Component {
       field_type
   }) {
     return (<TextField
+        key={name}
         hintText={name}
         floatingLabelText={name}
         floatingLabelFixed={true}
         value={value}
+        onChange={this.handleChange.bind(this, name)}
     />);
   }
 
@@ -158,10 +166,34 @@ class EditPanel extends React.Component {
       default_value,
       data_type
   }) {
-    return (<Toggle label={name} labelPosition='right' value={value}/>);
+    return (<Toggle label={title} key={name} labelPosition='right' value={value}
+                    onChange={this.handleChange.bind(this, name)}/>);
+  }
+
+  addField(obj) {
+    if (obj['field_type'] == 'select')
+      return this.addSelectField(obj);
+    else if (obj['field_type'] == 'boolean')
+      return this.addBooleanField(obj);
+    else
+      return this.addTextField(obj);
+  }
+
+  getParams() {
+    let params = this.state.params;
+
+    var paramsObj = {};
+
+    params.map((param) => {
+      paramsObj[param['name']] = param['value']
+    });
+
+    return paramsObj;
   }
 
   render() {
+    let addField = this.addField.bind(this);
+
     return (
         <Drawer width={300} openSecondary={true} open={true}>
           <List>
@@ -186,16 +218,16 @@ class EditPanel extends React.Component {
             </Table>
             <Divider />
 
-            { this.addBooleanField({name: 'Sample', value: true}) }
-            { this.addTextField({name: 'Sample', value: 'Text value'}) }
-            { this.addSelectField({title: 'Sample', select_values: {'NPN': -1, 'PNP': 1}, value: 1}) }
+            {
+              this.state.params.map((paramObj) => (
+                  addField(paramObj)
+              ))
+            }
 
           </List>
         </Drawer>
     );
   }
 }
-
-EditPanel.defaultProps = {};
 
 export default EditPanel;
