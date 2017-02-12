@@ -10,7 +10,8 @@ import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 
 import AlertDismissable from '../components/AlertDismissable';
-import ModalDismissable from '../components/ModalDismissable';
+import SignUpModal from './SignUpModal';
+import FlashNotification from './FlashNotification'
 
 class MainToolbar extends React.Component {
 
@@ -36,7 +37,8 @@ class MainToolbar extends React.Component {
             <ToolbarMenuItem title="Components"/>
             <ToolbarMenuItem title="Analysis"/>
 
-            <ModalDismissable/>
+            <SignUpModal/>
+            <FlashNotification/>
           </ToolbarGroup>
 
           <ToolbarGroup>

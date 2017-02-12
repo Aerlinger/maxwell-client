@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import SignUpPage from '../containers/SignUpPage';
 
-class ModalDismissable extends React.Component {
+class SignUpModal extends React.Component {
   state = {
     open: false
   };
@@ -35,7 +35,7 @@ class ModalDismissable extends React.Component {
 
     return (
         <div>
-          <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
+          <RaisedButton label="Sign up" onTouchTap={this.handleOpen} />
           <Dialog
               title="Sign Up"
               actions={actions}
@@ -52,6 +52,6 @@ class ModalDismissable extends React.Component {
   }
 }
 
-ModalDismissable.defaultProps = {};
+SignUpModal.defaultProps = {};
 
-export default ModalDismissable;
+export default SignUpModal;

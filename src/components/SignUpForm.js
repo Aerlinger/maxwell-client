@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import SettingsDialog from '../components/SettingsDialog';
 
 import AlertDismissable from '../components/AlertDismissable';
-import ModalDismissable from '../components/ModalDismissable';
+import ModalDismissable from './SignUpModal';
 
 const SignUpForm = ({
     onSubmit,
