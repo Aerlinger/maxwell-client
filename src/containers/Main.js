@@ -17,16 +17,6 @@ class AppComponent extends React.Component {
       <div className='index'>
         <ElementPane />
 
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <AlertDismissable />
-        <ModalDismissable/>
-
-        <SignUpForm onSubmit={() => console.log('submitted')} onChange={() => console.log('changed')} errors={{ email: 'Invalid' }} user={{ email: 'jane@doe.com', name: 'Jane Doe' }}/>
-
         <EditPane />
       </div>
     );

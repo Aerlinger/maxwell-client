@@ -58,8 +58,6 @@ const SignUpForm = ({
         <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
       </form>
 
-      <AlertDismissable />
-      <SettingsDialog />
     </Card>
 );
 
