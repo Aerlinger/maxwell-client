@@ -9,6 +9,9 @@ import FlatButton from 'material-ui/FlatButton';
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 
+import AlertDismissable from '../components/AlertDismissable';
+import ModalDismissable from '../components/ModalDismissable';
+
 class MainToolbar extends React.Component {
 
   constructor(props) {
@@ -28,21 +31,12 @@ class MainToolbar extends React.Component {
           <ToolbarGroup firstChild={true}>
             <ToolbarTitle text="Maxwell"/>
 
-            <DropDownMenu value={this.state.value} onChange={this.handleChange.bind(this)}>
-              <MenuItem value={1} primaryText="All Broadcasts"/>
-              <MenuItem value={2} primaryText="All Voice"/>
-              <MenuItem value={3} primaryText="All Text"/>
-              <MenuItem value={4} primaryText="Complete Voice"/>
-              <MenuItem value={5} primaryText="Complete Text"/>
-              <MenuItem value={6} primaryText="Active Voice"/>
-              <MenuItem value={7} primaryText="Active Text"/>
-            </DropDownMenu>
+            <ToolbarMenuItem title="Circuit"/>
+            <ToolbarMenuItem title="Edit"/>
+            <ToolbarMenuItem title="Components"/>
+            <ToolbarMenuItem title="Analysis"/>
 
-            <ToolbarMenuItem />
-            <ToolbarMenuItem />
-            <ToolbarMenuItem />
-
-
+            <ModalDismissable/>
           </ToolbarGroup>
 
           <ToolbarGroup>

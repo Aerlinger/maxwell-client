@@ -3,6 +3,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import SignUpPage from '../containers/SignUpPage';
 
 class ModalDismissable extends React.Component {
   state = {
@@ -36,13 +37,15 @@ class ModalDismissable extends React.Component {
         <div>
           <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
           <Dialog
-              title="Dialog With Actions"
+              title="Sign Up"
               actions={actions}
               modal={false}
-              open={true}
+              open={this.state.open}
               onRequestClose={this.handleClose}
           >
-            The actions in this window were passed in as an array of React objects.
+
+            <SignUpPage/>
+
           </Dialog>
         </div>
     );

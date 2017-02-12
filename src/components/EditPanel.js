@@ -248,7 +248,8 @@ class EditPanel extends React.Component {
               <TableBody displayRowCheckbox={false}>
                 <TableRow>
                   <TableRowColumn>Voltage</TableRowColumn>
-                  <TableRowColumn><span className="quantity">{this.state.voltage}</span><span className="symbol">V</span></TableRowColumn>
+                  <TableRowColumn><span className="quantity">{this.state.voltage}</span><span
+                      className="symbol">V</span></TableRowColumn>
                   <TableRowColumn>{this.state.voltage}</TableRowColumn>
                 </TableRow>
                 <TableRow>
