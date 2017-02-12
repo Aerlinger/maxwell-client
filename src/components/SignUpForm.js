@@ -3,6 +3,10 @@ import { Link } from 'react-router';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import SettingsDialog from '../components/SettingsDialog';
+
+import AlertDismissable from '../components/AlertDismissable';
+import ModalDismissable from '../components/ModalDismissable';
 
 const SignUpForm = ({
     onSubmit,
@@ -53,6 +57,7 @@ const SignUpForm = ({
 
         <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
       </form>
+
     </Card>
 );
 

@@ -1,11 +1,9 @@
 import Base from './components/Base';
-import Dashboard from './containers/DashboardPage';
-import Main from './components/Main';
+import Dashboard from './containers/SettingsPage';
+import Main from './containers/Main';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
-import UiPage from './containers/UiPage';
 import Auth from './modules/Auth';
-
 
 const routes = {
   // base component (wrapper for the whole application).
@@ -23,11 +21,6 @@ const routes = {
     },
 
     {
-      path: '/ui',
-      component: UiPage
-    },
-
-    {
       path: '/login',
       component: LoginPage
     },
@@ -36,7 +29,6 @@ const routes = {
       path: '/signup',
       component: SignUpPage
     },
-
     {
       path: '/logout',
       onEnter: (nextState, replace) => {

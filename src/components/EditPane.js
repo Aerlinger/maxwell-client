@@ -1,176 +1,142 @@
-require('normalize.css/normalize.css');
-
-import ButtonStyle from '../styles/ComponentButton.css';
-
-import * as Bootstrap from 'react-bootstrap';
-
-let TransformerImage = require('../images/Transformer2.png');
 import React from 'react';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Checkbox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import Drawer from 'material-ui/Drawer';
+import Avatar from 'material-ui/Avatar';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Slider from 'material-ui/Slider';
+
+import SidePaneStyles from '../styles/SidePane.css';
+
+
+const styles = {
+  block: {
+    maxWidth: 250
+  },
+  toggle: {
+    marginBottom: 16
+  },
+  thumbOff: {
+    backgroundColor: '#ffcccc'
+  },
+  trackOff: {
+    backgroundColor: '#ff9d9d'
+  },
+  thumbSwitched: {
+    backgroundColor: 'red'
+  },
+  trackSwitched: {
+    backgroundColor: '#ff9d9d'
+  },
+  labelStyle: {
+    color: 'red'
+  }
+};
 
 class EditPane extends React.Component {
-  hotkey() {
-    if (this.props.hotkey) {
-      return <span className={ButtonStyle.hotkey}>{this.props.hotkey}</span>
-    }
-  }
-
   render() {
     return (
-        <form style={{background: '#EEE'}}>
+        <Drawer width={300} openSecondary={true} open={true}>
+          <List>
+            <ListItem
+                primaryText="ResistorElm"
+                leftAvatar={<Avatar src="images/yeoman.png"/>}
+                secondaryText="Description"
+            />
 
-          <h4>Transformer</h4>
+            <Divider />
+            <Table selectable={false}>
+              <TableHeader displayRowCheckbox={false}>
+                <TableRow>
+                  <TableHeaderColumn>Name</TableHeaderColumn>
+                  <TableHeaderColumn>Status</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                <TableRow>
+                  <TableRowColumn>Voltage</TableRowColumn>
+                  <TableRowColumn>10</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Current</TableRowColumn>
+                  <TableRowColumn>1</TableRowColumn>
+                </TableRow>
+              </TableBody>
+            </Table>
+            <Divider />
 
-          <Bootstrap.PageHeader><img src={TransformerImage} width='60px' height='60px'/><small>Subtext for header</small></Bootstrap.PageHeader>
-          <hr />
+            <ListItem>
 
-          <Bootstrap.Table striped bordered condensed hover>
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            </tbody>
-          </Bootstrap.Table>
+              <SelectField
+                  floatingLabelText="Frequency"
+                  value={1}
+              >
+                <MenuItem value={1} primaryText="Never"/>
+                <MenuItem value={2} primaryText="Every Night"/>
+                <MenuItem value={3} primaryText="Weeknights"/>
+                <MenuItem value={4} primaryText="Weekends"/>
+                <MenuItem value={5} primaryText="Weekly"/>
+              </SelectField>
+            </ListItem>
 
-          <Bootstrap.FormGroup controlId='formValidationSuccess1' validationState='success'>
-            <Bootstrap.ControlLabel>Input with success</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-            <Bootstrap.HelpBlock>Help text with validation state.</Bootstrap.HelpBlock>
-          </Bootstrap.FormGroup>
+            <ListItem>
+              <TextField
+                  hintText="Hint Text"
+                  floatingLabelText="Fixed Floating Label Text"
+                  floatingLabelFixed={true}
+              />
+            </ListItem>
 
-          <Bootstrap.FormGroup controlId='formValidationWarning1' validationState='warning'>
-            <Bootstrap.ControlLabel>Input with warning</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-          </Bootstrap.FormGroup>
+            <ListItem primaryText="Events and reminders" rightToggle={<Toggle />}/>
 
-          <Bootstrap.FormGroup controlId='formValidationError1' validationState='error'>
-            <Bootstrap.ControlLabel>Input with error</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-          </Bootstrap.FormGroup>
+            <ListItem>
+              <Slider defaultValue={0.5} axis="x-reverse" />
+            </ListItem>
 
-          <Bootstrap.FormGroup controlId='formValidationNull' validationState={null}>
-            <Bootstrap.ControlLabel>Input with no validation state</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-          </Bootstrap.FormGroup>
+            <Divider />
 
-          <Bootstrap.FormGroup controlId='formValidationSuccess2' validationState='success'>
-            <Bootstrap.ControlLabel>Input with success and feedback icon</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-            <Bootstrap.FormControl.Feedback />
-          </Bootstrap.FormGroup>
+            <TextField
+                hintText="Hint Text"
+                floatingLabelText="Fixed Floating Label Text"
+                floatingLabelFixed={true}
+            />
 
-          <Bootstrap.FormGroup controlId='formValidationWarning2' validationState='warning'>
-            <Bootstrap.ControlLabel>Input with warning and feedback icon</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-            <Bootstrap.FormControl.Feedback />
-          </Bootstrap.FormGroup>
+            <TextField
+                hintText="Hint Text"
+                floatingLabelText="Fixed Floating Label Text"
+                floatingLabelFixed={true}
+            />
 
-          <Bootstrap.FormGroup controlId='formValidationError2' validationState='error'>
-            <Bootstrap.ControlLabel>Input with error and feedback icon</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-            <Bootstrap.FormControl.Feedback />
-          </Bootstrap.FormGroup>
+            <SelectField
+                floatingLabelText="Frequency"
+                value={1}
+            >
+              <MenuItem value={1} primaryText="Never"/>
+              <MenuItem value={2} primaryText="Every Night"/>
+              <MenuItem value={3} primaryText="Weeknights"/>
+              <MenuItem value={4} primaryText="Weekends"/>
+              <MenuItem value={5} primaryText="Weekly"/>
+            </SelectField>
 
-          <Bootstrap.FormGroup controlId='formValidationSuccess3' validationState='success'>
-            <Bootstrap.ControlLabel>Input with success and custom feedback icon</Bootstrap.ControlLabel>
-            <Bootstrap.FormControl type='text' />
-            <Bootstrap.FormControl.Feedback>
-              <Bootstrap.Glyphicon glyph='music' />
-            </Bootstrap.FormControl.Feedback>
-          </Bootstrap.FormGroup>
+            <Toggle
+                label="Styling"
+                thumbStyle={styles.thumbOff}
+                trackStyle={styles.trackOff}
+                thumbSwitchedStyle={styles.thumbSwitched}
+                trackSwitchedStyle={styles.trackSwitched}
+                labelStyle={styles.labelStyle}
+            />
 
-          <Bootstrap.FormGroup controlId='formValidationWarning3' validationState='warning'>
-            <Bootstrap.ControlLabel>Input group with warning</Bootstrap.ControlLabel>
-            <Bootstrap.InputGroup>
-              <Bootstrap.InputGroup.Addon>@</Bootstrap.InputGroup.Addon>
-              <Bootstrap.FormControl type='text' />
-            </Bootstrap.InputGroup>
-            <Bootstrap.FormControl.Feedback />
-          </Bootstrap.FormGroup>
+            <Toggle label="Label on the right" labelPosition="right" style={styles.toggle}/>
 
-          <Bootstrap.Form componentClass='fieldset' horizontal>
-            <Bootstrap.FormGroup controlId='formValidationError3' validationState='error'>
-              <Bootstrap.Col componentClass={Bootstrap.ControlLabel} xs={3}>
-                Input with error
-              </Bootstrap.Col>
-              <Bootstrap.Col xs={9}>
-                <Bootstrap.FormControl type='text' />
-                <Bootstrap.FormControl.Feedback />
-              </Bootstrap.Col>
-            </Bootstrap.FormGroup>
-
-            <Bootstrap.FormGroup controlId='formValidationSuccess4' validationState='success'>
-              <Bootstrap.Col componentClass={Bootstrap.ControlLabel} xs={3}>
-                Input group with success
-              </Bootstrap.Col>
-              <Bootstrap.Col xs={9}>
-                <Bootstrap.InputGroup>
-                  <Bootstrap.InputGroup.Addon>@</Bootstrap.InputGroup.Addon>
-                  <Bootstrap.FormControl type='text' />
-                </Bootstrap.InputGroup>
-                <Bootstrap.FormControl.Feedback />
-              </Bootstrap.Col>
-            </Bootstrap.FormGroup>
-          </Bootstrap.Form>
-
-          <Bootstrap.Form componentClass='fieldset' inline>
-            <Bootstrap.FormGroup controlId='formValidationWarning4' validationState='warning'>
-              <Bootstrap.ControlLabel>Input with warning</Bootstrap.ControlLabel>
-              {' '}
-              <Bootstrap.FormControl type='text' />
-              <Bootstrap.FormControl.Feedback />
-            </Bootstrap.FormGroup>
-            {' '}
-            <Bootstrap.FormGroup controlId='formValidationError4' validationState='error'>
-              <Bootstrap.ControlLabel>Input group with error</Bootstrap.ControlLabel>
-              {' '}
-              <Bootstrap.InputGroup>
-                <Bootstrap.InputGroup.Addon>@</Bootstrap.InputGroup.Addon>
-                <Bootstrap.FormControl type='text' />
-              </Bootstrap.InputGroup>
-              <Bootstrap.FormControl.Feedback />
-            </Bootstrap.FormGroup>
-          </Bootstrap.Form>
-
-          <Bootstrap.Checkbox validationState='success'>
-            Checkbox with success
-          </Bootstrap.Checkbox>
-          <Bootstrap.Radio validationState='warning'>
-            Radio with warning
-          </Bootstrap.Radio>
-          <Bootstrap.Checkbox validationState='error'>
-            Checkbox with error
-          </Bootstrap.Checkbox>
-
-          {/* This requires React 15's <span>-less spaces to be exactly correct. */}
-          <Bootstrap.FormGroup validationState='success'>
-            <Bootstrap.Checkbox inline>
-              Checkbox
-            </Bootstrap.Checkbox>
-            {' '}
-            <Bootstrap.Checkbox inline>
-              with
-            </Bootstrap.Checkbox>
-            {' '}
-            <Bootstrap.Checkbox inline>
-              success
-            </Bootstrap.Checkbox>
-          </Bootstrap.FormGroup>
-
-          <Bootstrap.Button type='submit'>
-            Sign in
-          </Bootstrap.Button>
-        </form>
+            <Slider defaultValue={0.5} axis="x-reverse" />
+          </List>
+        </Drawer>
     );
   }
 }
