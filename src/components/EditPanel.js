@@ -7,28 +7,53 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import Avatar from 'material-ui/Avatar';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import Chip from 'material-ui/Chip';
+import FontIcon from 'material-ui/FontIcon';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
+import {blue300, indigo900} from 'material-ui/styles/colors';
+
 
 import Slider from 'material-ui/Slider';
 
 import update from 'immutability-helper';
 
+const styles = {
+  chip: {
+    margin: 0,
+  }
+};
+
+
+function getTruth(x) {
+  if (typeof(x) == 'string')
+    return ((x === '1') || (x === 'true'));
+  else
+    return !!x;
+}
 
 const fields = {
-  name: 'BJT',
-  icon: 'BJT.png',
+  name: 'Bipolar Junction Transistor',
+  icon: 'images/components/v1/bjt.png',
   description: 'Description of component',
   label: 'user_label',
   voltage: 10,
   current: 5,
   power: 1,
+  info: [
+    {
+      label: "Mode",
+      value: "Forward-Active"
+    }
+  ],
   params: [
     {
       name: 'polarity',
       title: 'Polarity',
       value: 1,
       default_value: -1,
-      data_type: Math.sign,
       field_type: 'select',
       select_values: {'NPN': -1, 'PNP': 1}
     },
@@ -39,16 +64,17 @@ const fields = {
       unit: 'Voltage',
       symbol: 'V',
       default_value: 0,
-      data_type: parseFloat
+      parse: parseFloat
     },
     {
       name: 'vbc',
+      hint: 'Base-Collector voltage',
       title: 'Base-Collector voltage',
       value: 0.05,
       unit: 'Voltage',
       symbol: 'V',
       default_value: 0,
-      data_type: parseFloat
+      parse: parseFloat
     },
     {
       name: 'beta',
@@ -57,7 +83,7 @@ const fields = {
       value: 100,
       description: 'Current gain',
       default_value: 100,
-      data_type: parseFloat,
+      parse: parseFloat,
       range: [0, Infinity]
     },
     {
@@ -67,10 +93,7 @@ const fields = {
       description: 'Show current through gate',
       default_value: true,
       field_type: 'boolean',
-      data_type: (val) => {
-        !!val
-      },
-      range: [0, Infinity]
+      parse: (x) => getTruth(x)
     },
     {
       name: 'duty_cycle',
@@ -81,7 +104,7 @@ const fields = {
       description: 'Show current through gate',
       default_value: true,
       field_type: 'slider',
-      toVal: (x) => x / 100,
+      parse: (x) => (parseFloat(x) / 100),
       range: [0, 100]
     }
   ]
@@ -150,8 +173,10 @@ class EditPanel extends React.Component {
   }) {
     return (<TextField
         key={name}
+
         hintText={name}
-        floatingLabelText={name}
+        errorText={hint}
+        floatingLabelText={title}
         floatingLabelFixed={true}
         value={value}
         onChange={this.handleChange.bind(this, name)}
@@ -202,18 +227,51 @@ class EditPanel extends React.Component {
                 leftAvatar={<Avatar src='images/yeoman.png'/>}
                 secondaryText='Description'
             />
+            <ListItem
+                primaryText={this.state.name}
+                leftAvatar={<Avatar src={this.state.icon}/>}
+                secondaryText='Description'
+            />
+
+            <Chip
+                backgroundColor={blue300}
+                style={styles.chip}
+            >
+              <Avatar size={16} color={blue300} backgroundColor={indigo900}>
+                MB
+              </Avatar>
+              Select
+            </Chip>
 
             <Divider />
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false}>
                 <TableRow>
                   <TableRowColumn>Voltage</TableRowColumn>
-                  <TableRowColumn>10</TableRowColumn>
+                  <TableRowColumn><span className="quantity">{this.state.voltage}</span><span className="symbol">V</span></TableRowColumn>
+                  <TableRowColumn>{this.state.voltage}</TableRowColumn>
                 </TableRow>
                 <TableRow>
                   <TableRowColumn>Current</TableRowColumn>
-                  <TableRowColumn>1</TableRowColumn>
+                  <TableRowColumn>{this.state.current}A</TableRowColumn>
+                  <TableRowColumn>{this.state.current}</TableRowColumn>
                 </TableRow>
+              </TableBody>
+            </Table>
+
+            <Divider />
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false}>
+                {
+                  this.state.info.map((infoObj, i) => (
+
+                      <TableRow key={i}>
+                        <TableRowColumn>{infoObj['label']}</TableRowColumn>
+                        <TableRowColumn>{infoObj['value']}</TableRowColumn>
+                      </TableRow>
+                  ))
+                }
+
               </TableBody>
             </Table>
             <Divider />
@@ -223,6 +281,8 @@ class EditPanel extends React.Component {
                   addField(paramObj)
               ))
             }
+
+            <RaisedButton label="Update" fullWidth={true} primary={true}/>
 
           </List>
         </Drawer>
