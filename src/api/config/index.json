@@ -1,4 +1,4 @@
 {
-  "dbUri": "mongodb://localhost/react_app",
+  "dbUri": "mongodb://localhost/maxwell_client",
   "jwtSecret": "a secret phrase!!"
 }

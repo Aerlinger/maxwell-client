@@ -4,30 +4,29 @@ let bcrypt = require('bcrypt');
 let CircuitSchema = require('./circuit');
 let DisplayPreferencesSchema = require('./display_preferences');
 
+const DisplayPreferences = mongoose.model('DisplayPreferences');
+
 
 let UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  created_at: {
-    type: Date
-  },
-  updated_at: {
-    type: Date
-  },
-  circuits: [CircuitSchema],
-  display_preferences: DisplayPreferencesSchema
-});
+      email: {
+        type: String,
+        unique: true,
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      password: {
+        type: String,
+        required: true
+      },
+      circuits: [CircuitSchema],
+      display_preferences: DisplayPreferencesSchema
+    },
+    {
+      timestamps: true
+    });
 
 /**
  * Compare the passed password with the value in the database. A model method.
@@ -68,11 +67,8 @@ UserSchema.pre('save', function saveHook(next) {
 });
 
 UserSchema.pre('save', function saveHook(next) {
-  let now = new Date();
-
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  if (!this.display_preferences) {
+    this.display_preferences = new DisplayPreferences();
   }
 
   next();
