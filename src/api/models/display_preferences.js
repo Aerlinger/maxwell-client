@@ -2,23 +2,27 @@ let mongoose = require('mongoose');
 
 let DisplayPreferencesSchema = mongoose.Schema({
   debug_level: { type: Number, default: 0},
-  display_info_on_hover: {type: Boolean, default: true},
   display_node_numbers: {type: Boolean, default: false},
   display_bounding_boxes: {type: Boolean, default: false},
+  display_vertices: {type: Boolean, default: false},
+  verbose_info_on_hover: {type: Boolean, default: false},
 
   background_color: {type: String, default: "#AA9999"},
-  foreground_color: {type: String, default: "#FFF"},
+  fill_color: {type: String, default: "#FFF"},
   outline_color: {type: String, default: "#444"},
   outline_width: {type: Number, default: 2},
   grid_size: {type: Number, default: 8},
   grid_color: {type: String, default: "#555"},
+  grid_secondary_color: {type: String, default: "#999"},
   display_grid: {type: Boolean, default: true},
 
-  wire_width: {type: Number, default: 3},
+  display_info_on_hover: {type: Boolean, default: true},
+  wire_width: {type: Number, default: 2},
   wire_color: {type: String, default: "#222"},
-  post_radius: {type: Number, default: 3},
-  display_current: {type: Boolean, default: true},
-  display_voltage: {type: Boolean, default: true},
+  post_radius: {type: Number, default: 2},
+  skip_current_render: {type: Boolean, default: false},
+  skip_voltage_render: {type: Boolean, default: false},
+  skip_power_render: {type: Boolean, default: false},
 
   label_size: {type: Number, default: 7.5},
   label_color: {type: String, default: "#1a2f80"},
@@ -38,6 +42,7 @@ let DisplayPreferencesSchema = mongoose.Schema({
   scope_power_color: {type: String, default: "#be6900"},
 
   selection_marquee_color: {type: String, default: "#be9700"},
+  selection_marquee_thickness: {type: Number, default: 1},
   highlighted_component_color: {type: String, default: "#bbbe00"}
 },
   { timestamps: true}

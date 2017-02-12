@@ -46,6 +46,10 @@ class ColorPickerButton extends React.Component {
   };
 
   handleChange = (color) => {
+    let {r, g, b, a} = color.rgb;
+
+    this.props.onChange(`rgba(${r},${g},${b},${a})`);
+
     this.setState({color: color.rgb})
   };
 
