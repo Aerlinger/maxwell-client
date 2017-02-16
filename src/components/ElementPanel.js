@@ -81,20 +81,20 @@ const tilesData = [
 const ElementButtonGroup = (sectionName,
                             expanded,
                             buttonData) => (
-    <Card expandable={true} initiallyExpanded={true} key={sectionName}>
-      <CardHeader title={sectionName} actAsExpander={true} showExpandableButton={true}/>
-      <CardText expandable={true} style={{padding: 5}}>
-        <div style={styles.root}>
-          {
+
+    <List>
+
+      <ListItem
+          primaryText="Sent mail"
+          leftIcon={<ContentSend />}
+          nestedItems={
             buttonData.map((button, i) => (
                 <ComponentButton hotkey={button.hotkey} key={i}>
                   {button.title}
                 </ComponentButton>
             ))
-          }
-        </div>
-      </CardText>
-    </Card>
+          }/>
+    </List>
 );
 
 class ElementPanel extends React.Component {
