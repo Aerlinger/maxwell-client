@@ -30,6 +30,12 @@ const styles = {
     width: 500,
     height: 900,
     overflowY: 'auto'
+  },
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
   }
 };
 
@@ -82,7 +88,7 @@ const ElementButtonGroup = (sectionName,
                             expanded,
                             buttonData) => (
 
-    <List>
+    <List key={sectionName}>
 
       <ListItem
           primaryText="Sent mail"
@@ -103,7 +109,6 @@ class ElementPanel extends React.Component {
         <Paper style={{display: "block", position: "absolute", width: "200px", left: 0, top: 56, bottom: 0}}>
           <Tabs>
             <Tab
-                icon={<FontIcon className="material-icons">phone</FontIcon>}
                 label="Elements"
             >
 
@@ -115,7 +120,6 @@ class ElementPanel extends React.Component {
             </Tab>
 
             <Tab
-                icon={<FontIcon className="material-icons">phone</FontIcon>}
                 label="Circuits"
             >
 

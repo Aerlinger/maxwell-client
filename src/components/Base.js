@@ -4,9 +4,9 @@ import MainToolbar from '../components/MainToolbar'
 
 const Base = ({children}) => (
     <div>
-      <MainToolbar/>
-
       {children}
+
+      <MainToolbar/>
     </div>
 );
 

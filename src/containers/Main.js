@@ -1,5 +1,6 @@
 require('normalize.css/normalize.css');
 require('styles/App.scss');
+require("styles/PrettyScroll.css");
 
 import MaxwellView from '../components/MaxwellView';
 import EditPanel from '../components/EditPanel';
