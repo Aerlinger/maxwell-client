@@ -7,6 +7,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import Avatar from 'material-ui/Avatar';
+import Subheader from 'material-ui/Subheader';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -167,6 +168,7 @@ class EditPanel extends React.Component {
     return (<TextField
         key={name}
 
+        inputStyle={{fontFamily: "Courier"}}
         hintText={name}
         errorText={hint}
         floatingLabelText={title}
@@ -221,27 +223,13 @@ class EditPanel extends React.Component {
     return (
         <Drawer width={300} openSecondary={true} open={true}>
           <List>
-            <ListItem
-                primaryText='ResistorElm'
-                leftAvatar={<Avatar src='images/yeoman.png'/>}
-                secondaryText='Description'
-            />
 
             <ListItem
                 primaryText={this.state.name}
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
             >
-              {/*<Chip*/}
-                  {/*backgroundColor={blue300}*/}
-                  {/*style={styles.chip}*/}
-                  {/*labelStyle={styles.labelStyle}*/}
-              {/*>*/}
-                {/*<Avatar size={24} color={blue300} backgroundColor={indigo900}>*/}
-                  {/*MB*/}
-                {/*</Avatar>*/}
-                {/*Select*/}
-              {/*</Chip>*/}
+
             </ListItem>
 
             <Divider />
@@ -262,6 +250,7 @@ class EditPanel extends React.Component {
             </Table>
 
             <Divider />
+
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false}>
                 {
@@ -276,7 +265,10 @@ class EditPanel extends React.Component {
 
               </TableBody>
             </Table>
+
+
             <Divider />
+            <Subheader>Parameters</Subheader>
 
             <CardText>
               {

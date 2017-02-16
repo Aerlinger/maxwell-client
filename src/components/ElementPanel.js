@@ -7,6 +7,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
+
 // import SidePaneStyles from '../styles/SidePane.css';
 
 const styles = {
@@ -95,6 +97,12 @@ class ElementPanel extends React.Component {
                 icon={<FontIcon className="material-icons">phone</FontIcon>}
                 label="Elements"
             >
+              <ListGroup>
+                <ListGroupItem bsStyle="info">Info</ListGroupItem>
+                <ListGroupItem bsStyle="warning">Warning</ListGroupItem>
+                <ListGroupItem bsStyle="danger">Danger</ListGroupItem>
+              </ListGroup>
+
               {
                 tilesData.map((item) => (
                     ElementButtonGroup(item.sectionName, true, item.components)
