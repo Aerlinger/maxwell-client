@@ -1,6 +1,7 @@
 'use strict';
 let path = require('path');
 let defaultSettings = require('./defaults');
+let webpack = require('webpack');
 
 // Additional npm or bower modules to include in builds
 // Add all foreign plugins you may need into this array
@@ -50,8 +51,16 @@ module.exports = {
       stores: `${defaultSettings.srcPath}/stores/`,
       styles: `${defaultSettings.srcPath}/styles/`,
       config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
-      'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+      'react/lib/ReactMount': 'react-dom/lib/ReactMount',
+      'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
     }
   },
+  plugins: [
+    // new webpack.ProvidePlugin({
+      // 'jQuery': 'jquery',
+      // '$': 'jquery',
+      // 'global.jQuery': 'jquery'
+    // })
+  ],
   module: {}
 };

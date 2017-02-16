@@ -1,10 +1,6 @@
 import React from 'react';
 
-import Drawer from 'material-ui/Drawer';
-
-import FontIcon from 'material-ui/FontIcon';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 import Paper from 'material-ui/Paper';
 
@@ -13,10 +9,7 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
-
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 // import SidePaneStyles from '../styles/SidePane.css';
 
@@ -35,7 +28,7 @@ const styles = {
     fontSize: 24,
     paddingTop: 16,
     marginBottom: 12,
-    fontWeight: 400,
+    fontWeight: 400
   }
 };
 
@@ -91,8 +84,9 @@ const ElementButtonGroup = (sectionName,
     <List key={sectionName}>
 
       <ListItem
-          primaryText="Sent mail"
+          primaryText='Sent mail'
           leftIcon={<ContentSend />}
+          initiallyOpen={true}
           nestedItems={
             buttonData.map((button, i) => (
                 <ComponentButton hotkey={button.hotkey} key={i}>
@@ -106,10 +100,10 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Paper style={{display: "block", position: "absolute", width: "200px", left: 0, top: 40, bottom: 0}}>
+        <Paper style={{display: 'block', position: 'absolute', width: '200px', left: 0, top: 40, bottom: 0}}>
           <Tabs>
             <Tab
-                label="Elements"
+                label='Elements'
             >
 
               {
@@ -120,41 +114,43 @@ class ElementPanel extends React.Component {
             </Tab>
 
             <Tab
-                label="Circuits"
+                label='Circuits'
             >
 
               <List>
                 <Subheader>Nested List Items</Subheader>
-                <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-                <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} />
+                <ListItem primaryText='Drafts' leftIcon={<ContentDrafts />} />
                 <ListItem
-                    primaryText="Inbox"
+                    primaryText='Inbox'
                     leftIcon={<ContentInbox />}
                     initiallyOpen={true}
                     primaryTogglesNestedList={true}
                     nestedItems={[
                       <ListItem
                           key={1}
-                          primaryText="Starred"
+                          primaryText='Starred'
                           leftIcon={<ActionGrade />}
                       />,
                       <ListItem
                           key={2}
-                          primaryText="Sent Mail"
+                          primaryText='Sent Mail'
                           leftIcon={<ContentSend />}
                           disabled={true}
+                          initiallyOpen={true}
                           nestedItems={[
-                            <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />} />
                           ]}
                       />,
                       <ListItem
                           key={3}
-                          primaryText="Inbox"
+                          primaryText='Inbox'
                           leftIcon={<ContentInbox />}
+                          initiallyOpen={true}
                           nestedItems={[
-                            <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />} />
                           ]}
-                      />,
+                      />
                     ]}
                 />
               </List>

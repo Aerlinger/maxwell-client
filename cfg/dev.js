@@ -26,7 +26,10 @@ let config = Object.assign({}, baseConfig, {
     })
     , new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
+      jqy: "jquery",
+      d3: "d3",
+      Rickshaw: "rickshaw"
     })
   ],
   module: defaultSettings.getDefaultModules()

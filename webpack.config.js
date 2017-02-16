@@ -30,4 +30,10 @@ function buildConfig(wantedEnv) {
   return config;
 }
 
-module.exports = buildConfig(env);
+
+let config = buildConfig(env);
+console.log("ENV", env);
+console.log("\nconfig\n", config);
+console.log("\nconfig\n", config.plugins[config.plugins.length - 1]);
+
+module.exports = buildConfig(config);

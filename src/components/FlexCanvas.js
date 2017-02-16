@@ -124,44 +124,44 @@ class FlexCanvas extends React.Component {
         var keycode = isLetter(charCode) ? charCode : event.which;
 
         switch(keycode) {
-          case "W":
-            console.log("WireElm");
-            circuitContext.setPlaceComponent("WireElm");
+          case 'W':
+            console.log('WireElm');
+            circuitContext.setPlaceComponent('WireElm');
             break;
           case 'R':
-            circuitContext.setPlaceComponent("ResistorElm");
+            circuitContext.setPlaceComponent('ResistorElm');
             break;
           case 'G':
-            circuitContext.setPlaceComponent("GroundElm");
+            circuitContext.setPlaceComponent('GroundElm');
             break;
           case 'S':
-            circuitContext.setPlaceComponent("SwitchElm");
+            circuitContext.setPlaceComponent('SwitchElm');
             break;
           case 'C':
-            circuitContext.setPlaceComponent("CapacitorElm");
+            circuitContext.setPlaceComponent('CapacitorElm');
             break;
           case 'I':
-            circuitContext.setPlaceComponent("InductorElm");
+            circuitContext.setPlaceComponent('InductorElm');
             break;
           case 'V':
-            circuitContext.setPlaceComponent("VoltageElm");
+            circuitContext.setPlaceComponent('VoltageElm');
             break;
           case 'A':
-            circuitContext.setPlaceComponent("RailElm");
+            circuitContext.setPlaceComponent('RailElm');
             break;
           case 'O':
-            circuitContext.setPlaceComponent("OpAmpElm");
+            circuitContext.setPlaceComponent('OpAmpElm');
             break;
-          case "D":
-            circuitContext.setPlaceComponent("DiodeElm");
+          case 'D':
+            circuitContext.setPlaceComponent('DiodeElm');
             break;
-          case "T":
-            circuitContext.setPlaceComponent("TransistorElm");
+          case 'T':
+            circuitContext.setPlaceComponent('TransistorElm');
             break;
-          case "M":
-            circuitContext.setPlaceComponent("MosfetElm");
+          case 'M':
+            circuitContext.setPlaceComponent('MosfetElm');
             break;
-          case "Q":
+          case 'Q':
             circuitContext.clearPlaceComponent();
             break;
 
@@ -172,7 +172,7 @@ class FlexCanvas extends React.Component {
 
             // Backspace
           case 8:
-            if (document.activeElement && document.activeElement.constructor.name != "HTMLInputElement") {
+            if (document.activeElement && document.activeElement.constructor.name != 'HTMLInputElement') {
               circuitContext.remove(circuitContext.getSelectedComponents());
             }
             break;
@@ -187,97 +187,62 @@ class FlexCanvas extends React.Component {
 
     Maxwell.createContext('ohms', [
       {
-        'type': 'voltdivide.txt',
+        'type': 'default',
         'timeStep': 0.000005,
-        'simSpeed': 172,
-        'currentSpeed': 63,
-        'voltageRange': 10,
+        'simSpeed': 180,
+        'currentSpeed': 55,
+        'voltageRange': 5,
         'powerRange': 62,
         'flags': 1
       },
       {
         'name': 'VoltageElm',
-        'pos': [112, 368, 112, 48],
+        'pos': [176, 256, 176, 80],
         'flags': 0,
         'params': {
-          'waveform': 0,
+          'waveform': 1,
           'frequency': 40,
-          'maxVoltage': 10,
+          'maxVoltage': 5,
           'bias': 0,
           'phaseShift': 0,
           'dutyCycle': 0.5
         }
       },
       {
-        'name': 'WireElm',
-        'pos': [112, 48, 240, 48],
-        'flags': 0,
-        'params': {}
-      },
-      {
         'name': 'ResistorElm',
-        'pos': [240, 48, 240, 208],
+        'pos': [176, 80, 336, 80],
         'flags': 0,
         'params': {
-          'resistance': 10000
+          'resistance': 180
         }
       },
       {
-        'name': 'ResistorElm',
-        'pos': [240, 208, 240, 368],
+        'name': 'CapacitorElm',
+        'pos': [336, 80, 336, 256],
         'flags': 0,
         'params': {
-          'resistance': 10000
+          'capacitance': 0.000033,
+          'voltdiff': 0.20495321439656933
         }
       },
       {
         'name': 'WireElm',
-        'pos': [112, 368, 240, 368],
+        'pos': [176, 256, 336, 256],
         'flags': 0,
         'params': {}
       },
       {
-        'name': 'WireElm',
-        'pos': [240, 48, 432, 48],
-        'flags': 0,
-        'params': {}
-      },
-      {
-        'name': 'WireElm',
-        'pos': [240, 368, 432, 368],
-        'flags': 0,
-        'params': {}
-      },
-      {
-        'name': 'ResistorElm',
-        'pos': [432, 48, 432, 128],
-        'flags': 0,
+        'name': 'Scope',
+        'pos': [0, 100, 300, 200],
         'params': {
-          'resistance': 10000
-        }
-      },
-      {
-        'name': 'ResistorElm',
-        'pos': [432, 128, 432, 208],
-        'flags': 0,
-        'params': {
-          'resistance': 10000
-        }
-      },
-      {
-        'name': 'ResistorElm',
-        'pos': [432, 208, 432, 288],
-        'flags': 0,
-        'params': {
-          'resistance': 10000
-        }
-      },
-      {
-        'name': 'ResistorElm',
-        'pos': [432, 288, 432, 368],
-        'flags': 0,
-        'params': {
-          'resistance': 10000
+          'elm': 2,
+          'speed': 64,
+          'value': 0,
+          'voltageRange': 5,
+          'currentRange': 0.05,
+          'options': 3,
+          'pos': 0,
+          'ye': 0
         }
       }
     ], this.canvas, function (circuitContext) {
