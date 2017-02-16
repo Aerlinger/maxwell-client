@@ -13,9 +13,9 @@ class AppComponent extends React.Component {
       <div className='index'>
         <MaxwellView/>
 
-        {/*<ElementPanel />*/}
+        <ElementPanel />
 
-        {/*<EditPanel />*/}
+        <EditPanel />
       </div>
     );
   }

@@ -56,64 +56,134 @@ class FlexCanvas extends React.Component {
 
     window.addEventListener('resize', this.resizeCanvas.bind(this), false);
 
+    function isLetter(str) {
+      return str.length === 1 && str.match(/[a-z]/i);
+    }
+
     function bindCircuitEvents(circuitContext) {
       circuitContext.onSelectionChanged = function (changeObj) {
-        console.log("SELECTION CHANGED:", changeObj);
-
-        if (changeObj.selection.length == 0) {
-          $("#edit_component_pane").foundation('close');
-        }
+        console.log('SELECTION CHANGED:', changeObj);
       };
 
       circuitContext.onComponentHover = function (component) {
-        console.log("ON COMPONENT HOVER:", component.toString(), "V:", component.volts);
+        console.log('ON COMPONENT HOVER:', component.toString(), 'V:', component.volts);
+        /*
         var form = Maxwell.renderEdit(component);
 
-        console.log("renderEdit\n", form);
+        console.log('renderEdit\n', form);
 
         window.editInfo = form;
+        */
       };
 
       circuitContext.onComponentUnhover = function (component) {
-        console.log("ON COMPONENT UNHOVER:", component.toString());
+        console.log('ON COMPONENT UNHOVER:', component.toString());
       };
 
       circuitContext.onComponentClick = function (component) {
-        console.log("ON COMPONENT CLICK:", component);
+        console.log('ON COMPONENT CLICK:', component);
 
+        /*
         var form = Maxwell.renderEdit(component);
-        console.log("renderEdit\n", form);
+        console.log('renderEdit\n', form);
 
-        document.getElementById("edit_component_pane").innerHTML = "";
-        document.getElementById("edit_component_pane").append(form);
+        document.getElementById('edit_component_pane').innerHTML = '';
+        document.getElementById('edit_component_pane').append(form);
 
-        $("#edit_component_pane").foundation('open');
+        $('#edit_component_pane').foundation('open');
+        */
       };
 
       circuitContext.onComponentsDrag = function (components) {
-        console.log("ON COMPONENTS DRAG:", components);
+        console.log('ON COMPONENTS DRAG:', components);
       };
 
       circuitContext.onNodeHover = function (node) {
-        console.log("NODE HOVER: ", node.getVoltage());
+        console.log('NODE HOVER: ', node.getVoltage());
       };
 
       circuitContext.onNodeUnhover = function (node) {
-        console.log("NODE UNHOVER: ", node.getVoltage());
+        console.log('NODE UNHOVER: ', node.getVoltage());
       };
 
       circuitContext.onNodeClick = function (node) {
-        console.log("NODE CLICK: ", node.x, node.y);
+        console.log('NODE CLICK: ', node.x, node.y);
       };
 
       circuitContext.onNodeDrag = function (node) {
-        console.log("NODE DRAG: ", node.x, node.y);
+        console.log('NODE DRAG: ', node.x, node.y);
       };
 
       circuitContext.onUpdateComplete = function (context) {
-        console.log("UPDATE COMPLETE");
       };
     }
+
+    function bindKeyEvents(circuitContext) {
+      document.addEventListener('keydown', function(event) {
+        var charCode = String.fromCharCode(event.which);
+        var keycode = isLetter(charCode) ? charCode : event.which;
+
+        switch(keycode) {
+          case "W":
+            console.log("WireElm");
+            circuitContext.setPlaceComponent("WireElm");
+            break;
+          case 'R':
+            circuitContext.setPlaceComponent("ResistorElm");
+            break;
+          case 'G':
+            circuitContext.setPlaceComponent("GroundElm");
+            break;
+          case 'S':
+            circuitContext.setPlaceComponent("SwitchElm");
+            break;
+          case 'C':
+            circuitContext.setPlaceComponent("CapacitorElm");
+            break;
+          case 'I':
+            circuitContext.setPlaceComponent("InductorElm");
+            break;
+          case 'V':
+            circuitContext.setPlaceComponent("VoltageElm");
+            break;
+          case 'A':
+            circuitContext.setPlaceComponent("RailElm");
+            break;
+          case 'O':
+            circuitContext.setPlaceComponent("OpAmpElm");
+            break;
+          case "D":
+            circuitContext.setPlaceComponent("DiodeElm");
+            break;
+          case "T":
+            circuitContext.setPlaceComponent("TransistorElm");
+            break;
+          case "M":
+            circuitContext.setPlaceComponent("MosfetElm");
+            break;
+          case "Q":
+            circuitContext.clearPlaceComponent();
+            break;
+
+            // ESC
+          case 27:
+            circuitContext.resetSelection();
+            break;
+
+            // Backspace
+          case 8:
+            if (document.activeElement && document.activeElement.constructor.name != "HTMLInputElement") {
+              circuitContext.remove(circuitContext.getSelectedComponents());
+            }
+            break;
+
+            // Space
+          case 32:
+            circuitContext.togglePause();
+            break;
+        }
+      })
+    };
 
     Maxwell.createContext('ohms', [
       {
@@ -214,6 +284,7 @@ class FlexCanvas extends React.Component {
       console.log(circuitContext);
 
       bindCircuitEvents(circuitContext);
+      bindKeyEvents(circuitContext);
     });
   }
 
