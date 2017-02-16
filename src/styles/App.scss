@@ -17,6 +17,14 @@ body {
   //background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px !important;
 }
 
+#performance_sparkline {
+  position: absolute;
+  left: 1109px;
+  top: 50px;
+  z-index: 12;
+}
+
+
 .index img {
   margin: 0px auto;
   border-radius: 4px;
