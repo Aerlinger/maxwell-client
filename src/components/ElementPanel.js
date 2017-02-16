@@ -2,6 +2,8 @@ import React from 'react';
 
 import Drawer from 'material-ui/Drawer';
 
+import FontIcon from 'material-ui/FontIcon';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 
@@ -65,11 +67,9 @@ const tilesData = [
   }
 ];
 
-const ElementButtonGroup = (
-    sectionName,
-    expanded,
-    buttonData
-) => (
+const ElementButtonGroup = (sectionName,
+                            expanded,
+                            buttonData) => (
     <Card expandable={true} initiallyExpanded={true} key={sectionName}>
       <CardHeader title={sectionName} actAsExpander={true} showExpandableButton={true}/>
       <CardText expandable={true} style={{padding: 5}}>
@@ -90,11 +90,26 @@ class ElementPanel extends React.Component {
   render() {
     return (
         <Drawer width={200} open={true} docked={true}>
-          {
-            tilesData.map((item) => (
-                ElementButtonGroup(item.sectionName, true, item.components)
-            ))
-          }
+          <Tabs>
+            <Tab
+                icon={<FontIcon className="material-icons">phone</FontIcon>}
+                label="Elements"
+            >
+              {
+                tilesData.map((item) => (
+                    ElementButtonGroup(item.sectionName, true, item.components)
+                ))
+              }
+            </Tab>
+
+            <Tab
+                icon={<FontIcon className="material-icons">phone</FontIcon>}
+                label="Circuits"
+            >
+
+            </Tab>
+          </Tabs>
+
         </Drawer>
     );
   }
