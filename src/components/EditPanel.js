@@ -222,7 +222,7 @@ class EditPanel extends React.Component {
     let addField = this.addField.bind(this);
 
     return (
-        <Paper className='side-panel' style={{display: 'block', position: 'absolute', width: '320px', right: 0, top: 40, bottom: 0, overflowY: 'scroll'}}>
+        <Paper className='side-panel' style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: 50, bottom: 0, overflowY: 'scroll'}}>
           <List>
 
             <ListItem

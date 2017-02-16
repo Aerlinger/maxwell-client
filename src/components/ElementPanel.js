@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
-import ComponentButton from '../components/ComponentButton';
+import ElementButton from './ElementButton';
+import ElementListItem from './ElementListItem';
 import Paper from 'material-ui/Paper';
 
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -29,6 +30,21 @@ const styles = {
     paddingTop: 16,
     marginBottom: 12,
     fontWeight: 400
+  },
+  listItem: {
+    // fontSize: "12px",
+    backgroundColor: "#333",
+    // paddingBottom: "5px",
+    // paddingTop: "5px"
+  },
+  innerDivListItem: {
+
+  },
+  leftIcon: {
+    margin: 2
+  },
+  tabs: {
+    marginTop: 10
   }
 };
 
@@ -77,21 +93,26 @@ const tilesData = [
   }
 ];
 
+
 const ElementButtonGroup = (sectionName,
                             expanded,
                             buttonData) => (
 
-    <List key={sectionName}>
+    <List key={sectionName}
+          style={{backgroundColor: "#555"}}
+    >
 
       <ListItem
           primaryText='Sent mail'
-          leftIcon={<ContentSend />}
+          leftIcon={<ContentSend style={{}}/>}
           initiallyOpen={true}
+          style={styles.listItem}
+          innerDivStyle={styles.innerDivListItem}
           nestedItems={
             buttonData.map((button, i) => (
-                <ComponentButton hotkey={button.hotkey} key={i}>
+                <ElementListItem key={i}>
                   {button.title}
-                </ComponentButton>
+                </ElementListItem>
             ))
           }/>
     </List>
@@ -100,8 +121,8 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Paper style={{display: 'block', position: 'absolute', width: '200px', left: 0, top: 40, bottom: 0}}>
-          <Tabs>
+        <Paper style={{display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
+          <Tabs style={{}}>
             <Tab
                 label='Elements'
             >
@@ -119,8 +140,8 @@ class ElementPanel extends React.Component {
 
               <List>
                 <Subheader>Nested List Items</Subheader>
-                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} />
-                <ListItem primaryText='Drafts' leftIcon={<ContentDrafts />} />
+                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} style={{fontSize: "12px"}}/>
+                <ListItem primaryText='Drafts' leftIcon={<ContentDrafts />}/>
                 <ListItem
                     primaryText='Inbox'
                     leftIcon={<ContentInbox />}
@@ -139,7 +160,7 @@ class ElementPanel extends React.Component {
                           disabled={true}
                           initiallyOpen={true}
                           nestedItems={[
-                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />} />
+                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />}/>
                           ]}
                       />,
                       <ListItem
@@ -148,7 +169,7 @@ class ElementPanel extends React.Component {
                           leftIcon={<ContentInbox />}
                           initiallyOpen={true}
                           nestedItems={[
-                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />} />
+                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />}/>
                           ]}
                       />
                     ]}

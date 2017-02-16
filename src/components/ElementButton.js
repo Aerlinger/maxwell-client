@@ -7,7 +7,7 @@ import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 let TransformerImage = require('../images/Transformer2.png');
 import React from 'react';
 
-class ComponentButton extends React.Component {
+class ElementButton extends React.Component {
   hotkey() {
     if (this.props.hotkey) {
       return <span className={ButtonStyle.hotkey}>{this.props.hotkey}</span>
@@ -35,6 +35,6 @@ class ComponentButton extends React.Component {
   }
 }
 
-ComponentButton.defaultProps = {};
+ElementButton.defaultProps = {};
 
-export default ComponentButton;
+export default ElementButton;

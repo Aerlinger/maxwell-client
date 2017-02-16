@@ -3,6 +3,7 @@ import Auth from '../modules/Auth';
 import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 
 import MainToolbarStyle from '../styles/MainToolbar.css';
@@ -11,8 +12,13 @@ import ToolbarMenuItem from './ToolbarMenuItem';
 import SignUpModal from './SignUpModal';
 import FlashNotification from './FlashNotification'
 
-class MainToolbar extends React.Component {
+const style = {
+  button: {
+    margin: 12
+  }
+};
 
+class MainToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +32,7 @@ class MainToolbar extends React.Component {
 
   render() {
     return (
-        <Toolbar className={MainToolbarStyle.root} style={{height: 40}}>
+        <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
           <ToolbarGroup firstChild={true}>
             <ToolbarTitle text="Maxwell"/>
 
@@ -45,24 +51,27 @@ class MainToolbar extends React.Component {
 
             {
               Auth.isUserAuthenticated() ? (
-                      <FlatButton
+                      <RaisedButton
                           href="/logout"
                           primary={true}
                           label="Logout"
+                          style={style.button}
                       />
 
                   ) : (
                       <div>
-                        <FlatButton
+                        <RaisedButton
                             href="/login"
                             primary={true}
                             label="Login"
+                            style={style.button}
                         />
 
-                        <FlatButton
+                        <RaisedButton
                             href="/signup"
-                            primary={false}
+                            secondary={true}
                             label="Sign Up"
+                            style={style.button}
                         />
                       </div>
                   )

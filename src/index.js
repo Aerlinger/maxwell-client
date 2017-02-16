@@ -2,7 +2,7 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory, Router } from 'react-router';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import darkBaseTheme from './styles/CustomStyle';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import routes from './routes';
