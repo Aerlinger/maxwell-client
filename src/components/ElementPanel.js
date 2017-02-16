@@ -6,6 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
+import Paper from 'material-ui/Paper';
 
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
@@ -91,7 +92,7 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Drawer width={200} open={true} docked={true}>
+        <Paper style={{display: "block", position: "absolute", width: "200px", left: 0, top: 56, bottom: 0}}>
           <Tabs>
             <Tab
                 icon={<FontIcon className="material-icons">phone</FontIcon>}
@@ -118,7 +119,7 @@ class ElementPanel extends React.Component {
             </Tab>
           </Tabs>
 
-        </Drawer>
+        </Paper>
     );
   }
 }

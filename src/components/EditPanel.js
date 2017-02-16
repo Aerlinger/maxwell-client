@@ -10,6 +10,7 @@ import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 
 import {CardText} from 'material-ui/Card';
 
@@ -221,7 +222,7 @@ class EditPanel extends React.Component {
     let addField = this.addField.bind(this);
 
     return (
-        <Drawer width={300} openSecondary={true} open={true}>
+        <Paper style={{display: "block", position: "absolute", width: "290px", right: 0, top: 56, bottom: 0, overflowY: "scroll"}}>
           <List>
 
             <ListItem
@@ -281,7 +282,7 @@ class EditPanel extends React.Component {
             </CardText>
 
           </List>
-        </Drawer>
+        </Paper>
     );
   }
 
