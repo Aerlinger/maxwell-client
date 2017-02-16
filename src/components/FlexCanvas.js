@@ -66,12 +66,12 @@ class FlexCanvas extends React.Component {
       circuitContext.onComponentHover = function (component) {
         console.log('ON COMPONENT HOVER:', component.toString(), 'V:', component.volts);
         /*
-        var form = Maxwell.renderEdit(component);
+         var form = Maxwell.renderEdit(component);
 
-        console.log('renderEdit\n', form);
+         console.log('renderEdit\n', form);
 
-        window.editInfo = form;
-        */
+         window.editInfo = form;
+         */
       };
 
       circuitContext.onComponentUnhover = function (component) {
@@ -82,14 +82,14 @@ class FlexCanvas extends React.Component {
         console.log('ON COMPONENT CLICK:', component);
 
         /*
-        var form = Maxwell.renderEdit(component);
-        console.log('renderEdit\n', form);
+         var form = Maxwell.renderEdit(component);
+         console.log('renderEdit\n', form);
 
-        document.getElementById('edit_component_pane').innerHTML = '';
-        document.getElementById('edit_component_pane').append(form);
+         document.getElementById('edit_component_pane').innerHTML = '';
+         document.getElementById('edit_component_pane').append(form);
 
-        $('#edit_component_pane').foundation('open');
-        */
+         $('#edit_component_pane').foundation('open');
+         */
       };
 
       circuitContext.onComponentsDrag = function (components) {
@@ -117,11 +117,11 @@ class FlexCanvas extends React.Component {
     }
 
     function bindKeyEvents(circuitContext) {
-      document.addEventListener('keydown', function(event) {
+      document.addEventListener('keydown', function (event) {
         var charCode = String.fromCharCode(event.which);
         var keycode = isLetter(charCode) ? charCode : event.which;
 
-        switch(keycode) {
+        switch (keycode) {
           case 'W':
             console.log('WireElm');
             circuitContext.setPlaceComponent('WireElm');
@@ -183,72 +183,74 @@ class FlexCanvas extends React.Component {
       })
     };
 
-    Maxwell.createContext('ohms', [
-      {
-        'type': 'default',
-        'timeStep': 0.000005,
-        'simSpeed': 180,
-        'currentSpeed': 55,
-        'voltageRange': 5,
-        'powerRange': 62,
-        'flags': 1
-      },
-      {
-        'name': 'VoltageElm',
-        'pos': [176, 256, 176, 80],
-        'flags': 0,
-        'params': {
-          'waveform': 1,
-          'frequency': 40,
-          'maxVoltage': 5,
-          'bias': 0,
-          'phaseShift': 0,
-          'dutyCycle': 0.5
+    Maxwell.createContext('ohms', {
+          params: {
+            'type': 'default',
+            'timeStep': 0.000005,
+            'simSpeed': 180,
+            'currentSpeed': 55,
+            'voltageRange': 5,
+            'powerRange': 62,
+            'flags': 1
+          },
+          components: [{
+            'name': 'VoltageElm',
+            'pos': [176, 256, 176, 80],
+            'flags': 0,
+            'params': {
+              'waveform': 1,
+              'frequency': 40,
+              'maxVoltage': 5,
+              'bias': 0,
+              'phaseShift': 0,
+              'dutyCycle': 0.5
+            }
+          },
+            {
+              'name': 'ResistorElm',
+              'pos': [176, 80, 336, 80],
+              'flags': 0,
+              'params': {
+                'resistance': 180
+              }
+            },
+            {
+              'name': 'CapacitorElm',
+              'pos': [336, 80, 336, 256],
+              'flags': 0,
+              'params': {
+                'capacitance': 0.000033,
+                'voltdiff': 0.20495321439656933
+              }
+            },
+            {
+              'name': 'WireElm',
+              'pos': [176, 256, 336, 256],
+              'flags': 0,
+              'params': {}
+            },
+            {
+              'name': 'Scope',
+              'pos': [0, 100, 300, 200],
+              'params': {
+                'elm': 2,
+                'speed': 64,
+                'value': 0,
+                'voltageRange': 5,
+                'currentRange': 0.05,
+                'options': 3,
+                'pos': 0,
+                'ye': 0
+              }
+            }
+          ]
         }
-      },
-      {
-        'name': 'ResistorElm',
-        'pos': [176, 80, 336, 80],
-        'flags': 0,
-        'params': {
-          'resistance': 180
-        }
-      },
-      {
-        'name': 'CapacitorElm',
-        'pos': [336, 80, 336, 256],
-        'flags': 0,
-        'params': {
-          'capacitance': 0.000033,
-          'voltdiff': 0.20495321439656933
-        }
-      },
-      {
-        'name': 'WireElm',
-        'pos': [176, 256, 336, 256],
-        'flags': 0,
-        'params': {}
-      },
-      {
-        'name': 'Scope',
-        'pos': [0, 100, 300, 200],
-        'params': {
-          'elm': 2,
-          'speed': 64,
-          'value': 0,
-          'voltageRange': 5,
-          'currentRange': 0.05,
-          'options': 3,
-          'pos': 0,
-          'ye': 0
-        }
-      }
-    ], this.canvas, function (circuitContext) {
-      console.log(circuitContext);
+        , this.canvas, function (circuitContext) {
+          console.log(circuitContext);
 
-      bindCircuitEvents(circuitContext);
-      bindKeyEvents(circuitContext);
-    });
+          bindCircuitEvents(circuitContext);
+          bindKeyEvents(circuitContext);
+        });
   }
 
   render() {
