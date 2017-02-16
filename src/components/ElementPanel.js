@@ -8,6 +8,14 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 import ComponentButton from '../components/ComponentButton';
 import Paper from 'material-ui/Paper';
 
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 // import SidePaneStyles from '../styles/SidePane.css';
@@ -98,11 +106,6 @@ class ElementPanel extends React.Component {
                 icon={<FontIcon className="material-icons">phone</FontIcon>}
                 label="Elements"
             >
-              <ListGroup>
-                <ListGroupItem bsStyle="info">Info</ListGroupItem>
-                <ListGroupItem bsStyle="warning">Warning</ListGroupItem>
-                <ListGroupItem bsStyle="danger">Danger</ListGroupItem>
-              </ListGroup>
 
               {
                 tilesData.map((item) => (
@@ -115,6 +118,42 @@ class ElementPanel extends React.Component {
                 icon={<FontIcon className="material-icons">phone</FontIcon>}
                 label="Circuits"
             >
+
+              <List>
+                <Subheader>Nested List Items</Subheader>
+                <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+                <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+                <ListItem
+                    primaryText="Inbox"
+                    leftIcon={<ContentInbox />}
+                    initiallyOpen={true}
+                    primaryTogglesNestedList={true}
+                    nestedItems={[
+                      <ListItem
+                          key={1}
+                          primaryText="Starred"
+                          leftIcon={<ActionGrade />}
+                      />,
+                      <ListItem
+                          key={2}
+                          primaryText="Sent Mail"
+                          leftIcon={<ContentSend />}
+                          disabled={true}
+                          nestedItems={[
+                            <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                          ]}
+                      />,
+                      <ListItem
+                          key={3}
+                          primaryText="Inbox"
+                          leftIcon={<ContentInbox />}
+                          nestedItems={[
+                            <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                          ]}
+                      />,
+                    ]}
+                />
+              </List>
 
             </Tab>
           </Tabs>
