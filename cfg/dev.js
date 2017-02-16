@@ -28,8 +28,7 @@ let config = Object.assign({}, baseConfig, {
       $: "jquery",
       jQuery: "jquery",
       jqy: "jquery",
-      d3: "d3",
-      Rickshaw: "rickshaw"
+      d3: "d3"
     })
   ],
   module: defaultSettings.getDefaultModules()
