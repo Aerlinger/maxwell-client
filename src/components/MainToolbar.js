@@ -41,8 +41,8 @@ class MainToolbar extends React.Component {
             <ToolbarMenuItem title="Components"/>
             <ToolbarMenuItem title="Analysis"/>
 
-            <SignUpModal/>
-            <FlashNotification/>
+            {/*<SignUpModal/>*/}
+            {/*<FlashNotification/>*/}
           </ToolbarGroup>
 
           <ToolbarGroup>

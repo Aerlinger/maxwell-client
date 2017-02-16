@@ -30,6 +30,9 @@
     "no-unreachable": 1,
     "no-alert": 0,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "space-before-blocks": 1,
+    "keyword-spacing": 1,
+    "eol-last": "warn"
   }
 }

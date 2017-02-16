@@ -24,12 +24,10 @@ class FlexCanvas extends React.Component {
   }
 
   redraw() {
+    let context = this.getContext();
+
     let topMargin = this.props.topMargin || 0;
     let leftMargin = this.props.leftMargin || 0;
-
-
-    // do your drawing stuff here
-    let context = this.getContext();
 
     let spacing = 20;
 

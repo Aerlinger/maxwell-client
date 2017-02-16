@@ -30,4 +30,3 @@ class MaxwellView extends React.Component {
 }
 
 export default MaxwellView;
-

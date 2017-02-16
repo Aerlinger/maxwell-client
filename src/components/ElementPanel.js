@@ -121,7 +121,7 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Paper style={{display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
+        <Paper style={{borderRight: "2px solid #989797", display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
           <Tabs style={{}}>
             <Tab
                 label='Elements'
