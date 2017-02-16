@@ -26,7 +26,7 @@ class MainToolbar extends React.Component {
 
   render() {
     return (
-        <Toolbar className={MainToolbarStyle.root}>
+        <Toolbar className={MainToolbarStyle.root} style={{height: 40}}>
           <ToolbarGroup firstChild={true}>
             <ToolbarTitle text="Maxwell"/>
 
