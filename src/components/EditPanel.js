@@ -232,16 +232,16 @@ class EditPanel extends React.Component {
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
             >
-              <Chip
-                  backgroundColor={blue300}
-                  style={styles.chip}
-                  labelStyle={styles.labelStyle}
-              >
-                <Avatar size={24} color={blue300} backgroundColor={indigo900}>
-                  MB
-                </Avatar>
-                Select
-              </Chip>
+              {/*<Chip*/}
+                  {/*backgroundColor={blue300}*/}
+                  {/*style={styles.chip}*/}
+                  {/*labelStyle={styles.labelStyle}*/}
+              {/*>*/}
+                {/*<Avatar size={24} color={blue300} backgroundColor={indigo900}>*/}
+                  {/*MB*/}
+                {/*</Avatar>*/}
+                {/*Select*/}
+              {/*</Chip>*/}
             </ListItem>
 
             <Divider />

@@ -1,0 +1,34 @@
+$grid-minor-size: 8px;
+$grid-major-size: 5*$grid-minor-size;
+
+$grid-major-color: rgba(221, 223, 244, 0.69);
+$grid-minor-color: rgba(205, 205, 255, 0.3);
+$background-color: #FCFCFF;
+
+/* Base Application Styles */
+body {
+  background-color: $background-color !important;
+  background-image: linear-gradient($grid-major-color 1px, transparent 1px),
+  linear-gradient(90deg, $grid-major-color 1px, transparent 1px),
+  linear-gradient($grid-minor-color 1px, transparent 1px),
+  linear-gradient(90deg, $grid-minor-color 1px, transparent 1px) !important;
+
+  background-size: $grid-major-size $grid-major-size, $grid-major-size $grid-major-size, $grid-minor-size $grid-minor-size, $grid-minor-size $grid-minor-size !important;
+  //background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px !important;
+}
+
+.index img {
+  margin: 0px auto;
+  border-radius: 4px;
+  background: #fff;
+  display: block;
+}
+
+.index .notice {
+  margin: 20px auto;
+  padding: 15px 0;
+  text-align: center;
+  border: 1px solid #000;
+  border-width: 1px 0;
+  background: #666;
+}
