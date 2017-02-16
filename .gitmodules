@@ -1,0 +1,3 @@
+[submodule "maxwell"]
+	path = maxwell
+	url = git@github.com:Aerlinger/maxwell.git
