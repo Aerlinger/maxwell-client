@@ -1,8 +1,6 @@
 const express = require('express');
 const router = new express.Router();
 
-let mongoose = require('mongoose');
-
 router.post('/display_preferences', (req, res, next) => {
   let req_params = req.body;
 

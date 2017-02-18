@@ -37,6 +37,9 @@ proxy.on('error', function(e) {
   console.log('Could not connect to proxy, please try again...', e);
 });
 
+// Setup API server
+require("./api/server")(app);
+
 // And run the server
 app.listen(port, function () {
   console.log('Server running on port ' + port);

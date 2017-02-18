@@ -28,19 +28,7 @@ module.exports = {
     host: 'localhost',
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
-    noInfo: false,
-    proxy: {
-      '/api': {
-        logLevel: 'debug',
-        target: 'http://localhost:8888/',
-        secure: false
-      },
-      '/auth': {
-        logLevel: 'debug',
-        target: 'http://localhost:8888/',
-        secure: false
-      }
-    }
+    noInfo: false
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
