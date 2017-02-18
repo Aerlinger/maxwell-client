@@ -12,7 +12,7 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div className='index'>
-        <MaxwellView/>
+        <MaxwellView circuit_name={this.props.params.circuit_name}/>
 
         <ElementPanel />
 

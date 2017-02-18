@@ -192,28 +192,30 @@ class FlexCanvas extends React.Component {
         // Success!
         var data = JSON.parse(request.responseText);
 
-        Maxwell.createContext("#{circuit_name}", data, canvas, function (circuitContext) {
+        Maxwell.createContext('#{circuit_name}', data, canvas, function (circuitContext) {
           window.circuitContext = circuitContext;
 
+          /*
           $('.component-item').click(function (evt) {
-            var componentName = $(this).data("name");
+            var componentName = $(this).data('name');
 
             circuitContext.setPlaceComponent(componentName);
           });
+          */
 
           bindCircuitEvents(circuitContext);
           bindKeyEvents(circuitContext);
         });
       } else {
         // We reached our target server, but it returned an error
-        console.log("Response", request.status);
+        console.log('Response', request.status);
         console.log(request.responseText);
       }
     };
 
     request.onerror = function(e) {
       // There was a connection error of some sort
-      console.log("AJAX error", e);
+      console.log('AJAX error', e);
     };
 
     request.send();

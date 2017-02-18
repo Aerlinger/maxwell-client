@@ -11,6 +11,10 @@ const routes = {
   childRoutes: [
     {
       path: '/',
+      onEnter: ({ params }, replace) => replace('/lrc')
+    },
+    {
+      path: '/:circuit_name',
       getComponent: (location, callback) => {
         if (Auth.isUserAuthenticated()) {
           callback(null, Dashboard);
@@ -19,7 +23,6 @@ const routes = {
         }
       }
     },
-
     {
       path: '/login',
       component: LoginPage

@@ -17,7 +17,7 @@ class MaxwellView extends React.Component {
         <div>
           <canvas id='performance_sparkline' width='200' height='40'></canvas>
 
-          <FlexCanvas topMargin={50} leftMargin={100} circuit_name="lrc" onResize={() => {
+          <FlexCanvas topMargin={50} leftMargin={100} circuit_name={this.props.circuit_name} onResize={() => {
             console.log('RESIZE')
           }} ref={(component) => {
             this.canvas = component
