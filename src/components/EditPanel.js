@@ -14,18 +14,6 @@ import Paper from 'material-ui/Paper';
 import {CardText} from 'material-ui/Card';
 
 
-
-/*
-const styles = {
-  chip: {
-    margin: 0
-  },
-  chip_label: {
-    fontSize: '8px'
-  }
-};
-*/
-
 function getTruth(x) {
   if (typeof(x) == 'string')
     return ((x === '1') || (x === 'true'));
@@ -33,9 +21,11 @@ function getTruth(x) {
     return !!x;
 }
 
+var componentImg = require('../images/components/v1/bjt.png');
+
 const fields = {
   name: 'Bipolar Junction Transistor',
-  icon: 'images/components/v1/bjt.png',
+  icon: componentImg,
   description: 'Description of component',
   label: 'user_label',
   voltage: 10,
@@ -264,7 +254,6 @@ class EditPanel extends React.Component {
               </TableBody>
             </Table>
 
-
             <Divider />
             <Subheader>Parameters</Subheader>
 
@@ -282,9 +271,6 @@ class EditPanel extends React.Component {
         </Paper>
     );
   }
-
-
-
 }
 
 export default EditPanel;

@@ -31,6 +31,9 @@ if (!isProduction) {
   });
 }
 
+// Setup API server
+require("./api/server")(app);
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
@@ -41,9 +44,6 @@ app.get('*', (req, res) => {
 proxy.on('error', function(e) {
   console.log('Could not connect to proxy, please try again...', e);
 });
-
-// Setup API server
-require("./api/server")(app);
 
 // And run the server
 app.listen(port, function () {

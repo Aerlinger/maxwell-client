@@ -4,7 +4,6 @@
  * Serves the server-side REST API.
  */
 
-// let express = require('express');
 let cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 let passport = require('passport');
@@ -12,6 +11,7 @@ let logger = require('morgan');
 let config = require('./config');
 
 let preferencesRoutes = require('./controllers/preferences');
+let defaultCircuitRoutes = require('./controllers/circuits');
 let dashboardRoutes = require('./controllers/dashboard');
 let authRoutes = require('./controllers/auth');
 
@@ -43,14 +43,9 @@ module.exports = function (app) {
   app.use('/api/dashboard', authCheckMiddleware);
 
 // Configure routes
+  app.use('/api/', defaultCircuitRoutes);
   app.use('/api/', preferencesRoutes);
   app.use('/api', dashboardRoutes);
   app.use('/auth/', authRoutes);
 
 };
-
-// // Start the server
-// const port = 8888;
-// app.listen(port, function() {
-//   console.log(`listening on port ${port}`);
-// });
