@@ -180,74 +180,43 @@ class FlexCanvas extends React.Component {
       })
     }
 
-    Maxwell.createContext('ohms', {
-          params: {
-            'type': 'default',
-            'timeStep': 0.000005,
-            'simSpeed': 180,
-            'currentSpeed': 55,
-            'voltageRange': 5,
-            'powerRange': 62,
-            'flags': 1
-          },
-          components: [{
-            'name': 'VoltageElm',
-            'pos': [176, 256, 176, 80],
-            'flags': 0,
-            'params': {
-              'waveform': 1,
-              'frequency': 40,
-              'maxVoltage': 5,
-              'bias': 0,
-              'phaseShift': 0,
-              'dutyCycle': 0.5
-            }
-          },
-            {
-              'name': 'ResistorElm',
-              'pos': [176, 80, 336, 80],
-              'flags': 0,
-              'params': {
-                'resistance': 180
-              }
-            },
-            {
-              'name': 'CapacitorElm',
-              'pos': [336, 80, 336, 256],
-              'flags': 0,
-              'params': {
-                'capacitance': 0.000033,
-                'voltdiff': 0.20495321439656933
-              }
-            },
-            {
-              'name': 'WireElm',
-              'pos': [176, 256, 336, 256],
-              'flags': 0,
-              'params': {}
-            },
-            {
-              'name': 'Scope',
-              'pos': [0, 100, 300, 200],
-              'params': {
-                'elm': 2,
-                'speed': 64,
-                'value': 0,
-                'voltageRange': 5,
-                'currentRange': 0.05,
-                'options': 3,
-                'pos': 0,
-                'ye': 0
-              }
-            }
-          ]
-        }
-        , this.canvas, function (circuitContext) {
-          console.log(circuitContext);
+    let request = new XMLHttpRequest();
+    let circuit_name = this.props.circuit_name || 'ohms';
+
+    request.open('GET', `/api/default_circuits/${circuit_name}`, true);
+
+    let canvas = this.canvas;
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        // Success!
+        var data = JSON.parse(request.responseText);
+
+        Maxwell.createContext("#{circuit_name}", data, canvas, function (circuitContext) {
+          window.circuitContext = circuitContext;
+
+          $('.component-item').click(function (evt) {
+            var componentName = $(this).data("name");
+
+            circuitContext.setPlaceComponent(componentName);
+          });
 
           bindCircuitEvents(circuitContext);
           bindKeyEvents(circuitContext);
         });
+      } else {
+        // We reached our target server, but it returned an error
+        console.log("Response", request.status);
+        console.log(request.responseText);
+      }
+    };
+
+    request.onerror = function(e) {
+      // There was a connection error of some sort
+      console.log("AJAX error", e);
+    };
+
+    request.send();
   }
 
   render() {
