@@ -103,7 +103,7 @@ const ElementButtonGroup = (sectionName,
     >
 
       <ListItem
-          primaryText='Sent mail'
+          primaryText='Component'
           leftIcon={<ContentSend style={{}}/>}
           initiallyOpen={true}
           style={styles.listItem}
