@@ -2,15 +2,10 @@ import React from 'react';
 import Auth from '../modules/Auth';
 import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
 
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
-
-import SignUpModal from './SignUpModal';
-import FlashNotification from './FlashNotification'
 
 const style = {
   button: {
@@ -24,10 +19,6 @@ class MainToolbar extends React.Component {
     this.state = {
       value: 3
     };
-  }
-
-  handleChange(event, index, value) {
-    this.setState({value});
   }
 
   render() {

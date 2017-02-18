@@ -1,25 +1,21 @@
 import React from 'react';
+import update from 'immutability-helper';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import Drawer from 'material-ui/Drawer';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-
 import {CardText} from 'material-ui/Card';
 
 
-import Chip from 'material-ui/Chip';
-import {blue300, indigo900} from 'material-ui/styles/colors';
 
-import update from 'immutability-helper';
-
+/*
 const styles = {
   chip: {
     margin: 0
@@ -28,6 +24,7 @@ const styles = {
     fontSize: '8px'
   }
 };
+*/
 
 function getTruth(x) {
   if (typeof(x) == 'string')

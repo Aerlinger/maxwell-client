@@ -111,9 +111,6 @@ class FlexCanvas extends React.Component {
       circuitContext.onNodeDrag = function (node) {
         console.log('NODE DRAG: ', node.x, node.y);
       };
-
-      circuitContext.onUpdateComplete = function (context) {
-      };
     }
 
     function bindKeyEvents(circuitContext) {
@@ -181,7 +178,7 @@ class FlexCanvas extends React.Component {
             break;
         }
       })
-    };
+    }
 
     Maxwell.createContext('ohms', {
           params: {

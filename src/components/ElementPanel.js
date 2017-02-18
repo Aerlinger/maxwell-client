@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
-import ElementButton from './ElementButton';
 import ElementListItem from './ElementListItem';
 import Paper from 'material-ui/Paper';
 
@@ -32,10 +31,10 @@ const styles = {
     fontWeight: 400
   },
   listItem: {
-    // fontSize: "12px",
-    backgroundColor: "#333",
-    // paddingBottom: "5px",
-    // paddingTop: "5px"
+    // fontSize: '12px',
+    backgroundColor: '#333'
+    // paddingBottom: '5px',
+    // paddingTop: '5px'
   },
   innerDivListItem: {
 
@@ -99,7 +98,7 @@ const ElementButtonGroup = (sectionName,
                             buttonData) => (
 
     <List key={sectionName}
-          style={{backgroundColor: "#555"}}
+          style={{backgroundColor: '#555'}}
     >
 
       <ListItem
@@ -121,7 +120,7 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Paper style={{borderRight: "2px solid #989797", display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
+        <Paper style={{borderRight: '2px solid #989797', display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
           <Tabs style={{}}>
             <Tab
                 label='Elements'
@@ -140,7 +139,7 @@ class ElementPanel extends React.Component {
 
               <List>
                 <Subheader>Nested List Items</Subheader>
-                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} style={{fontSize: "12px"}}/>
+                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} style={{fontSize: '12px'}}/>
                 <ListItem primaryText='Drafts' leftIcon={<ContentDrafts />}/>
                 <ListItem
                     primaryText='Inbox'

@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
   }
 
   updateTextParam(paramName, evt, newValue) {
-    console.log("TEXT UPDATE", paramName, newValue);
+    console.log('TEXT UPDATE', paramName, newValue);
 
     this.updateParam(paramName, newValue);
   }

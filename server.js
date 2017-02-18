@@ -19,14 +19,11 @@ app.use(express.static(publicPath));
 
 if (!isProduction) {
 
-  // We require the bundler inside the if block because
-  // it is only needed in a development environment. Later
-  // you will see why this is a good idea
+  // We require the bundler inside the if block because it is only needed in a development environment.
   var dev_server = require('./dev-server.js');
   dev_server();
 
-  // Any requests to localhost:3000/assets is proxied
-  // to webpack-dev-server
+  // Any requests to localhost:3000/assets is proxied to webpack-dev-server
   app.all('/assets/*', function (req, res) {
     proxy.web(req, res, {
       target: 'http://localhost:8080'

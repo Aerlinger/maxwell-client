@@ -3,8 +3,9 @@
 require('core-js/fn/object/assign');
 const Webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
 const open = require('open');
+
+const config = require('./webpack.config');
 
 module.exports = function () {
   /**
@@ -16,15 +17,14 @@ module.exports = function () {
   const compiler = Webpack(config);
 
   var bundleStart = null;
-// We give notice in the terminal when it starts bundling and
-// set the time it started
+
+  // We give notice in the terminal when it starts bundling and set the time it started
   compiler.plugin('compile', function () {
     console.log('Bundling...');
     bundleStart = Date.now();
   });
 
-// We also give notice when it is done compiling, including the
-// time it took. Nice to have
+  // We also give notice when it is done compiling, including the time it took. Nice to have
   compiler.plugin('done', function () {
     console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
   });
@@ -32,9 +32,9 @@ module.exports = function () {
   let dev_server = new WebpackDevServer(compiler, config.devServer);
 
   dev_server.listen(config.port, 'localhost', (err) => {
-    if (err) {
-      console.log(err);
-    }
+    if (err)
+      console.warn(err);
+
     console.log('Listening at localhost:' + config.port);
   });
 
