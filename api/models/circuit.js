@@ -1,7 +1,6 @@
-let mongoose = require( 'mongoose' );
+let mongoose = require('mongoose');
 
 let SimParamsSchema = new mongoose.Schema({
-  name: String,
   timeStep: Number,
   simSpeed: Number,
   currentSpeed: Number,
@@ -15,20 +14,23 @@ let SimParamsSchema = new mongoose.Schema({
 
 let ComponentParamsSchema = new mongoose.Schema({
   name: String,
+  label: String,
   pos: [Number],
   flags: Number,
   params: {}
 });
 
 let CircuitSchema = new mongoose.Schema({
-  params: SimParamsSchema,
-  components: [ComponentParamsSchema],
-  slug: String,
-  private: { type: Boolean, default: true }
-},
-{
-  timestamps: true
-});
+      name: String,
+      description: String,
+      params: SimParamsSchema,
+      components: [ComponentParamsSchema],
+      slug: String,
+      private: {type: Boolean, default: true}
+    },
+    {
+      timestamps: true
+    });
 
 mongoose.model('Circuit', CircuitSchema);
 
