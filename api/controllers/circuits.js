@@ -1,23 +1,35 @@
-const express = require('express');
-const router = new express.Router();
-const mongoose = require('mongoose');
+let express = require('express');
+let router = new express.Router();
 
-router.get('/default_circuits', function(req, res) {
-  let db = mongoose.connection.db;
+const User = require('mongoose').model('User');
+const Circuit = require('mongoose').model('Circuit');
 
-  db.collection('default_circuits').find().toArray(function(err, circuits) {
-    res.json(circuits);
-  });
+router.get('/circuit/:circuit_id', function(req, res) {
+  circuit_id = req.params.circuit_id;
+
+  let current_user = req.User;
+
+  let circuit = current_user.children.id(_id);
+
+  res.json(circuit);
 });
 
-router.get('/default_circuits/:circuit_name', function(req, res) {
-  let db = mongoose.connection.db;
-  let circuit_name = req.params.circuit_name;
+router.post('/circuit', function(req, res) {
+  let current_user = req.User;
+  let circuit_data = req.body;
 
-  db.collection('default_circuits').findOne({
-    name: circuit_name
-  }).then(function(circuit) {
-    res.json(circuit)
+  let circuit = current_user.circuits.create(circuit_data);
+
+  current_user.circuits.push(circuit);
+
+  current_user.save(function(err) {
+    if (err) {
+      res.status(400);
+      res.json({error: err});
+    } else {
+      res.status(201);
+      res.json({status: "success"});
+    }
   });
 });
 

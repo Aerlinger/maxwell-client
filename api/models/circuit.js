@@ -30,4 +30,6 @@ let CircuitSchema = new mongoose.Schema({
   timestamps: true
 });
 
+mongoose.model('Circuit', CircuitSchema);
+
 module.exports = CircuitSchema;

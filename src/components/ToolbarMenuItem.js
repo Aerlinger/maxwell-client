@@ -38,6 +38,7 @@ class ToolbarMenuItem extends React.Component {
         <div>
           <FlatButton
               onTouchTap={this.handleTouchTap}
+              onClick={this.props.onClick}
               label={this.props.title}
           />
           <Popover

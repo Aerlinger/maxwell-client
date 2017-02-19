@@ -6,7 +6,6 @@ let DisplayPreferencesSchema = require('./display_preferences');
 
 const DisplayPreferences = mongoose.model('DisplayPreferences');
 
-
 let UserSchema = new mongoose.Schema({
       email: {
         type: String,

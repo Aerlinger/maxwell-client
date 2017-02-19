@@ -9,11 +9,13 @@ const bodyParser = require('body-parser');
 let passport = require('passport');
 let logger = require('morgan');
 let config = require('./config');
+let db = require('./models/db').connect(config.dbUri);
 
 let preferencesRoutes = require('./controllers/preferences');
-let defaultCircuitRoutes = require('./controllers/circuits');
+let defaultCircuitRoutes = require('./controllers/default_circuits');
 let dashboardRoutes = require('./controllers/dashboard');
 let authRoutes = require('./controllers/auth');
+let circuitRoutes = require('./controllers/circuits');
 
 const localLoginStrategy = require('./strategies/local-login');
 const localSignupStrategy = require('./strategies/local-signup');
@@ -21,7 +23,7 @@ const localSignupStrategy = require('./strategies/local-signup');
 // Configure authentication middleware
 const authCheckMiddleware = require('./middlewares/auth-check');
 
-let db = require('./models/db').connect(config.dbUri);
+
 
 // let app = express();
 module.exports = function (app) {
@@ -41,11 +43,13 @@ module.exports = function (app) {
   passport.use('local-signup', localSignupStrategy);
 
   app.use('/api/dashboard', authCheckMiddleware);
+  app.use('/api/circuit', authCheckMiddleware);
 
 // Configure routes
   app.use('/api/', defaultCircuitRoutes);
   app.use('/api/', preferencesRoutes);
   app.use('/api', dashboardRoutes);
+  app.use('/api/', circuitRoutes);
   app.use('/auth/', authRoutes);
 
 };

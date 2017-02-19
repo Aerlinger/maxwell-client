@@ -10,24 +10,9 @@ const routes = {
   component: Base,
   childRoutes: [
     {
-      path: '/',
-      onEnter: ({ params }, replace) => replace('/lrc')
-    },
-    {
-      path: '/:circuit_name',
-      getComponent: (location, callback) => {
-        if (Auth.isUserAuthenticated()) {
-          callback(null, Dashboard);
-        } else {
-          callback(null, Main);
-        }
-      }
-    },
-    {
       path: '/login',
       component: LoginPage
     },
-
     {
       path: '/signup',
       component: SignUpPage
@@ -39,6 +24,24 @@ const routes = {
 
         // change the current URL to /
         replace('/');
+      }
+    },
+    {
+      path: '/',
+      onEnter: ({ params }, replace) => replace('/lrc')
+    },
+    {
+      path: '/token',
+      component: Dashboard
+    },
+    {
+      path: '/:circuit_name',
+      getComponent: (location, callback) => {
+        // if (Auth.isUserAuthenticated()) {
+        //   callback(null, Dashboard);
+        // } else {
+          callback(null, Main);
+        // }
       }
     }
   ]

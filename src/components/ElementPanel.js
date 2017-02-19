@@ -12,6 +12,7 @@ import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
 // import SidePaneStyles from '../styles/SidePane.css';
+import Maxwell from 'maxwell';
 
 const styles = {
   root: {

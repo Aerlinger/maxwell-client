@@ -7,6 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 
+import jQuery from 'jquery'
+
 const style = {
   button: {
     margin: 12
@@ -21,47 +23,114 @@ class MainToolbar extends React.Component {
     };
   }
 
+  saveCircuit() {
+    let data = {
+      'params': {
+        'type': 'default',
+        'timeStep': 0.000005,
+        'simSpeed': 172,
+        'currentSpeed': 50,
+        'voltageRange': 5,
+        'powerRange': 50,
+        'flags': 1
+      },
+      'components': [
+        {
+          'name': 'ResistorElm',
+          'pos': [304, 176, 304, 304],
+          'flags': 0,
+          'params': {
+            'resistance': 100
+          }
+        },
+        {
+          'name': 'VarRailElm',
+          'pos': [304, 176, 304, 128],
+          'flags': 0,
+          'params': {
+            'waveform': 6,
+            'frequency': 5,
+            'maxVoltage': 5,
+            'bias': 0,
+            'phaseShift': 0,
+            'dutyCycle': 0.5,
+            'sliderText': 'Voltage'
+          }
+        },
+        {
+          'name': 'GroundElm',
+          'pos': [304, 304, 304, 352],
+          'flags': 0,
+          'params': {}
+        }
+      ]
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', '/api/circuit');
+
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    // set the authorization HTTP header
+    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+    xhr.responseType = 'json';
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200 || xhr.status === 201) {
+        console.log(xhr.response);
+      } else {
+        console.log("Err", xhr.response);
+      }
+    });
+
+    xhr.send(JSON.stringify(data));
+  }
+
   render() {
+    let saveCircuit = this.saveCircuit.bind(this);
+
     return (
         <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
           <ToolbarGroup firstChild={true}>
-            <ToolbarTitle text="Maxwell"/>
+            <ToolbarTitle text='Maxwell'/>
 
-            <ToolbarMenuItem title="Circuit"/>
-            <ToolbarMenuItem title="Edit"/>
-            <ToolbarMenuItem title="Components"/>
-            <ToolbarMenuItem title="Analysis"/>
+            <ToolbarMenuItem title='Circuit'/>
+            <ToolbarMenuItem title='Edit'/>
+            <ToolbarMenuItem title='Components'/>
+            <ToolbarMenuItem title='Analysis'/>
+
+            <ToolbarMenuItem title='Create' onClick={saveCircuit}/>
 
             {/*<SignUpModal/>*/}
             {/*<FlashNotification/>*/}
           </ToolbarGroup>
 
           <ToolbarGroup>
-            <FontIcon className="muidocs-icon-custom-sort"/>
+            <FontIcon className='muidocs-icon-custom-sort'/>
             <ToolbarSeparator />
 
             {
               Auth.isUserAuthenticated() ? (
                       <RaisedButton
-                          href="/logout"
+                          href='/logout'
                           primary={true}
-                          label="Logout"
+                          label='Logout'
                           style={style.button}
                       />
 
                   ) : (
                       <div>
                         <RaisedButton
-                            href="/login"
+                            href='/login'
                             primary={true}
-                            label="Login"
+                            label='Login'
                             style={style.button}
                         />
 
                         <RaisedButton
-                            href="/signup"
+                            href='/signup'
                             secondary={true}
-                            label="Sign Up"
+                            label='Sign Up'
                             style={style.button}
                         />
                       </div>
