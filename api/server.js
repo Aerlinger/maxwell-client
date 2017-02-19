@@ -1,5 +1,5 @@
 /**
- * Express API server entry point.
+ * Maxwell API server entry point.
  *
  * Serves the server-side REST API.
  */
@@ -23,9 +23,6 @@ const localSignupStrategy = require('./strategies/local-signup');
 // Configure authentication middleware
 const authCheckMiddleware = require('./middlewares/auth-check');
 
-
-
-// let app = express();
 module.exports = function (app) {
 
   app.use(logger('dev'));
@@ -33,12 +30,11 @@ module.exports = function (app) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));
 
-// Initialise Passport before using the route middleware
+  // Initialise Passport before using the route middleware
   app.use(passport.initialize());
   app.use(passport.session());
 
-// Bind Passport strategies
-
+  // Bind Passport strategies
   passport.use('local-login', localLoginStrategy);
   passport.use('local-signup', localSignupStrategy);
 
@@ -46,11 +42,10 @@ module.exports = function (app) {
   app.use('/api/circuit', authCheckMiddleware);
   app.use('/api/circuits', authCheckMiddleware);
 
-// Configure routes
+  // Configure routes
   app.use('/api/', defaultCircuitRoutes);
   app.use('/api/', preferencesRoutes);
-  app.use('/api', dashboardRoutes);
+  app.use('/api/', dashboardRoutes);
   app.use('/api/', circuitRoutes);
   app.use('/auth/', authRoutes);
-
 };
