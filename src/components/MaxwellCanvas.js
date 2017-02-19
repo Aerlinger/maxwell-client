@@ -153,11 +153,13 @@ class MaxwellCanvas extends React.Component {
     request.send();
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     let loadCircuit = this.loadCircuit.bind(this);
     let circuit_name = this.props.circuit_name || 'ohms';
 
-    loadCircuit(circuit_name);
+    if (this.props.circuit_name !== nextProps.circuit_name) {
+      loadCircuit(circuit_name);
+    }
   }
 
   componentDidMount() {
