@@ -44,6 +44,7 @@ module.exports = function (app) {
 
   app.use('/api/dashboard', authCheckMiddleware);
   app.use('/api/circuit', authCheckMiddleware);
+  app.use('/api/circuits', authCheckMiddleware);
 
 // Configure routes
   app.use('/api/', defaultCircuitRoutes);

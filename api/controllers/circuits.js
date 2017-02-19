@@ -4,6 +4,13 @@ let router = new express.Router();
 const User = require('mongoose').model('User');
 const Circuit = require('mongoose').model('Circuit');
 
+router.get('/circuits', function(req, res) {
+  let current_user = req.User;
+
+  res.status(200);
+  res.json(current_user.circuits);
+});
+
 router.get('/circuit/:circuit_id', function(req, res) {
   circuit_id = req.params.circuit_id;
 

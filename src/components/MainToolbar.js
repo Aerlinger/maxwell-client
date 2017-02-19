@@ -86,8 +86,28 @@ class MainToolbar extends React.Component {
     xhr.send(JSON.stringify(data));
   }
 
+  getCircuits() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('get', '/api/circuits');
+
+    // set the authorization HTTP header
+    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+    xhr.responseType = 'json';
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200 || xhr.status === 201) {
+        console.log(xhr.response);
+      } else {
+        console.log("Err", xhr.response);
+      }
+    });
+
+    xhr.send();
+  }
+
   render() {
     let saveCircuit = this.saveCircuit.bind(this);
+    let getCircuits = this.getCircuits.bind(this);
 
     return (
         <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
@@ -100,6 +120,7 @@ class MainToolbar extends React.Component {
             <ToolbarMenuItem title='Analysis'/>
 
             <ToolbarMenuItem title='Create' onClick={saveCircuit}/>
+            <ToolbarMenuItem title='Get' onClick={getCircuits}/>
 
             {/*<SignUpModal/>*/}
             {/*<FlashNotification/>*/}
