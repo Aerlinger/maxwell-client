@@ -2,7 +2,7 @@ require('normalize.css/normalize.css');
 require('../styles/App.scss');
 require('../styles/PrettyScroll.css');
 
-import MaxwellView from '../components/MaxwellView';
+import MaxwellCanvas from '../components/MaxwellCanvas';
 import EditPanel from '../components/EditPanel';
 import ElementPanel from '../components/ElementPanel';
 
@@ -23,7 +23,7 @@ class AppComponent extends React.Component {
 
     return (
       <div className='index'>
-        <MaxwellView circuit_name={this.props.params.circuit_name}/>
+        <MaxwellCanvas circuit_name={this.props.params.circuit_name}/>
 
         <ElementPanel />
 

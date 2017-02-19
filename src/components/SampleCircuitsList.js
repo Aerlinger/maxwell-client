@@ -88,6 +88,7 @@ class SampleCircuitsList extends React.Component {
           }
 
           items.unshift(<ListItem
+                  key={sub_circuit_id}
                   primaryText={sub_circuit_id}
                   primaryTogglesNestedList={true}
                   initiallyOpen={false}

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Maxwell from 'maxwell'
 
-class FlexCanvas extends React.Component {
+class MaxwellCanvas extends React.Component {
 
   getContext() {
     return this.canvas.getContext('2d');
@@ -15,35 +15,12 @@ class FlexCanvas extends React.Component {
     this.canvas.height = window.innerHeight;
 
     /**
-     * Your drawings need to be inside this function otherwise they will be reset when
+     * TODO: Force redraw
      * you resize the browser window and the canvas goes will be cleared.
      */
-    this.redraw();
+    // this.redraw();
 
     this.props.onResize && this.props.onResize()
-  }
-
-  redraw() {
-    let context = this.getContext();
-
-    let topMargin = this.props.topMargin || 0;
-    let leftMargin = this.props.leftMargin || 0;
-
-    let spacing = 20;
-
-    for (let i = 0; i < this.canvas.width; i += spacing) {
-      for (let j = 0; j < this.canvas.height; j += spacing) {
-
-        context.beginPath();
-        context.arc(i, j, 1, 0, 2 * Math.PI);
-        context.fill();
-        context.closePath();
-      }
-    }
-
-    context.arc(leftMargin, topMargin, 2, 0, 2 * Math.PI);
-    context.fillStyle = 'red';
-    context.fill();
   }
 
   bindCircuitEvents(circuitContext) {
@@ -69,15 +46,7 @@ class FlexCanvas extends React.Component {
     circuitContext.onComponentClick = function (component) {
       console.log('ON COMPONENT CLICK:', component);
 
-      /*
-       var form = Maxwell.renderEdit(component);
-       console.log('renderEdit\n', form);
-
-       document.getElementById('edit_component_pane').innerHTML = '';
-       document.getElementById('edit_component_pane').append(form);
-
-       $('#edit_component_pane').foundation('open');
-       */
+      //  TODO: Render Form
     };
 
     circuitContext.onComponentsDrag = function (components) {
@@ -100,7 +69,6 @@ class FlexCanvas extends React.Component {
       console.log('NODE DRAG: ', node.x, node.y);
     };
   }
-
 
   bindKeyEvents(circuitContext) {
     function isLetter(str) {
@@ -232,8 +200,6 @@ class FlexCanvas extends React.Component {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
-    this.redraw.bind(this)();
-
     window.addEventListener('resize', this.resizeCanvas.bind(this), false);
 
     let loadCircuit = this.loadCircuit.bind(this);
@@ -244,17 +210,19 @@ class FlexCanvas extends React.Component {
 
   render() {
     return (
-        <canvas className='flexCanvas'
-                style={{display: 'block', position: 'absolute', left: '0', right: '0', top: '0', bottom: '0'}}
-                ref={(canvasElm) => {
-                  this.canvas = canvasElm;
-                }}>
-          { this.props.children }
+        <div>
+          <canvas id='performance_sparkline' width='200' height='40'></canvas>
+          <canvas className='flexCanvas'
+                  style={{display: 'block', position: 'absolute', left: '0', right: '0', top: '0', bottom: '0'}}
+                  ref={(canvasElm) => {
+                    this.canvas = canvasElm;
+                  }}>
+            { this.props.children }
 
-        </canvas>
+          </canvas>
+        </div>
     )
   }
 }
 
-export default FlexCanvas;
-
+export default MaxwellCanvas;
