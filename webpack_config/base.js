@@ -3,6 +3,8 @@ let path = require('path');
 let defaultSettings = require('./defaults');
 let webpack = require('webpack');
 
+var HappyPack = require('happypack');
+
 // Additional npm or bower modules to include in builds
 // Add all foreign plugins you may need into this array
 // @example:
@@ -13,7 +15,7 @@ let additionalPaths = [];
 module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
-  debug: true,
+  debug: false,
   devtool: 'eval',
   output: {
     path: path.join(__dirname, '/../dist/assets'),
@@ -46,11 +48,12 @@ module.exports = {
     }
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-      // 'jQuery': 'jquery',
-      // '$': 'jquery',
-      // 'global.jQuery': 'jquery'
-    // })
+    new HappyPack({
+      // loaders is the only required parameter:
+      loaders: [ 'babel?presets[]=es2015' ],
+
+      // customize as needed, see Configuration below
+    })
   ],
   module: {}
 };

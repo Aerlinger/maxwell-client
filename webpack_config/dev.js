@@ -15,7 +15,7 @@ let config = Object.assign({}, baseConfig, {
     './src/index'
   ],
   cache: true,
-  devtool: 'eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin({
       multiStep: true
