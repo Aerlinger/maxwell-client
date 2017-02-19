@@ -7,8 +7,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 
-import jQuery from 'jquery'
-
 const style = {
   button: {
     margin: 12
@@ -79,7 +77,7 @@ class MainToolbar extends React.Component {
       if (xhr.status === 200 || xhr.status === 201) {
         console.log(xhr.response);
       } else {
-        console.log("Err", xhr.response);
+        console.log('Err', xhr.response);
       }
     });
 
@@ -98,7 +96,7 @@ class MainToolbar extends React.Component {
       if (xhr.status === 200 || xhr.status === 201) {
         console.log(xhr.response);
       } else {
-        console.log("Err", xhr.response);
+        console.log('Err', xhr.response);
       }
     });
 

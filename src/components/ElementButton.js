@@ -17,7 +17,7 @@ class ElementButton extends React.Component {
   render() {
     let props = this.props;
 
-    let tooltip = <Tooltip id="tooltip">Tooltip <strong>{props.children}</strong> {props.children}</Tooltip>
+    let tooltip = <Tooltip id="tooltip">Tooltip <strong>{props.children}</strong> {props.children}</Tooltip>;
 
     return (
         <div className={ButtonStyle.root} ref="placing">

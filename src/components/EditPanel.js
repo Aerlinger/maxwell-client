@@ -255,7 +255,6 @@ class EditPanel extends React.Component {
             </Table>
 
             <Divider />
-            <Subheader>Parameters</Subheader>
 
             <CardText>
               {

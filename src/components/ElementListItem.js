@@ -6,20 +6,6 @@ import {ListItem} from 'material-ui/List';
 import bjtImg from '../images/components/v1/bjt.png';
 import Avatar from 'material-ui/Avatar';
 
-import FontIcon from 'material-ui/FontIcon';
-import {blue500, red500, transparent} from 'material-ui/styles/colors';
-
-import TransformerIcon from '../images/Transformer2.png';
-
-import ButtonStyle from '../styles/ComponentButton.css';
-
-import SvgIcon from 'material-ui/SvgIcon';
-
-const HomeIcon = (props) => (
-    <SvgIcon {...props}>
-      {}
-    </SvgIcon>
-);
 
 let style = {
   listItem: {

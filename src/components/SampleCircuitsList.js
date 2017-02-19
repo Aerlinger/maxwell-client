@@ -1,11 +1,7 @@
 import React from 'react';
 
 import {List, ListItem} from 'material-ui/List';
-import IconButton from 'material-ui/IconButton';
-
-import SvgIcon from 'material-ui/SvgIcon';
-import OpenIcon from 'material-ui/svg-icons/navigation/expand-less';
-import CloseIcon from 'material-ui/svg-icons/navigation/expand-more';
+import { Link } from 'react-router'
 
 import Maxwell from 'maxwell'
 
@@ -26,7 +22,7 @@ const styles = {
     // borderTop: '1px solid black',
     fontSize: '12px',
     padding: '4px 12px',
-    position: 'relative',
+    position: 'relative'
     // backgroundColor: '#333',
   },
   subnestedList: {
@@ -50,7 +46,7 @@ class SampleCircuitsList extends React.Component {
   render() {
 
     // Todo this should be a recursive function
-    let circuit_library = Maxwell.Circuits;
+    let circuit_library = Maxwell.SampleCircuits;
     let outerList = [];
 
     for (let category_name in circuit_library) {
@@ -62,11 +58,17 @@ class SampleCircuitsList extends React.Component {
         let sub_circuit = category_circuits[sub_circuit_id];
 
         if (typeof(sub_circuit) == 'string') {
-          items.push(<ListItem
-              key={sub_circuit}
-              innerDivStyle={styles.innerDivStyle}
-              primaryText={sub_circuit}
-              />
+          items.push(
+
+              <Link key={sub_circuit} to={sub_circuit_id}>
+                <ListItem
+                innerDivStyle={styles.innerDivStyle}
+                primaryText={sub_circuit}
+
+                >
+
+                </ListItem>
+              </Link>
           );
         } else {
           let subitems = [];
@@ -78,12 +80,14 @@ class SampleCircuitsList extends React.Component {
                 <ListItem
                     key={sub_sub_circuit_name}
                     primaryText={sub_sub_circuit_name}
-                    innerDivStyle={styles.innerDivStyle}/>
+                    innerDivStyle={styles.innerDivStyle}
+
+                >
+                </ListItem>
             );
           }
 
           items.unshift(<ListItem
-                  key={sub_circuit}
                   primaryText={sub_circuit_id}
                   primaryTogglesNestedList={true}
                   initiallyOpen={false}

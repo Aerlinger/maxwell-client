@@ -36,13 +36,14 @@ const routes = {
     },
     {
       path: '/:circuit_name',
-      getComponent: (location, callback) => {
+      component: Main
+      // getComponent: (location, callback) => {
         // if (Auth.isUserAuthenticated()) {
         //   callback(null, Dashboard);
         // } else {
-          callback(null, Main);
+        //   callback(null, Main);
         // }
-      }
+      // }
     }
   ]
 };

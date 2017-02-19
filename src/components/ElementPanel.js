@@ -7,16 +7,11 @@ import Avatar from 'material-ui/Avatar';
 
 import bjtImg from '../images/components/v1/bjt.png';
 
-import ContentSend from 'material-ui/svg-icons/content/send';
 import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
 
 import SampleCircuitsList from './SampleCircuitsList';
-import TransformerIcon from '../images/Transformer2.png';
 
-// import SidePaneStyles from '../styles/SidePane.css';
-
-let components = require("../modules/components.json");
+let components = require('../modules/components.json');
 
 
 const styles = {
@@ -46,13 +41,13 @@ const ElementButtonGroup = (group_name, group_components, expanded) => (
         primaryTogglesNestedList={true}
         leftAvatar={
           <Avatar
-              style={{background: "white", top: 12}}
+              style={{background: 'white', top: 12}}
               src={bjtImg}
               size={32}
           />
         }
         nestedItems={
-          group_components.map((component, i) => (
+          group_components.map((component) => (
               <ElementListItem key={component.name} hotkey={component.hotkey}>
                 {component.component_title}
               </ElementListItem>
@@ -65,7 +60,7 @@ class ElementPanel extends React.Component {
   render() {
 
     return (
-        <Paper className="element-panel" style={{
+        <Paper className='element-panel' style={{
           borderRight: '2px solid #989797',
           display: 'block',
           position: 'absolute',
@@ -80,7 +75,7 @@ class ElementPanel extends React.Component {
               <List  >
                 {
                   Object.keys(components).map((group_name) => (
-                      ElementButtonGroup(group_name, components[group_name], group_name == "Passive Analog"))
+                      ElementButtonGroup(group_name, components[group_name], group_name == 'Passive Analog'))
                   )
                 }
               </List>

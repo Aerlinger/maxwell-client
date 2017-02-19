@@ -4,7 +4,13 @@ import FlexCanvas from './FlexCanvas'
 
 class MaxwellView extends React.Component {
 
+  componentWillReceiveProps() {
+    console.log('MaxwellView wil receive props');
+  }
+
   componentDidMount() {
+    console.log('MaxwellView mount');
+
     /*
      Maxwell.createContext('ohms', '../circuits/v4/#{circuit_name}.json', canvas, function (circuitContext) {
 
