@@ -4,10 +4,6 @@ import Maxwell from 'maxwell'
 
 class MaxwellCanvas extends React.Component {
 
-  getContext() {
-    return this.canvas.getContext('2d');
-  }
-
   resizeCanvas(evt) {
     console.log('Window resize', evt, window.innerWidth, window.innerHeight);
 
@@ -16,9 +12,7 @@ class MaxwellCanvas extends React.Component {
 
     /**
      * TODO: Force redraw
-     * you resize the browser window and the canvas goes will be cleared.
      */
-    // this.redraw();
 
     this.props.onResize && this.props.onResize()
   }
@@ -30,13 +24,6 @@ class MaxwellCanvas extends React.Component {
 
     circuitContext.onComponentHover = function (component) {
       console.log('ON COMPONENT HOVER:', component.toString(), 'V:', component.volts);
-      /*
-       var form = Maxwell.renderEdit(component);
-
-       console.log('renderEdit\n', form);
-
-       window.editInfo = form;
-       */
     };
 
     circuitContext.onComponentUnhover = function (component) {
@@ -76,8 +63,8 @@ class MaxwellCanvas extends React.Component {
     }
 
     document.addEventListener('keydown', function (event) {
-      var charCode = String.fromCharCode(event.which);
-      var keycode = isLetter(charCode) ? charCode : event.which;
+      let charCode = String.fromCharCode(event.which);
+      let keycode = isLetter(charCode) ? charCode : event.which;
 
       switch (keycode) {
         case 'W':
@@ -120,21 +107,15 @@ class MaxwellCanvas extends React.Component {
         case 'Q':
           circuitContext.clearPlaceComponent();
           break;
-
-          // ESC
-        case 27:
+        case 27: // ESC
           circuitContext.resetSelection();
           break;
-
-          // Backspace
-        case 8:
+        case 8: // Backspace
           if (document.activeElement && document.activeElement.constructor.name != 'HTMLInputElement') {
             circuitContext.remove(circuitContext.getSelectedComponents());
           }
           break;
-
-          // Space
-        case 32:
+        case 32: // Space
           circuitContext.togglePause();
           break;
       }
@@ -146,34 +127,20 @@ class MaxwellCanvas extends React.Component {
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);
 
     let request = new XMLHttpRequest();
-
-    request.open('GET', `/api/default_circuits/${circuit_name}`, true);
-
     let canvas = this.canvas;
 
+    request.open('GET', `/api/default_circuits/${circuit_name}`, true);
     request.onload = function () {
       if (request.status >= 200 && request.status < 400) {
-        // Success!
-        var data = JSON.parse(request.responseText);
+        let data = JSON.parse(request.responseText);
 
         Maxwell.createContext(circuit_name, data, canvas, function (circuitContext) {
-          window.circuitContext = circuitContext;
-
-          /*
-           $('.component-item').click(function (evt) {
-           var componentName = $(this).data('name');
-
-           circuitContext.setPlaceComponent(componentName);
-           });
-           */
-
           bindCircuitEvents(circuitContext);
           bindKeyEvents(circuitContext);
         });
       } else {
         // We reached our target server, but it returned an error
-        console.log('Response', request.status);
-        console.log(request.responseText);
+        console.log('Response', request.status, request.responseText);
       }
     };
 
@@ -189,14 +156,10 @@ class MaxwellCanvas extends React.Component {
     let loadCircuit = this.loadCircuit.bind(this);
     let circuit_name = this.props.circuit_name || 'ohms';
 
-    console.log(`FlexCanvas will receive props: ${circuit_name}`);
-
     loadCircuit(circuit_name);
   }
 
   componentDidMount() {
-    console.log("COMPONENT DID MOUNT");
-
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 

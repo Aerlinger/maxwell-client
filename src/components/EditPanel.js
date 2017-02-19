@@ -7,12 +7,12 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
-import Subheader from 'material-ui/Subheader';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import {CardText} from 'material-ui/Card';
 
+let { TimeSeries, SmoothieChart } = require('smoothie');
 
 function getTruth(x) {
   if (typeof(x) == 'string')
@@ -205,8 +205,84 @@ class EditPanel extends React.Component {
     return paramsObj;
   }
 
+  setupCurrentScope() {
+    this.currentSeries = new TimeSeries();
+
+    let chart = new SmoothieChart({
+      millisPerPixel: 35,
+      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 0},
+      labels: {fillStyle: '#000000', precision: 0}
+    });
+
+    chart.addTimeSeries(this.currentSeries, {strokeStyle: 'rgba(0, 0, 200, 1)', lineWidth: 1});
+    chart.streamTo(document.getElementById('current_series'), 500);
+
+    setInterval((evt) => {
+      this.sampleCurrent.bind(this)(100*Math.random());
+    }, 500);
+  }
+
+  setupVoltageScope() {
+    this.voltageSeries = new TimeSeries();
+
+    let chart = new SmoothieChart({
+      millisPerPixel: 35,
+      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 0},
+      labels: {fillStyle: '#000000', precision: 0}
+    });
+
+    chart.addTimeSeries(this.voltageSeries, {strokeStyle: 'rgba(255, 0, 200, 1)', lineWidth: 1});
+    chart.streamTo(document.getElementById('voltage_series'), 500);
+
+    setInterval((evt) => {
+      this.sampleVoltage.bind(this)(100*Math.random());
+    }, 500);
+  }
+
+  sampleCurrent(voltage) {
+    if (this.currentSeries) {
+      this.currentSeries.append(new Date().getTime(), voltage);
+    }
+  }
+
+  sampleVoltage(voltage) {
+    if (this.voltageSeries) {
+      this.voltageSeries.append(new Date().getTime(), voltage);
+    }
+  }
+
+  componentDidMount() {
+    this.setupVoltageScope.bind(this)();
+    this.setupCurrentScope.bind(this)();
+  }
+
   render() {
     let addField = this.addField.bind(this);
+
+    let styles = {
+      leftColumn: {
+        fontFamily: "Courier New",
+        fontSize: 12,
+        fontWeight: 'bold',
+        width: '8rem',
+        paddingRight: '5px',
+        color: 'green'
+      },
+      centerColumn: {
+        fontFamily: "Courier New",
+        fontSize: 10,
+        width: '5rem',
+        paddingLeft: '5px',
+        paddingRight: '5px',
+        fontSize: 10,
+        fontWeight: 'bold'
+      },
+      chart: {
+        paddingTop: 3,
+        paddingLeft: 0,
+        paddingRight: 0
+      }
+    };
 
     return (
         <Paper className='side-panel' style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: 50, bottom: 0, overflowY: 'scroll'}}>
@@ -223,16 +299,25 @@ class EditPanel extends React.Component {
             <Divider />
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false}>
+
                 <TableRow>
-                  <TableRowColumn>Voltage</TableRowColumn>
-                  <TableRowColumn><span className='quantity'>{this.state.voltage}</span><span
-                      className='symbol'>V</span></TableRowColumn>
-                  <TableRowColumn>{this.state.voltage}</TableRowColumn>
+                  <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>
+                    <span className='quantity'>{this.state.voltage}</span>
+                    <span className='symbol'>V</span>
+                  </TableRowColumn>
+                  <TableRowColumn style={styles.chart}>
+                    <canvas id='voltage_series' width='200' height='40'></canvas>
+                  </TableRowColumn>
                 </TableRow>
+
+
                 <TableRow>
-                  <TableRowColumn>Current</TableRowColumn>
-                  <TableRowColumn>{this.state.current}A</TableRowColumn>
-                  <TableRowColumn>{this.state.current}</TableRowColumn>
+                  <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
+                  <TableRowColumn style={styles.chart}>
+                    <canvas id='current_series' width='200' height='40'></canvas>
+                    </TableRowColumn>
                 </TableRow>
               </TableBody>
             </Table>
