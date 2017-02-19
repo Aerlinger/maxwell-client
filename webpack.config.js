@@ -25,15 +25,11 @@ process.env.REACT_WEBPACK_ENV = env;
 function buildConfig(wantedEnv) {
   let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
   let validEnv = isValid ? wantedEnv : 'dev';
-  let config = require(path.join(__dirname, 'cfg/' + validEnv));
+  let config = require(path.join(__dirname, 'webpack_config/' + validEnv));
 
   return config;
 }
 
-
 let config = buildConfig(env);
-console.log("ENV", env);
-console.log("\nconfig\n", config);
-console.log("\nconfig\n", config.plugins[config.plugins.length - 1]);
 
 module.exports = buildConfig(config);

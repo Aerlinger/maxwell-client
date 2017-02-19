@@ -101,9 +101,11 @@ router.post('/signup', (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/test', (req, res, next) => {
+router.get('/test', (req, res) => {
   res.status(200);
-  res.json(req.User);
+  res.json({
+    user: req.User
+  });
 });
 
 router.post('/login', (req, res, next) => {

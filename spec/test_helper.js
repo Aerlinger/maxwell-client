@@ -1,4 +1,7 @@
+process.env.NODE_ENV = 'test';
+
 chai = require('chai');
+mongoose = require("mongoose");
 
 expect = chai.expect;
 

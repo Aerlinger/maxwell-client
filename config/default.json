@@ -1,0 +1,4 @@
+{
+  "dbUri": "mongodb://localhost/maxwell_dev",
+  "jwtSecret": "secret_phrase"
+}

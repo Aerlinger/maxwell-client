@@ -8,7 +8,7 @@ let cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 let passport = require('passport');
 let logger = require('morgan');
-let config = require('./config');
+let config = require('config');
 let db = require('./models/db').connect(config.dbUri);
 
 let preferencesRoutes = require('./controllers/preferences');
@@ -41,6 +41,7 @@ module.exports = function (app) {
   app.use('/api/dashboard', authCheckMiddleware);
   app.use('/api/circuit', authCheckMiddleware);
   app.use('/api/circuits', authCheckMiddleware);
+  app.use('/api/preferences', authCheckMiddleware);
 
   // Configure routes
   app.use('/api/', defaultCircuitRoutes);

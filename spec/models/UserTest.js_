@@ -4,7 +4,7 @@
 'use strict';
 
 let mongoose = require('mongoose');
-let db = require('../../src/api/models/db').connect('mongodb://localhost/maxwell_test');
+let db = require('../../api/models/db').connect('mongodb://localhost/maxwell_test');
 
 const User = mongoose.model('User');
 

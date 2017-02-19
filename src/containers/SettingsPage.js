@@ -4,7 +4,6 @@ import Dashboard from '../components/Dashboard';
 
 
 class DashboardPage extends React.Component {
-
   /**
    * Class constructor.
    */
