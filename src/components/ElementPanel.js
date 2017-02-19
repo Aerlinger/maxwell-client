@@ -10,7 +10,6 @@ import bjtImg from '../images/components/v1/bjt.png';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import component_svg from '../images/components/svg/res_sub_Subsample.svg';
 
 import SampleCircuitsList from './SampleCircuitsList';
 import TransformerIcon from '../images/Transformer2.png';
@@ -54,7 +53,7 @@ const ElementButtonGroup = (group_name, group_components, expanded) => (
         }
         nestedItems={
           group_components.map((component, i) => (
-              <ElementListItem key={component.name}>
+              <ElementListItem key={component.name} hotkey={component.hotkey}>
                 {component.component_title}
               </ElementListItem>
           ))

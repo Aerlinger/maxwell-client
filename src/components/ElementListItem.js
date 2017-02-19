@@ -4,11 +4,10 @@ import React from 'react';
 import {ListItem} from 'material-ui/List';
 
 import bjtImg from '../images/components/v1/bjt.png';
-import component_svg from '../images/components/svg/res_sub_Subsample.svg';
 import Avatar from 'material-ui/Avatar';
 
 import FontIcon from 'material-ui/FontIcon';
-import {blue500, red500} from 'material-ui/styles/colors';
+import {blue500, red500, transparent} from 'material-ui/styles/colors';
 
 import TransformerIcon from '../images/Transformer2.png';
 
@@ -18,7 +17,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 
 const HomeIcon = (props) => (
     <SvgIcon {...props}>
-      {component_svg}
+      {}
     </SvgIcon>
 );
 
@@ -45,18 +44,33 @@ let style = {
 class ElementListItem extends React.Component {
   hotkey() {
     if (this.props.hotkey) {
-      return <span className={ButtonStyle.hotkey}>{this.props.hotkey}</span>
+      return (
+          <Avatar
+              color='rgba(255, 255, 255, 0.6)'
+              backgroundColor='rgba(255, 255, 255, 0.2)'
+              style={{fontSize: 11, borderRadius: '10%', textTransform: 'uppercase'}}
+              size={16}
+          >
+            {this.props.hotkey}
+          </Avatar>
+      );
     }
   }
 
   render() {
+    let hotkey = this.hotkey.bind(this);
+
     return (
         <ListItem primaryText={this.props.children}
                   innerDivStyle={style.innerDiv}
                   leftAvatar={
                     <Avatar
-                        style={{background: "none", borderRadius: 0, top: 5, left: 5}}
-                        src={bjtImg} size={20}/>
+                        style={{background: 'none', borderRadius: 0, top: 5, left: 5}}
+                        src={bjtImg}
+                        size={20}/>
+                  }
+                  rightAvatar={
+                    hotkey()
                   }
 
         />
