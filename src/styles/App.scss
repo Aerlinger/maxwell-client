@@ -45,16 +45,15 @@ body {
   border-right: 2px solid #989797;
 }
 
-.side-panel::-webkit-scrollbar {
+.side-panel::-webkit-scrollbar, .element-panel::-webkit-scrollbar {
   width: 0.3em;
 }
 
-.side-panel::-webkit-scrollbar-track {
+.side-panel::-webkit-scrollbar-track, .element-panel::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-.side-panel::-webkit-scrollbar-thumb {
+.side-panel::-webkit-scrollbar-thumb, .element-panel::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
-

@@ -11,6 +11,8 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
+import SampleCircuitsList from './SampleCircuitsList';
+
 // import SidePaneStyles from '../styles/SidePane.css';
 import Maxwell from 'maxwell';
 
@@ -32,10 +34,10 @@ const styles = {
     fontWeight: 400
   },
   listItem: {
-    // fontSize: '12px',
-    backgroundColor: '#333'
-    // paddingBottom: '5px',
-    // paddingTop: '5px'
+    fontSize: '12px',
+    backgroundColor: '#333',
+    padding: 0,
+    margin: 0
   },
   innerDivListItem: {
 
@@ -99,12 +101,11 @@ const ElementButtonGroup = (sectionName,
                             buttonData) => (
 
     <List key={sectionName}
-          style={{backgroundColor: '#555'}}
+          style={styles.listItem}
     >
 
       <ListItem
           primaryText='Component'
-          leftIcon={<ContentSend style={{}}/>}
           initiallyOpen={true}
           style={styles.listItem}
           innerDivStyle={styles.innerDivListItem}
@@ -121,7 +122,7 @@ const ElementButtonGroup = (sectionName,
 class ElementPanel extends React.Component {
   render() {
     return (
-        <Paper style={{borderRight: '2px solid #989797', display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0}}>
+        <Paper className="element-panel" style={{borderRight: '2px solid #989797', display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0, overflowY: 'scroll'}}>
           <Tabs style={{}}>
             <Tab
                 label='Elements'
@@ -137,44 +138,7 @@ class ElementPanel extends React.Component {
             <Tab
                 label='Circuits'
             >
-
-              <List>
-                <Subheader>Nested List Items</Subheader>
-                <ListItem primaryText='Sent mail' leftIcon={<ContentSend />} style={{fontSize: '12px'}}/>
-                <ListItem primaryText='Drafts' leftIcon={<ContentDrafts />}/>
-                <ListItem
-                    primaryText='Inbox'
-                    leftIcon={<ContentInbox />}
-                    initiallyOpen={true}
-                    primaryTogglesNestedList={true}
-                    nestedItems={[
-                      <ListItem
-                          key={1}
-                          primaryText='Starred'
-                          leftIcon={<ActionGrade />}
-                      />,
-                      <ListItem
-                          key={2}
-                          primaryText='Sent Mail'
-                          leftIcon={<ContentSend />}
-                          disabled={true}
-                          initiallyOpen={true}
-                          nestedItems={[
-                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />}/>
-                          ]}
-                      />,
-                      <ListItem
-                          key={3}
-                          primaryText='Inbox'
-                          leftIcon={<ContentInbox />}
-                          initiallyOpen={true}
-                          nestedItems={[
-                            <ListItem key={1} primaryText='Drafts' leftIcon={<ContentDrafts />}/>
-                          ]}
-                      />
-                    ]}
-                />
-              </List>
+              <SampleCircuitsList />
 
             </Tab>
           </Tabs>
