@@ -133,8 +133,9 @@ class MaxwellCanvas extends React.Component {
     request.onload = function () {
       if (request.status >= 200 && request.status < 400) {
         let data = JSON.parse(request.responseText);
+        let circuit_id = Math.floor(1024 * Math.random());
 
-        Maxwell.createContext(circuit_name, data, canvas, function (circuitContext) {
+        Maxwell.createContext(circuit_name + circuit_id, data, canvas, function (circuitContext) {
           bindCircuitEvents(circuitContext);
           bindKeyEvents(circuitContext);
         });

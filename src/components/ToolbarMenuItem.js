@@ -4,6 +4,7 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 
@@ -40,6 +41,8 @@ class ToolbarMenuItem extends React.Component {
               onTouchTap={this.handleTouchTap}
               onClick={this.props.onClick}
               label={this.props.title}
+              labelPosition="before"
+              icon={<ArrowDown />}
           />
           <Popover
               open={this.state.open}

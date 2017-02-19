@@ -217,7 +217,7 @@ class EditPanel extends React.Component {
     chart.addTimeSeries(this.currentSeries, {strokeStyle: 'rgba(0, 0, 200, 1)', lineWidth: 1});
     chart.streamTo(document.getElementById('current_series'), 500);
 
-    setInterval((evt) => {
+    setInterval(() => {
       this.sampleCurrent.bind(this)(100*Math.random());
     }, 500);
   }
@@ -234,7 +234,7 @@ class EditPanel extends React.Component {
     chart.addTimeSeries(this.voltageSeries, {strokeStyle: 'rgba(255, 0, 200, 1)', lineWidth: 1});
     chart.streamTo(document.getElementById('voltage_series'), 500);
 
-    setInterval((evt) => {
+    setInterval(() => {
       this.sampleVoltage.bind(this)(100*Math.random());
     }, 500);
   }
@@ -261,15 +261,15 @@ class EditPanel extends React.Component {
 
     let styles = {
       leftColumn: {
-        fontFamily: "Courier New",
+        fontFamily: 'Courier New',
         fontSize: 12,
         fontWeight: 'bold',
         width: '8rem',
         paddingRight: '5px',
-        color: 'green'
+        color: '#00c400'
       },
       centerColumn: {
-        fontFamily: "Courier New",
+        fontFamily: 'Courier New',
         fontSize: 10,
         width: '5rem',
         paddingLeft: '5px',

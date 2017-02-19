@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
+import Avatar from 'material-ui/Avatar';
+import bjtImg from '../images/components/v1/bjt.png';
 
 const style = {
   button: {
@@ -110,7 +112,14 @@ class MainToolbar extends React.Component {
     return (
         <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
           <ToolbarGroup firstChild={true}>
-            <ToolbarTitle text='Maxwell'/>
+            <Avatar
+                style={{background: 'white', top: 12, marginLeft: 15}}
+                src={bjtImg}
+                size={32}
+            />
+
+            <ToolbarTitle text='Maxwell' style={{color: 'white', marginLeft: 30}}>
+            </ToolbarTitle>
 
             <ToolbarMenuItem title='Circuit'/>
             <ToolbarMenuItem title='Edit'/>
