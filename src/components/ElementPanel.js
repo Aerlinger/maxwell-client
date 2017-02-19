@@ -3,143 +3,92 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import ElementListItem from './ElementListItem';
 import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
 
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import bjtImg from '../images/components/v1/bjt.png';
+
 import ContentSend from 'material-ui/svg-icons/content/send';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import component_svg from '../images/components/svg/res_sub_Subsample.svg';
 
 import SampleCircuitsList from './SampleCircuitsList';
+import TransformerIcon from '../images/Transformer2.png';
 
 // import SidePaneStyles from '../styles/SidePane.css';
-import Maxwell from 'maxwell';
+
+let components = require("../modules/components.json");
+
 
 const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around'
+  nestedList: {
+    borderLeft: '5px solid #555',
+    backgroundColor: '#444',
+    borderBottom: '1px solid #970000'
   },
-  gridList: {
-    width: 500,
-    height: 900,
-    overflowY: 'auto'
-  },
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400
-  },
-  listItem: {
+  rootList: {
+    borderBottom: '1px solid black',
     fontSize: '12px',
-    backgroundColor: '#333',
-    padding: 0,
-    margin: 0
-  },
-  innerDivListItem: {
-
-  },
-  leftIcon: {
-    margin: 2
-  },
-  tabs: {
-    marginTop: 10
+    fontWeight: 'bold',
+    // padding: '4px 12px',
+    position: 'relative',
+    paddingLeft: 60
   }
 };
 
-const tilesData = [
-  {
-    sectionName: 'Basic',
-    expanded: true,
-    components: [
-      {
-        img: 'images/yeoman.png',
-        title: 'Transformer',
-        hotkey: 'T'
-      },
-      {
-        img: 'images/yeoman.png',
-        title: 'Resistor',
-        hotkey: 'R'
-      },
-      {
-        img: 'images/yeoman.png',
-        title: 'Wire',
-        hotkey: 'W'
-      }
-    ]
-  },
-  {
-    sectionName: 'Digital',
-    expanded: true,
-    components: [
-      {
-        img: 'images/yeoman.png',
-        title: 'Transformer',
-        hotkey: 'T'
-      },
-      {
-        img: 'images/yeoman.png',
-        title: 'Resistor',
-        hotkey: 'R'
-      },
-      {
-        img: 'images/yeoman.png',
-        title: 'Wire',
-        hotkey: 'W'
-      }
-    ]
-  }
-];
+const ElementButtonGroup = (group_name, group_components, expanded) => (
 
+    <ListItem
+        key={group_name}
+        primaryText={group_name}
+        initiallyOpen={expanded}
+        innerDivStyle={styles.rootList}
+        nestedListStyle={styles.nestedList}
+        primaryTogglesNestedList={true}
+        leftAvatar={
+          <Avatar
+              style={{background: "white", top: 12}}
+              src={bjtImg}
+              size={32}
+          />
+        }
+        nestedItems={
+          group_components.map((component, i) => (
+              <ElementListItem key={component.name}>
+                {component.component_title}
+              </ElementListItem>
+          ))
+        }/>
 
-const ElementButtonGroup = (sectionName,
-                            expanded,
-                            buttonData) => (
-
-    <List key={sectionName}
-          style={styles.listItem}
-    >
-
-      <ListItem
-          primaryText='Component'
-          initiallyOpen={true}
-          style={styles.listItem}
-          innerDivStyle={styles.innerDivListItem}
-          nestedItems={
-            buttonData.map((button, i) => (
-                <ElementListItem key={i}>
-                  {button.title}
-                </ElementListItem>
-            ))
-          }/>
-    </List>
 );
 
 class ElementPanel extends React.Component {
   render() {
-    return (
-        <Paper className="element-panel" style={{borderRight: '2px solid #989797', display: 'block', position: 'absolute', width: '200px', left: 0, top: 50, bottom: 0, overflowY: 'scroll'}}>
-          <Tabs style={{}}>
-            <Tab
-                label='Elements'
-            >
 
-              {
-                tilesData.map((item) => (
-                    ElementButtonGroup(item.sectionName, true, item.components)
-                ))
-              }
+    return (
+        <Paper className="element-panel" style={{
+          borderRight: '2px solid #989797',
+          display: 'block',
+          position: 'absolute',
+          width: '200px',
+          left: 0,
+          top: 50,
+          bottom: 0,
+          overflowY: 'scroll'
+        }}>
+          <Tabs style={{}}>
+            <Tab label='Elements'>
+              <List  >
+                {
+                  Object.keys(components).map((group_name) => (
+                      ElementButtonGroup(group_name, components[group_name], group_name == "Passive Analog"))
+                  )
+                }
+              </List>
             </Tab>
 
-            <Tab
-                label='Circuits'
-            >
+            <Tab label='Presets'>
               <SampleCircuitsList />
-
             </Tab>
           </Tabs>
 
@@ -147,6 +96,7 @@ class ElementPanel extends React.Component {
     );
   }
 }
+
 
 ElementPanel.defaultProps = {};
 

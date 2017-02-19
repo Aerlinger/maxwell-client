@@ -2,10 +2,15 @@ require('normalize.css/normalize.css');
 
 import React from 'react';
 import {ListItem} from 'material-ui/List';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
+
+import bjtImg from '../images/components/v1/bjt.png';
+import component_svg from '../images/components/svg/res_sub_Subsample.svg';
+import Avatar from 'material-ui/Avatar';
 
 import FontIcon from 'material-ui/FontIcon';
 import {blue500, red500} from 'material-ui/styles/colors';
+
+import TransformerIcon from '../images/Transformer2.png';
 
 import ButtonStyle from '../styles/ComponentButton.css';
 
@@ -13,7 +18,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 
 const HomeIcon = (props) => (
     <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      {component_svg}
     </SvgIcon>
 );
 
@@ -25,14 +30,15 @@ let style = {
     margin: 0
   },
   innerDiv: {
-    paddingLeft: 48
-  },
-  nestedListStyle: {
-
+    // backgroundColor: '#333',
+    fontSize: '11px',
+    margin: 0,
+    padding: '8px 8px 8px 36px'
   },
   iconStyles: {
     margin: 6,
-    top: 5
+    top: -3,
+    left: 0
   }
 };
 
@@ -46,11 +52,14 @@ class ElementListItem extends React.Component {
   render() {
     return (
         <ListItem primaryText={this.props.children}
-                  style={style.listItem}
                   innerDivStyle={style.innerDiv}
-                  leftIcon={
-          <HomeIcon style={style.iconStyles} />
-        } />
+                  leftAvatar={
+                    <Avatar
+                        style={{background: "none", borderRadius: 0, top: 5, left: 5}}
+                        src={bjtImg} size={20}/>
+                  }
+
+        />
     );
   }
 }

@@ -1,0 +1,233 @@
+{
+  "Passive Analog": [
+    {
+      "component_title": "Basic Wire",
+      "name": "WireElm",
+      "hotkey": "w"
+    },
+    {
+      "component_title": "Ground",
+      "name": "GroundElm",
+      "hotkey": "g"
+    },
+    {
+      "component_title": "Resistor",
+      "hotkey": "r",
+      "name": "ResistorElm"
+    },
+    {
+      "component_title": "Capacitor",
+      "name": "CapacitorElm",
+      "hotkey": "c"
+    },
+    {
+      "component_title": "Inductor",
+      "name": "InductorElm",
+      "hotkey": "i"
+    },
+    {
+      "component_title": "Switch",
+      "name": "SwitchElm",
+      "hotkey": "s"
+    },
+    {
+      "component_title": "2-way Switch (SPDT)",
+      "name": "Switch2Elm"
+    },
+    {
+      "component_title": "Push Switch",
+      "name": "PushSwitchElm"
+    },
+    {
+      "component_title": "Potentiometer",
+      "name": "PotElm"
+    },
+    {
+      "component_title": "Spark Gap",
+      "name": "SparkGapElm"
+    }
+  ],
+  "Active Analog": [
+    {
+      "component_title": "Bipolar Junction Transistor",
+      "name": "TransistorElm",
+      "hotkey": "t"
+    },
+    {
+      "component_title": "MOSFET Transistor",
+      "name": "MosfetElm",
+      "hotkey": "m"
+    },
+    {
+      "component_title": "JFET Transistor",
+      "name": "JFetElm"
+    },
+    {
+      "component_title": "Operational Amplifier",
+      "name": "OpAmpElm",
+      "hotkey": "a"
+    },
+    {
+      "component_title": "Transformer",
+      "name": "TransformerElm"
+    },
+    {
+      "component_title": "Diode",
+      "name": "DiodeElm",
+      "hotkey": "d"
+    },
+    {
+      "component_title": "Zener Diode",
+      "name": "ZenerElm"
+    },
+    {
+      "component_title": "Tunnel Diode",
+      "name": "TunnelDiodeElm"
+    },
+    {
+      "component_title": "Silicon Controller Rectifier (SCR)",
+      "name": "ScrElm"
+    },
+    {
+      "component_title": "LED",
+      "name": "LedElm"
+    },
+    {
+      "component_title": "Relay",
+      "name": "RelayElm"
+    },
+    {
+      "component_title": "Memristor",
+      "name": "MemristorElm"
+    },
+    {
+      "component_title": "Triode",
+      "name": "TriodeElm"
+    },
+    {
+      "component_title": "Transmission Line",
+      "name": "TransLineElm"
+    }
+  ],
+  "Power Sources": [
+    {
+      "component_title": "Current Source",
+      "name": "CurrentElm"
+    },
+    {
+      "component_title": "Voltage Source",
+      "name": "VoltageElm",
+      "hotkey": "v"
+    },
+    {
+      "component_title": "Voltage Rail",
+      "name": "VarRailElm"
+    },
+    {
+      "component_title": "Frequency Sweep",
+      "name": "SweepElm"
+    },
+    {
+      "component_title": "Antenna",
+      "name": "AntennaElm"
+    }
+  ],
+  "Basic Digital": [
+    {
+      "component_title": "Digital Input",
+      "name": "LogicInputElm"
+    },
+    {
+      "component_title": "Digital Output",
+      "name": "LogicOutputElm"
+    },
+    {
+      "component_title": "Inverter (NOT)",
+      "name": "InverterElm"
+    },
+    {
+      "component_title": "AND Gate",
+      "name": "AndGateElm"
+    },
+    {
+      "component_title": "OR Gate",
+      "name": "OrGateElm"
+    },
+    {
+      "component_title": "XOR Gate",
+      "name": "XorGateElm"
+    },
+    {
+      "component_title": "NAND Gate",
+      "name": "NandGateElm"
+    },
+    {
+      "component_title": "NOR Gate",
+      "name": "NorGateElm"
+    },
+    {
+      "component_title": "Latch",
+      "name": "LatchElm"
+    },
+    {
+      "component_title": "JK Flip-Flop",
+      "name": "JkFlipFlopElm"
+    },
+    {
+      "component_title": "D Flip-Flop",
+      "name": "DFlipFlopElm"
+    }
+  ],
+  "Packages": [
+    {
+      "component_title": "Analog to Digital",
+      "name": "AdcElm"
+    },
+    {
+      "component_title": "Digital to Analoc",
+      "name": "DacElm"
+    },
+    {
+      "component_title": "Counter",
+      "name": "CounterElm"
+    },
+    {
+      "component_title": "Decade Counter",
+      "name": "DecadeElm"
+    },
+    {
+      "component_title": "7-Segment Display",
+      "name": "SevenSegElm"
+    },
+    {
+      "component_title": "Voltage Controller Oscillator",
+      "name": "VcoElm"
+    },
+    {
+      "component_title": "Phase Comparator",
+      "name": "PhaseCompElm"
+    },
+    {
+      "component_title": "555 Timer",
+      "name": "TimerElm"
+    },
+    {
+      "component_title": "Current Conveyor",
+      "name": "CC2Elm"
+    }
+  ],
+  "Inspection": [
+    {
+      "component_title": "Scope Probe",
+      "name": "ProbeElm"
+    },
+    {
+      "component_title": "Output Node",
+      "name": "OutputElm"
+    },
+    {
+      "component_title": "Text Label",
+      "name": "TextElm"
+    }
+  ]
+}
