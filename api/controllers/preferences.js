@@ -6,11 +6,14 @@ const DisplayPreferences = require('mongoose').model('DisplayPreferences');
 
 router.post('/preferences', (req, res) => {
   let current_user = req.User;
+  let preferences = req.body;
 
-  let preferences = req.params.preferences;
-  let preferences_id = current_user.display_preferences._id
+  let preferences_params = {};
+  for (var field in preferences) {
+    preferences_params['display_preferences.' + field] = preferences[field];
+  }
 
-  DisplayPreferences.findByIdAndUpdate(preferences_id, {$set: preferences}, function(err, doc) {
+  User.findByIdAndUpdate(current_user._id, {$set: preferences_params}, function(err, doc) {
     if (err) {
       res.status(400);
       res.json({err: err});
@@ -19,20 +22,6 @@ router.post('/preferences', (req, res) => {
       res.json(doc);
     }
   });
-
-  /*
-  User.findOneAndUpdate({_id: current_user.display_preferences._id}, { $set: preferences }, function(err, result) {
-    if (err) {
-      res.status(400);
-      res.json({err: err});
-    } else {
-      res.status(200);
-      res.json(result);
-    }
-  });
-
-  current_user.update()
-  */
 });
 
 router.get('/preferences', (req, res) => {

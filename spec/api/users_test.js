@@ -136,23 +136,20 @@ describe('User auth', () => {
       });
     });
 
-    it("updates preferences", (done) => {
+    it.only("updates preferences", (done) => {
       let current_user = this.user;
 
-      let pref_id = current_user.display_preferences._id;
-
       let new_preferences = {
-        preferences: {
-          chip_outline_width: 2
-        }
+        chip_outline_width: 2
       };
 
       chai.request(server)
           .post(`/api/preferences/`)
           .set('Authorization', `bearer ${this.token}`)
+          .set('Content-type', 'application/json')
           .send(new_preferences)
           .end((err, res) => {
-            console.log(res.status);
+
             console.log(res.body);
 
             User.findOne({_id: current_user.id}, function(err, user) {
