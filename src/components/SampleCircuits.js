@@ -42,7 +42,7 @@ const styles = {
   }
 };
 
-class SampleCircuitsList extends React.Component {
+class SampleCircuits extends React.Component {
   render() {
 
     // Todo this should be a recursive function
@@ -120,5 +120,5 @@ class SampleCircuitsList extends React.Component {
   }
 }
 
-export default SampleCircuitsList;
+export default SampleCircuits;
 

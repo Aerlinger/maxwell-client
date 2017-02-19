@@ -9,7 +9,7 @@ import bjtImg from '../images/components/v1/bjt.png';
 
 import {List, ListItem} from 'material-ui/List';
 
-import SampleCircuitsList from './SampleCircuitsList';
+import SampleCircuits from './SampleCircuits';
 
 let components = require('../modules/components.json');
 
@@ -82,7 +82,7 @@ class ElementPanel extends React.Component {
             </Tab>
 
             <Tab label='Presets'>
-              <SampleCircuitsList />
+              <SampleCircuits />
             </Tab>
           </Tabs>
 
