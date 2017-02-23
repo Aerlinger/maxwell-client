@@ -3,7 +3,6 @@ import React from 'react'
 import Maxwell from 'maxwell'
 
 class MaxwellCanvas extends React.Component {
-
   resizeCanvas(evt) {
     console.log('Window resize', evt, window.innerWidth, window.innerHeight);
 
@@ -123,7 +122,7 @@ class MaxwellCanvas extends React.Component {
   }
 
   loadCircuit(circuit_name) {
-    console.log('LOAD', this.props);
+    let props = this.props;
 
     let bindKeyEvents = this.bindKeyEvents.bind(this);
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);
@@ -139,6 +138,8 @@ class MaxwellCanvas extends React.Component {
 
         Maxwell.createContext(circuit_name + circuit_id, data, canvas, function (circuitApplication) {
           circuitApplication.run();
+
+          props.setCircuit && props.setCircuit(circuitApplication.Circuit);
 
           bindCircuitEvents(circuitApplication);
           bindKeyEvents(circuitApplication);

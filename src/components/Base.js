@@ -6,7 +6,7 @@ const Base = ({children}) => (
     <div>
       {children}
 
-      <MainToolbar/>
+
     </div>
 );
 

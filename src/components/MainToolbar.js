@@ -135,7 +135,7 @@ class MainToolbar extends React.Component {
             <ToolbarMenuItem title='Components'/>
             <ToolbarMenuItem title='Analysis'/>
 
-            <RaisedButton secondary={true} label='Save' onClick={saveCircuit}/>
+            <RaisedButton secondary={true} label='Save' onClick={this.props.saveCircuit}/>
             <RaisedButton
                 secondary={true}
                 label='Load'
@@ -143,9 +143,8 @@ class MainToolbar extends React.Component {
                   evt => this.setState({loadCircuitModalOpen: true})
                 }
             />
+            <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
 
-            {/*<SignUpModal/>*/}
-            {/*<FlashNotification/>*/}
           </ToolbarGroup>
 
           <ToolbarGroup>
