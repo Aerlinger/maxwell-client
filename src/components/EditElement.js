@@ -14,8 +14,18 @@ import {CardText} from 'material-ui/Card';
 import {TimeSeries, SmoothieChart} from 'smoothie';
 
 import componentImg from '../images/components/v1/bjt.png';
+import Subheader from 'material-ui/Subheader';
 
-let styles = {
+let style = {
+  smallRowColumn: {
+    height: 24,
+    fontFamily: 'Courier New',
+    fontSize: 12,
+    fontWeight: 'bold'
+  },
+  smallRow: {
+    height: 24
+  },
   leftColumn: {
     fontFamily: 'Courier New',
     fontSize: 12,
@@ -56,6 +66,14 @@ const fields = {
   current: 5,
   power: 1,
   info: [
+    {
+      label: 'Mode',
+      value: 'Forward-Active'
+    },
+    {
+      label: 'Mode',
+      value: 'Forward-Active'
+    },
     {
       label: 'Mode',
       value: 'Forward-Active'
@@ -127,7 +145,10 @@ class RightPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = fields;
+    this.state = {
+        ...fields,
+        clientHeight: 200
+    };
   }
 
   findParam(name) {
@@ -280,6 +301,10 @@ class RightPanel extends React.Component {
   componentDidMount() {
     this.setupVoltageScope.bind(this)();
     this.setupCurrentScope.bind(this)();
+
+    let { clientHeight } = this.refs.elementHeader;
+
+    this.setState({editHeaderHeight: clientHeight});
   }
 
   render() {
@@ -290,70 +315,93 @@ class RightPanel extends React.Component {
 
     return (
         <List>
+          <div className='editElementHeader' ref='elementHeader'>
 
-          <ListItem
-              primaryText={selectedElement.getName()}
-              leftAvatar={<Avatar src={this.state.icon}/>}
-              secondaryText='Description'
-          >
+            <ListItem
+                primaryText={selectedElement.getName()}
+                leftAvatar={<Avatar src={this.state.icon}/>}
+                secondaryText='Description'
+            >
 
-          </ListItem>
+            </ListItem>
 
-          <Divider />
-          <Table selectable={false}>
-            <TableBody displayRowCheckbox={false}>
+            <Divider />
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false}>
 
-              <TableRow>
-                <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
-                <TableRowColumn style={styles.centerColumn}>
-                  <span className='quantity'>{this.state.voltage}</span>
-                  <span className='symbol'>V</span>
-                </TableRowColumn>
-                <TableRowColumn style={styles.chart}>
-                  <canvas id='voltage_series' width='200' height='40'></canvas>
-                </TableRowColumn>
-              </TableRow>
+                <TableRow>
+                  <TableRowColumn style={style.leftColumn}>Voltage</TableRowColumn>
+                  <TableRowColumn style={style.centerColumn}>
+                    <span className='quantity'>{this.state.voltage}</span>
+                    <span className='symbol'>V</span>
+                  </TableRowColumn>
+                  <TableRowColumn style={style.chart}>
+                    <canvas id='voltage_series' width='200' height='40'></canvas>
+                  </TableRowColumn>
+                </TableRow>
 
 
-              <TableRow>
-                <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
-                <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
-                <TableRowColumn style={styles.chart}>
-                  <canvas id='current_series' width='200' height='40'></canvas>
-                </TableRowColumn>
-              </TableRow>
-            </TableBody>
-          </Table>
+                <TableRow>
+                  <TableRowColumn style={style.leftColumn}>Current</TableRowColumn>
+                  <TableRowColumn style={style.centerColumn}>{this.state.current}A</TableRowColumn>
+                  <TableRowColumn style={style.chart}>
+                    <canvas id='current_series' width='200' height='40'></canvas>
+                  </TableRowColumn>
+                </TableRow>
+              </TableBody>
+            </Table>
 
-          <Divider />
+            <Divider />
+            <Subheader>Attributes</Subheader>
+            <Divider />
 
-          <Table selectable={false}>
-            <TableBody displayRowCheckbox={false}>
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false} stripedRows>
+                {
+                  this.state.info.map((infoObj, i) => (
+                      <TableRow key={i} style={style.smallRow}>
+                        <TableRowColumn style={style.smallRowColumn}>{infoObj['label']}</TableRowColumn>
+                        <TableRowColumn style={style.smallRowColumn}>{infoObj['value']}</TableRowColumn>
+                      </TableRow>
+                  ))
+                }
+
+              </TableBody>
+            </Table>
+
+            <Divider />
+            <Subheader>Properties</Subheader>
+            <Divider />
+
+          </div>
+
+          <div
+              style={{
+                position: 'absolute',
+                top: this.state.editHeaderHeight,
+                left: 0,
+                right: 0,
+                bottom: 0
+              }}>
+
+            <CardText
+                style={{
+                  height: '100%',
+                  position: 'absolute',
+                  overflowY: 'auto',
+                  overflowX: 'hidden'
+                }}
+            >
               {
-                this.state.info.map((infoObj, i) => (
-
-                    <TableRow key={i}>
-                      <TableRowColumn>{infoObj['label']}</TableRowColumn>
-                      <TableRowColumn>{infoObj['value']}</TableRowColumn>
-                    </TableRow>
-                ))
+                //this.state.params.map((paramObj) => addField(paramObj))
+                Object.keys(fields).map(
+                    fieldKey => addField(fields[fieldKey])
+                )
               }
 
-            </TableBody>
-          </Table>
-
-          <Divider />
-
-          <CardText>
-            {
-              //this.state.params.map((paramObj) => addField(paramObj))
-              Object.keys(fields).map(
-                  fieldKey => addField(fields[fieldKey])
-              )
-            }
-
-            <RaisedButton label='Update' fullWidth={true} primary={true}/>
-          </CardText>
+              <RaisedButton label='Update' fullWidth={true} primary={true}/>
+            </CardText>
+          </div>
 
         </List>
     );

@@ -14,118 +14,74 @@ import {CardText} from 'material-ui/Card';
 
 import TextInput from './inputs/TextInput';
 
-let styles = {
-  leftColumn: {
-    fontFamily: 'Courier New',
-    fontSize: 12,
-    fontWeight: 'bold',
-    width: '8rem',
-    paddingRight: '5px',
-    color: '#00c400'
-  },
-  centerColumn: {
-    fontFamily: 'Courier New',
-    fontSize: 10,
-    width: '5rem',
-    paddingLeft: '5px',
-    paddingRight: '5px',
-    fontSize: 10,
-    fontWeight: 'bold'
-  },
-  chart: {
-    paddingTop: 3,
-    paddingLeft: 0,
-    paddingRight: 0
-  }
-};
-
 import componentImg from '../images/components/v1/bjt.png';
 
+/**
+ * Component to
+ *
+ * Params:
+ */
 class EditSimulation extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      name: "name",
+      description: "description",
+      params: {
+        timeStep: "timestep",
+        simSpeed: "simSpeed",
+        currentSpeed: 'currentSpeed',
+        voltageRange: 'voltageRange',
+        powerRange: 'powerRange',
+        flags: 'flags',
+        scope_speed: 'scopeSpeed'
+      }
+    }
+  }
+
+  textInput(title, value) {
+    return <TextField
+        inputStyle={{fontFamily: 'Courier'}}
+        floatingLabelText={title}
+        floatingLabelFixed={true}
+        value={value}
+    />
   }
 
   render() {
-
     return (
-        <List>
+        <List
+            style={{
+              overflow: 'hidden'
+            }}
+        >
 
           <ListItem
               primaryText='Simulation Settings'
               leftAvatar={<Avatar src={componentImg}/>}
-              secondaryText='Description'
-          >
-
-          </ListItem>
-
+              secondaryText={this.state.name}
+          />
 
           <Divider />
-          <Table selectable={false}>
-            <TableBody displayRowCheckbox={false}>
+          <CardText
+              style={{
+                height: '100%',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                position: 'absolute',
+                right: 0,
+                left: 0,
+                paddingBottom: 104
+              }}
+          >
 
-              <TableRow>
-                <TableRowColumn>
-                  <TextInput
-                      inputStyle={{fontFamily: 'Courier'}}
-                      hintText={'name'}
-                      errorText={'hint'}
-                      floatingLabelText={'TEXT INPUT TITLE'}
-                      floatingLabelFixed={true}
-                      value={'TEXT INPUT'}
-                  />
-                </TableRowColumn>
-              </TableRow>
-
-              <TableRow>
-                <TableRowColumn>
-                <Toggle label={'title'}
-                        key={'name'}
-                        labelPosition='right'
-                        value={'value'}/>
-                </TableRowColumn>
-              </TableRow>
-
-              <TableRow>
-                <TableRowColumn>
-                  <ListItem>
-                    <TextField
-                        key={'name'}
-                        inputStyle={{fontFamily: 'Courier'}}
-                        hintText={'name'}
-                        errorText={'hint'}
-                        floatingLabelText={'title'}
-                        floatingLabelFixed={true}
-                        value={'value'}
-                    />
-                  </ListItem>
-                </TableRowColumn>
-              </TableRow>
-
-            </TableBody>
-          </Table>
-
-
-          <CardText>
-
-            <TextInput
-                inputStyle={{fontFamily: 'Courier'}}
-                hintText={'name'}
-                errorText={'hint'}
-                floatingLabelText={'TEXT INPUT TITLE'}
-                floatingLabelFixed={true}
-                value={'TEXT INPUT'}
-            />
-
-            <TextField
-                key={'name'}
-                inputStyle={{fontFamily: 'Courier'}}
-                hintText={'name'}
-                errorText={'hint'}
-                floatingLabelText={'title'}
-                floatingLabelFixed={true}
-                value={'value'}
-            />
+            {this.textInput('Time Step', '<value>')}
+            {this.textInput('Sim Speed', '<value>')}
+            {this.textInput('Current Speed', '<value>')}
+            {this.textInput('Voltage Range', '<value>')}
+            {this.textInput('Power Range', '<value>')}
+            {this.textInput('Scope Speed', '<value>')}
 
             <TextField
                 key={'name2'}

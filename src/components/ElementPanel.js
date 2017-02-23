@@ -67,8 +67,7 @@ class ElementPanel extends React.Component {
           width: '200px',
           left: 0,
           top: 50,
-          bottom: 0,
-          overflowY: 'scroll'
+          bottom: 0
         }}>
           <Tabs style={{}}>
             <Tab label='Elements'>
