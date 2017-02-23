@@ -52,6 +52,7 @@ class ElementListItem extends React.Component {
 
     let elmStyle = {};
     let prefix = "";
+
     if (this.props.placeElement == this.props.name) {
       elmStyle = {
         fontSize: '11px',
@@ -73,6 +74,9 @@ class ElementListItem extends React.Component {
         <ListItem primaryText={
           prefix + this.props.children
         }
+                  onTouchTap={
+                    () => this.props.setPlaceElement(this.props.name)
+                  }
                   innerDivStyle={elmStyle}
                   leftAvatar={
                     <Avatar

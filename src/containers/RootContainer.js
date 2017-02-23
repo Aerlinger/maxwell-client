@@ -124,7 +124,7 @@ class RootContainer extends React.Component {
   }
 
   render() {
-    console.log('Circuit', this.props.params.circuit_name);
+    let setPlaceElement = this.setPlaceElement.bind(this);
 
     return (
         <div>
@@ -141,6 +141,7 @@ class RootContainer extends React.Component {
             />
 
             <ElementPanel
+                setPlaceElement={setPlaceElement}
                 placeElement={this.state.placeElement}
             />
 

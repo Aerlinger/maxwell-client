@@ -30,37 +30,6 @@ const styles = {
   }
 };
 
-const ElementButtonGroup = (group_name, group_components, placeElement, expanded) => (
-
-    <ListItem
-        key={group_name}
-        primaryText={group_name}
-        initiallyOpen={expanded}
-        innerDivStyle={styles.rootList}
-        nestedListStyle={styles.nestedList}
-        primaryTogglesNestedList={true}
-        leftAvatar={
-          <Avatar
-              style={{background: 'white', top: 12}}
-              src={bjtImg}
-              size={32}
-          />
-        }
-        nestedItems={
-          group_components.map((component) => (
-              <ElementListItem
-                  placeElement={placeElement}
-                  name={component.name}
-                  key={component.name}
-                  hotkey={component.hotkey}>
-                {
-                  component.component_title
-                }
-              </ElementListItem>
-          ))
-        }/>
-
-);
 
 class ElementPanel extends React.Component {
 
@@ -82,9 +51,36 @@ class ElementPanel extends React.Component {
             <Tab label='Elements'>
               <List  >
                 {
-                  Object.keys(components).map((group_name) => (
-                      ElementButtonGroup(group_name, components[group_name], placeElement, group_name == 'Passive Analog'))
-                  )
+                  Object.keys(components).map((group_name) => {
+                    return <ListItem
+                        key={group_name}
+                        primaryText={group_name}
+                        initiallyOpen={group_name == 'Passive Analog'}
+                        innerDivStyle={styles.rootList}
+                        nestedListStyle={styles.nestedList}
+                        primaryTogglesNestedList={true}
+                        leftAvatar={
+                          <Avatar
+                              style={{background: 'white', top: 12}}
+                              src={bjtImg}
+                              size={32}
+                          />
+                        }
+                        nestedItems={
+                          components[group_name].map((component) => (
+                              <ElementListItem
+                                  placeElement={placeElement}
+                                  setPlaceElement={this.props.setPlaceElement}
+                                  name={component.name}
+                                  key={component.name}
+                                  hotkey={component.hotkey}>
+                                {
+                                  component.component_title
+                                }
+                              </ElementListItem>
+                          ))
+                        }/>
+                  })
                 }
               </List>
             </Tab>
