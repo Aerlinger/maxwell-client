@@ -10,14 +10,76 @@ import Auth from '../modules/Auth';
 
 import React from 'react';
 
+
 class RootContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      placeElement: null,
       selectedElements: [],
       circuit: null
     }
+  }
+
+  bindKeyEvents() {
+    function isLetter(str) {
+      return str.length === 1 && str.match(/[a-z]/i);
+    }
+
+    let setPlaceElement = this.setPlaceElement.bind(this);
+
+    document.addEventListener('keydown', function (event) {
+      let charCode = String.fromCharCode(event.which);
+      let keycode = isLetter(charCode) ? charCode : event.which;
+
+      switch (keycode) {
+        case 'W':
+          console.log('WireElm');
+          setPlaceElement('WireElm');
+          break;
+        case 'R':
+          setPlaceElement('ResistorElm');
+          break;
+        case 'G':
+          setPlaceElement('GroundElm');
+          break;
+        case 'S':
+          setPlaceElement('SwitchElm');
+          break;
+        case 'C':
+          setPlaceElement('CapacitorElm');
+          break;
+        case 'I':
+          setPlaceElement('InductorElm');
+          break;
+        case 'V':
+          setPlaceElement('VoltageElm');
+          break;
+        case 'A':
+          setPlaceElement('RailElm');
+          break;
+        case 'O':
+          setPlaceElement('OpAmpElm');
+          break;
+        case 'D':
+          setPlaceElement('DiodeElm');
+          break;
+        case 'T':
+          setPlaceElement('TransistorElm');
+          break;
+        case 'M':
+          setPlaceElement('MosfetElm');
+          break;
+        case 'Q':
+          setPlaceElement(null);
+          break;
+      }
+    })
+  }
+
+  setPlaceElement(placeElement) {
+    this.setState({placeElement});
   }
 
   saveCircuit() {
@@ -49,6 +111,7 @@ class RootContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.bindKeyEvents();
     console.log('RootContainer mount');
   }
 
@@ -76,7 +139,9 @@ class RootContainer extends React.Component {
                 }
             />
 
-            <ElementPanel/>
+            <ElementPanel
+                placeElement={this.state.placeElement}
+            />
 
             <RightPanel
                 selectedElements={this.state.selectedElements}

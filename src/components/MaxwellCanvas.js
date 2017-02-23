@@ -124,7 +124,7 @@ class MaxwellCanvas extends React.Component {
   loadCircuit(circuit_name) {
     let props = this.props;
 
-    let bindKeyEvents = this.bindKeyEvents.bind(this);
+    // let bindKeyEvents = this.bindKeyEvents.bind(this);
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);
 
     let request = new XMLHttpRequest();
@@ -142,7 +142,7 @@ class MaxwellCanvas extends React.Component {
           props.setCircuit && props.setCircuit(circuitApplication.Circuit);
 
           bindCircuitEvents(circuitApplication);
-          bindKeyEvents(circuitApplication);
+          // bindKeyEvents(circuitApplication);
         });
       } else {
         // We reached our target server, but it returned an error

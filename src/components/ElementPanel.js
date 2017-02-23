@@ -30,7 +30,7 @@ const styles = {
   }
 };
 
-const ElementButtonGroup = (group_name, group_components, expanded) => (
+const ElementButtonGroup = (group_name, group_components, placeElement, expanded) => (
 
     <ListItem
         key={group_name}
@@ -48,8 +48,14 @@ const ElementButtonGroup = (group_name, group_components, expanded) => (
         }
         nestedItems={
           group_components.map((component) => (
-              <ElementListItem key={component.name} hotkey={component.hotkey}>
-                {component.component_title}
+              <ElementListItem
+                  placeElement={placeElement}
+                  name={component.name}
+                  key={component.name}
+                  hotkey={component.hotkey}>
+                {
+                  component.component_title
+                }
               </ElementListItem>
           ))
         }/>
@@ -57,7 +63,10 @@ const ElementButtonGroup = (group_name, group_components, expanded) => (
 );
 
 class ElementPanel extends React.Component {
+
+
   render() {
+    let placeElement = this.props.placeElement;
 
     return (
         <Paper className='element-panel' style={{
@@ -74,7 +83,7 @@ class ElementPanel extends React.Component {
               <List  >
                 {
                   Object.keys(components).map((group_name) => (
-                      ElementButtonGroup(group_name, components[group_name], group_name == 'Passive Analog'))
+                      ElementButtonGroup(group_name, components[group_name], placeElement, group_name == 'Passive Analog'))
                   )
                 }
               </List>
