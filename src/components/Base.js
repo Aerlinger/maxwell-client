@@ -5,8 +5,6 @@ import MainToolbar from '../components/MainToolbar'
 const Base = ({children}) => (
     <div>
       {children}
-
-
     </div>
 );
 

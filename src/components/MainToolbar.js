@@ -7,7 +7,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
+
 import LoadCircuitModal from '../components/LoadCircuitModal';
+import SignUpModal from '../components/SignUpModal';
 
 import bjtImg from '../images/components/v1/bjt.png';
 
@@ -21,71 +23,10 @@ class MainToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadCircuitModalOpen: false
+      loadCircuitModalOpen: false,
+      signInModalOpen: false,
+      signUpModalOpen: false
     };
-  }
-
-  saveCircuit() {
-    let data = {
-      'params': {
-        'type': 'default',
-        'timeStep': 0.000005,
-        'simSpeed': 172,
-        'currentSpeed': 50,
-        'voltageRange': 5,
-        'powerRange': 50,
-        'flags': 1
-      },
-      'components': [
-        {
-          'name': 'ResistorElm',
-          'pos': [304, 176, 304, 304],
-          'flags': 0,
-          'params': {
-            'resistance': 100
-          }
-        },
-        {
-          'name': 'VarRailElm',
-          'pos': [304, 176, 304, 128],
-          'flags': 0,
-          'params': {
-            'waveform': 6,
-            'frequency': 5,
-            'maxVoltage': 5,
-            'bias': 0,
-            'phaseShift': 0,
-            'dutyCycle': 0.5,
-            'sliderText': 'Voltage'
-          }
-        },
-        {
-          'name': 'GroundElm',
-          'pos': [304, 304, 304, 352],
-          'flags': 0,
-          'params': {}
-        }
-      ]
-    };
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('post', '/api/circuit');
-
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-    xhr.responseType = 'json';
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200 || xhr.status === 201) {
-        console.log(xhr.response);
-      } else {
-        console.log('Err', xhr.response);
-      }
-    });
-
-    xhr.send(JSON.stringify(data));
   }
 
   getCircuits() {
@@ -108,7 +49,6 @@ class MainToolbar extends React.Component {
   }
 
   render() {
-    let saveCircuit = this.saveCircuit.bind(this);
     let getCircuits = this.getCircuits.bind(this);
 
     return (
@@ -117,6 +57,13 @@ class MainToolbar extends React.Component {
               open={this.state.loadCircuitModalOpen}
               closeModal={
                 evt => this.setState({loadCircuitModalOpen: false})
+              }
+          />
+
+          <SignUpModal
+              open={this.state.signUpModalOpen}
+              closeModal={
+                evt => this.setState({signUpModalOpen: false})
               }
           />
 
@@ -143,6 +90,15 @@ class MainToolbar extends React.Component {
                   evt => this.setState({loadCircuitModalOpen: true})
                 }
             />
+
+            <RaisedButton
+                secondary={true}
+                label='Sign Up'
+                onClick={
+                  evt => this.setState({signUpModalOpen: true})
+                }
+            />
+
             <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
 
           </ToolbarGroup>

@@ -47,7 +47,7 @@ class RootContainer extends React.Component {
   componentWillReceiveProps() {
     console.log('RootContainer wil receive props');
   }
-  
+
   componentDidMount() {
     console.log('RootContainer mount');
   }
@@ -64,29 +64,31 @@ class RootContainer extends React.Component {
     console.log('Circuit', this.props.params.circuit_name);
 
     return (
-      <div className='index'>
-        <MaxwellCanvas
-            circuit_name={this.props.params.circuit_name}
-            setCircuit={
-              (circuit) => this.setState({circuit: circuit})
-            }
-            onSelectionChanged={
-              (changeObj) => this.setState({selectedElements: changeObj.selection})
-            }
-        />
+        <div>
+          <div className='index'>
+            <MaxwellCanvas
+                circuit_name={this.props.params.circuit_name}
+                setCircuit={
+                  (circuit) => this.setState({circuit: circuit})
+                }
+                onSelectionChanged={
+                  (changeObj) => this.setState({selectedElements: changeObj.selection})
+                }
+            />
 
-        <ElementPanel/>
+            <ElementPanel/>
 
-        <RightPanel
-            selectedElements={this.state.selectedElements}
-        />
+            <RightPanel
+                selectedElements={this.state.selectedElements}
+            />
+          </div>
 
-        <MainToolbar
-            circuit={this.state.circuit}
-            dump={this.dump.bind(this)}
-            saveCircuit={this.saveCircuit.bind(this)}
-        />
-      </div>
+          <MainToolbar
+              circuit={this.state.circuit}
+              dump={this.dump.bind(this)}
+              saveCircuit={this.saveCircuit.bind(this)}
+          />
+        </div>
     );
   }
 }
