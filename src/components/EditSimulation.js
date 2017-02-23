@@ -3,13 +3,37 @@ import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
+import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
+import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
+import MenuItem from 'material-ui/MenuItem';
+import Toggle from 'material-ui/Toggle';
 
 import componentImg from '../images/components/v1/bjt.png';
+
+let styles = {
+  input: {
+    // marginLeft: 16,
+    // marginRight: 16,
+    marginLeft: 16,
+    marginRight: 16,
+    marginTop: 0,
+    height: 67
+  },
+  cardText: {
+    height: '100%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    position: 'absolute',
+    right: 0,
+    left: 0,
+    paddingBottom: 104
+  }
+};
 
 /**
  * Component to
@@ -37,11 +61,46 @@ class EditSimulation extends React.Component {
 
   textInput(title, value) {
     return <TextField
-        inputStyle={{fontFamily: 'Courier'}}
+            style={styles.input}
+            inputStyle={{fontFamily: 'Courier'}}
+            floatingLabelText={title}
+            floatingLabelFixed={true}
+            value={value}
+        />;
+  }
+
+  selectInput(title, value) {
+    const items = [
+      <MenuItem key={1} value={1} primaryText="Never"/>,
+      <MenuItem key={2} value={2} primaryText="Every Night"/>,
+      <MenuItem key={3} value={3} primaryText="Weeknights"/>,
+      <MenuItem key={4} value={4} primaryText="Weekends"/>,
+      <MenuItem key={5} value={5} primaryText="Weekly"/>,
+    ];
+
+    return <SelectField
+        style={styles.input}
         floatingLabelText={title}
-        floatingLabelFixed={true}
         value={value}
-    />
+        errorText={'Should be Night'}
+    >
+      {items}
+    </SelectField>;
+  }
+
+  toggleInput(title, value) {
+    return <ListItem primaryText={title} rightToggle={<Toggle />}/>;
+  }
+
+  slider() {
+    return <Slider
+        style={styles.input}
+        min={0}
+        max={100}
+        step={5}
+        defaultValue={50}
+        value={20}
+    />;
   }
 
   render() {
@@ -57,58 +116,16 @@ class EditSimulation extends React.Component {
               leftAvatar={<Avatar src={componentImg}/>}
               secondaryText={this.state.name}
           />
-
           <Divider />
-          <CardText
-              style={{
-                height: '100%',
-                overflowY: 'auto',
-                overflowX: 'hidden',
-                position: 'absolute',
-                right: 0,
-                left: 0,
-                paddingBottom: 104
-              }}
-          >
-
-            {this.textInput('Time Step', '<value>')}
-            {this.textInput('Sim Speed', '<value>')}
-            {this.textInput('Current Speed', '<value>')}
-            {this.textInput('Voltage Range', '<value>')}
-            {this.textInput('Power Range', '<value>')}
-            {this.textInput('Scope Speed', '<value>')}
-
-            <TextField
-                key={'name2'}
-                inputStyle={{fontFamily: 'Courier'}}
-                hintText={'name'}
-                errorText={'hint'}
-                floatingLabelText={'title'}
-                floatingLabelFixed={true}
-                value={'value'}
-            />
-
-            <Slider
-                min={0}
-                max={100}
-                step={5}
-                defaultValue={50}
-                value={20}
-            />
-
-            <TextField
-                key={'name3'}
-                inputStyle={{fontFamily: 'Courier'}}
-                hintText={'name'}
-                errorText={'hint'}
-                floatingLabelText={'title'}
-                floatingLabelFixed={true}
-                value={'value'}
-            />
 
 
-            <RaisedButton label='Update' fullWidth={true} primary={true}/>
-          </CardText>
+          {this.textInput('text title', 'val')}
+          {this.toggleInput('text title', 'val')}
+          {this.textInput('text title', 'val')}
+          {this.textInput('text title', 'val')}
+          {this.selectInput('text title', 'val')}
+          {this.slider()}
+
 
         </List>
     );

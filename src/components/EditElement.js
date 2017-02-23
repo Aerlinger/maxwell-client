@@ -47,6 +47,11 @@ let styles = {
     paddingTop: 3,
     paddingLeft: 0,
     paddingRight: 0
+  },
+  textField: {
+    size: '11px',
+    fontSize: '11px',
+    fontFamily: 'Courier New'
   }
 };
 
@@ -201,7 +206,10 @@ class RightPanel extends React.Component {
     return (<TextField
         key={name}
 
-        inputStyle={{fontFamily: 'Courier'}}
+        inputStyle={styles.textField}
+        style={styles.textField}
+        textFieldStyle={styles.textField}
+        hintStyle={styles.textField}
         hintText={name}
         errorText={hint}
         floatingLabelText={title}
@@ -339,7 +347,6 @@ class RightPanel extends React.Component {
                     <canvas id='voltage_series' width='200' height='40'></canvas>
                   </TableRowColumn>
                 </TableRow>
-
 
                 <TableRow>
                   <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>

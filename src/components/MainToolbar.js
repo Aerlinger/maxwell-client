@@ -3,6 +3,13 @@ import Auth from '../modules/Auth';
 import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import {fullWhite} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Chip from 'material-ui/Chip';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
+import {blue300, indigo900} from 'material-ui/styles/colors';
 
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
@@ -10,6 +17,17 @@ import Avatar from 'material-ui/Avatar';
 import LoadCircuitModal from '../components/LoadCircuitModal';
 import SignUpModal from '../components/SignUpModal';
 import bjtImg from '../images/components/v1/bjt.png';
+import FlatButton from 'material-ui/FlatButton';
+
+const styles = {
+  chip: {
+    margin: 0,
+  },
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+};
 
 class MainToolbar extends React.Component {
   constructor(props) {
@@ -40,27 +58,47 @@ class MainToolbar extends React.Component {
     xhr.send();
   }
 
+  chip() {
+    return <Chip
+        backgroundColor={blue300}
+        onRequestDelete={this.handleRequestDelete}
+        onTouchTap={this.handleTouchTap}
+        style={styles.chip}
+    >
+      <Avatar size={24} color={blue300} backgroundColor={indigo900}>
+        MB
+      </Avatar>
+      Colored Chip
+    </Chip>
+  }
+
   testButtons() {
     return <div>
-      <RaisedButton secondary={true} label='Save' onClick={this.props.saveCircuit}/>
-      <RaisedButton
-          secondary={true}
-          label='Load'
-          onClick={
-            () => this.setState({loadCircuitModalOpen: true})
-          }
-      />
+      <RaisedButton label='Default' onClick={() => this.setState({loadCircuitModalOpen: true})}/>
+      <RaisedButton primary={true} label='Primary' onClick={this.props.saveCircuit}/>
+      <RaisedButton secondary={true} label='Secondary' onClick={() => this.setState({signUpModalOpen: true})}/>
+      <RaisedButton disabled={true} label='Disabled' onClick={this.props.dump}/>
 
-      <RaisedButton
-          secondary={true}
-          label='Sign Up'
-          onClick={
-            () => this.setState({signUpModalOpen: true})
-          }
-      />
+      <FlatButton label='Default' onClick={() => this.setState({loadCircuitModalOpen: true})}/>
+      <FlatButton primary={true} label='Primary' onClick={this.props.saveCircuit}/>
+      <FlatButton secondary={true} label='Secondary' onClick={() => this.setState({signUpModalOpen: true})}/>
+      <FlatButton disabled={true} label='Disabled' onClick={this.props.dump}/>
 
-      <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
-    </div>;
+      <FlatButton icon={<ActionAndroid />}/>
+      <FlatButton backgroundColor="#a4c639" hoverColor="#8AA62F" icon={<ActionAndroid color={fullWhite}/>}/>
+
+      <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+        <ActionGrade />
+      </IconButton>
+    </div>
+  }
+
+  handleRequestDelete() {
+    alert('You clicked the delete button.');
+  }
+
+  handleTouchTap() {
+    alert('You clicked the Chip.');
   }
 
   render() {
@@ -97,8 +135,6 @@ class MainToolbar extends React.Component {
 
               <ToolbarMenuItem title='Circuit'/>
               <ToolbarMenuItem title='Edit'/>
-              <ToolbarMenuItem title='Components'/>
-              <ToolbarMenuItem title='Analysis'/>
 
               {this.testButtons()}
             </ToolbarGroup>
