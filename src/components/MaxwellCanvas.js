@@ -21,6 +21,8 @@ class MaxwellCanvas extends React.Component {
     let props = this.props;
 
     circuitContext.onSelectionChanged = function (changeObj) {
+      console.log(changeObj);
+
       props.onSelectionChanged(changeObj);
     };
 
@@ -125,7 +127,7 @@ class MaxwellCanvas extends React.Component {
   }
 
   loadCircuit(circuit_name) {
-    console.log("LOAD", this.props);
+    console.log('LOAD', this.props);
 
     let bindKeyEvents = this.bindKeyEvents.bind(this);
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);

@@ -2,7 +2,6 @@ import React from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
-import Paper from 'material-ui/Paper';
 
 import bjtImg from '../images/components/v1/bjt.png';
 
@@ -20,9 +19,11 @@ let style = {
   }
 };
 
-let selectedComponent = (text) => {
+let selectedElement = (element) => {
+  let name = element.constructor.name;
+
   return (<div>
-    <ListItem primaryText={text}
+    <ListItem primaryText={name}
               innerDivStyle={style.innerDiv}
               leftAvatar={
                 <Avatar
@@ -46,13 +47,15 @@ class SelectedElements extends React.Component {
         <List>
 
           <ListItem
-              primaryText="10 Selected Components"
+              primaryText={`${this.props.selectedElements.length} selected components`}
           >
 
           </ListItem>
           <Divider />
 
-          {selectedComponent("Voltage Source")}
+          {
+            this.props.selectedElements.map((element) => selectedElement(element))
+          }
 
         </List>
     );

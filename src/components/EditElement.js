@@ -13,6 +13,33 @@ import {CardText} from 'material-ui/Card';
 
 let {TimeSeries, SmoothieChart} = require('smoothie');
 
+var componentImg = require('../images/components/v1/bjt.png');
+
+let styles = {
+  leftColumn: {
+    fontFamily: 'Courier New',
+    fontSize: 12,
+    fontWeight: 'bold',
+    width: '8rem',
+    paddingRight: '5px',
+    color: '#00c400'
+  },
+  centerColumn: {
+    fontFamily: 'Courier New',
+    fontSize: 10,
+    width: '5rem',
+    paddingLeft: '5px',
+    paddingRight: '5px',
+    fontSize: 10,
+    fontWeight: 'bold'
+  },
+  chart: {
+    paddingTop: 3,
+    paddingLeft: 0,
+    paddingRight: 0
+  }
+};
+
 function getTruth(x) {
   if (typeof(x) == 'string')
     return ((x === '1') || (x === 'true'));
@@ -20,7 +47,6 @@ function getTruth(x) {
     return !!x;
 }
 
-var componentImg = require('../images/components/v1/bjt.png');
 
 const fields = {
   name: 'Bipolar Junction Transistor',
@@ -258,36 +284,14 @@ class RightPanel extends React.Component {
   render() {
     let addField = this.addField.bind(this);
 
-    let styles = {
-      leftColumn: {
-        fontFamily: 'Courier New',
-        fontSize: 12,
-        fontWeight: 'bold',
-        width: '8rem',
-        paddingRight: '5px',
-        color: '#00c400'
-      },
-      centerColumn: {
-        fontFamily: 'Courier New',
-        fontSize: 10,
-        width: '5rem',
-        paddingLeft: '5px',
-        paddingRight: '5px',
-        fontSize: 10,
-        fontWeight: 'bold'
-      },
-      chart: {
-        paddingTop: 3,
-        paddingLeft: 0,
-        paddingRight: 0
-      }
-    };
+    let selectedElement = this.props.selectedElement;
+    let fields = selectedElement.constructor.Fields;
 
     return (
         <List>
 
           <ListItem
-              primaryText={this.state.name}
+              primaryText={selectedElement.getName()}
               leftAvatar={<Avatar src={this.state.icon}/>}
               secondaryText='Description'
           >
@@ -341,9 +345,10 @@ class RightPanel extends React.Component {
 
           <CardText>
             {
-              this.state.params.map((paramObj) => (
-                  addField(paramObj)
-              ))
+              //this.state.params.map((paramObj) => addField(paramObj))
+              Object.keys(fields).map(
+                  fieldKey => addField(fields[fieldKey])
+              )
             }
 
             <RaisedButton label='Update' fullWidth={true} primary={true}/>

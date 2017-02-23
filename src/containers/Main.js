@@ -38,13 +38,15 @@ class AppComponent extends React.Component {
         <MaxwellCanvas
             circuit_name={this.props.params.circuit_name}
             onSelectionChanged={
-              (changeObj) => this.state.selectedElements = changeObj.selection
+              (changeObj) => this.setState({selectedElements: changeObj.selection})
             }
         />
 
         <ElementPanel/>
 
-        <RightPanel />
+        <RightPanel
+            selectedElements={this.state.selectedElements}
+        />
       </div>
     );
   }

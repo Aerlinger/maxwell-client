@@ -10,7 +10,7 @@ class RightPanel extends React.Component {
   }
 
   subPanel() {
-    if (this.props.selectedElements == 1) {
+    if (this.props.selectedElements.length == 1) {
       return <EditElement
           selectedElement={this.props.selectedElements[0]}
       />
@@ -22,12 +22,14 @@ class RightPanel extends React.Component {
   }
 
   render() {
+    let subPanel = this.subPanel.bind(this);
+
     return (
         <Paper
             className='side-panel'
             style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: 50, bottom: 0, overflowY: 'scroll'}}
         >
-          {this.subPanel()}
+          {subPanel()}
         </Paper>
     );
   }
