@@ -44,7 +44,7 @@ class ElementPanel extends React.Component {
           position: 'absolute',
           width: '200px',
           left: 0,
-          top: 50,
+          top: this.props.top,
           bottom: 0
         }}>
           <Tabs style={{}}>

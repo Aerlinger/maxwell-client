@@ -48,11 +48,34 @@ class MainToolbar extends React.Component {
     xhr.send();
   }
 
+  testButtons() {
+    return <div>
+      <RaisedButton secondary={true} label='Save' onClick={this.props.saveCircuit}/>
+      <RaisedButton
+          secondary={true}
+          label='Load'
+          onClick={
+            evt => this.setState({loadCircuitModalOpen: true})
+          }
+      />
+
+      <RaisedButton
+          secondary={true}
+          label='Sign Up'
+          onClick={
+            evt => this.setState({signUpModalOpen: true})
+          }
+      />
+
+      <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
+    </div>;
+  }
+
   render() {
     let getCircuits = this.getCircuits.bind(this);
 
     return (
-        <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
+        <div>
           <LoadCircuitModal
               open={this.state.loadCircuitModalOpen}
               closeModal={
@@ -67,76 +90,64 @@ class MainToolbar extends React.Component {
               }
           />
 
-          <ToolbarGroup firstChild={true}>
-            <Avatar
-                style={{background: 'white', top: 12, marginLeft: 15}}
-                src={bjtImg}
-                size={32}
-            />
+          <Toolbar className={MainToolbarStyle.root} style={{height: this.props.top}}>
+            <ToolbarGroup firstChild={true}>
+              <Avatar
+                  style={{background: 'white', top: 12, marginLeft: 15}}
+                  src={bjtImg}
+                  size={32}
+              />
 
-            <ToolbarTitle text='Maxwell' style={{color: 'white', marginLeft: 30}}>
-            </ToolbarTitle>
+              <ToolbarTitle text='Maxwell' style={
+                {color: 'white', marginLeft: 30, fontFamily: 'Courier New'}
+              }>
+              </ToolbarTitle>
 
-            <ToolbarMenuItem title='Circuit'/>
-            <ToolbarMenuItem title='Edit'/>
-            <ToolbarMenuItem title='Components'/>
-            <ToolbarMenuItem title='Analysis'/>
+              <ToolbarSeparator />
 
-            <RaisedButton secondary={true} label='Save' onClick={this.props.saveCircuit}/>
-            <RaisedButton
-                secondary={true}
-                label='Load'
-                onClick={
-                  evt => this.setState({loadCircuitModalOpen: true})
-                }
-            />
+              <ToolbarMenuItem title='Circuit'/>
+              <ToolbarMenuItem title='Edit'/>
+              <ToolbarMenuItem title='Components'/>
+              <ToolbarMenuItem title='Analysis'/>
 
-            <RaisedButton
-                secondary={true}
-                label='Sign Up'
-                onClick={
-                  evt => this.setState({signUpModalOpen: true})
-                }
-            />
 
-            <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
+            </ToolbarGroup>
 
-          </ToolbarGroup>
+            <ToolbarGroup>
+              <FontIcon className='muidocs-icon-custom-sort'/>
+              <ToolbarSeparator />
 
-          <ToolbarGroup>
-            <FontIcon className='muidocs-icon-custom-sort'/>
-            <ToolbarSeparator />
-
-            {
-              Auth.isUserAuthenticated() ? (
-                      <RaisedButton
-                          href='/logout'
-                          primary={true}
-                          label='Logout'
-                          style={style.button}
-                      />
-
-                  ) : (
-                      <div>
+              {
+                Auth.isUserAuthenticated() ? (
                         <RaisedButton
-                            href='/login'
+                            href='/logout'
                             primary={true}
-                            label='Login'
+                            label='Logout'
                             style={style.button}
                         />
 
-                        <RaisedButton
-                            href='/signup'
-                            secondary={true}
-                            label='Sign Up'
-                            style={style.button}
-                        />
-                      </div>
-                  )
-            }
+                    ) : (
+                        <div>
+                          <RaisedButton
+                              href='/login'
+                              primary={true}
+                              label='Login'
+                              style={style.button}
+                          />
 
-          </ToolbarGroup>
-        </Toolbar>
+                          <RaisedButton
+                              href='/signup'
+                              secondary={true}
+                              label='Sign Up'
+                              style={style.button}
+                          />
+                        </div>
+                    )
+              }
+
+            </ToolbarGroup>
+          </Toolbar>
+        </div>
     );
   }
 }

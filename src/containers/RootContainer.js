@@ -126,36 +126,42 @@ class RootContainer extends React.Component {
   render() {
     let setPlaceElement = this.setPlaceElement.bind(this);
 
+    let top = 36;
+
     return (
-        <div>
-          <div className='index'>
-            <MaxwellCanvas
-                circuit_name={this.props.params.circuit_name}
-                placeElement={this.state.placeElement}
-                setCircuit={
-                  (circuit) => this.setState({circuit: circuit})
-                }
-                onSelectionChanged={
-                  (changeObj) => this.setState({selectedElements: changeObj.selection})
-                }
-            />
+        <div className='index'>
+          <MaxwellCanvas
+              top={top}
+              circuit_name={this.props.params.circuit_name}
+              placeElement={this.state.placeElement}
+              setCircuit={
+                (circuit) => this.setState({circuit: circuit})
+              }
+              onSelectionChanged={
+                (changeObj) => this.setState({selectedElements: changeObj.selection})
+              }
+          />
 
-            <ElementPanel
-                setPlaceElement={setPlaceElement}
-                placeElement={this.state.placeElement}
-            />
+          <ElementPanel
+              top={top}
+              setPlaceElement={setPlaceElement}
+              placeElement={this.state.placeElement}
+          />
 
-            <RightPanel
-                selectedElements={this.state.selectedElements}
-            />
-          </div>
+          <RightPanel
+              top={top}
+              selectedElements={this.state.selectedElements}
+          />
 
           <MainToolbar
+              top={top}
               circuit={this.state.circuit}
               dump={this.dump.bind(this)}
               saveCircuit={this.saveCircuit.bind(this)}
           />
+
         </div>
+
     );
   }
 }

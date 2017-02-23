@@ -26,11 +26,11 @@ class EditSimulation extends React.Component {
     super(props);
 
     this.state = {
-      name: "name",
-      description: "description",
+      name: 'name',
+      description: 'description',
       params: {
-        timeStep: "timestep",
-        simSpeed: "simSpeed",
+        timeStep: 'timestep',
+        simSpeed: 'simSpeed',
         currentSpeed: 'currentSpeed',
         voltageRange: 'voltageRange',
         powerRange: 'powerRange',

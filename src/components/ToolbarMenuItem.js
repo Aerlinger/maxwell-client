@@ -4,9 +4,13 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-
+import SelectField from 'material-ui/SelectField';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class ToolbarMenuItem extends React.Component {
 
@@ -37,13 +41,28 @@ class ToolbarMenuItem extends React.Component {
   render() {
     return (
         <div>
-          <FlatButton
-              onTouchTap={this.handleTouchTap}
-              onClick={this.props.onClick}
-              label={this.props.title}
-              labelPosition="before"
-              icon={<ArrowDown />}
-          />
+          <div className='button-wrapper'>
+            <FlatButton
+                onTouchTap={this.handleTouchTap}
+                onClick={this.props.onClick}
+                label={this.props.title}
+                labelStyle={{
+                  textTransform: 'capitalize',
+                  fontSize: 'bold'
+                }}
+                style={{
+                  borderBottom: '2px solid red'
+                }}
+                labelPosition="before"
+                icon={
+                  <ArrowDown
+                      style={{
+                        opacity: 0.5
+                      }}
+                  />
+                }
+            />
+          </div>
           <Popover
               open={this.state.open}
               anchorEl={this.state.anchorEl}
@@ -52,29 +71,29 @@ class ToolbarMenuItem extends React.Component {
               onRequestClose={this.handleRequestClose}
           >
             <Menu desktop={true} width={256}>
-              <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
-              <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
-              <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
-              <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
-              <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
-              <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
+              <MenuItem primaryText="Bold" secondaryText="&#8984;B"/>
+              <MenuItem primaryText="Italic" secondaryText="&#8984;I"/>
+              <MenuItem primaryText="Underline" secondaryText="&#8984;U"/>
+              <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5"/>
+              <MenuItem primaryText="Superscript" secondaryText="&#8984;."/>
+              <MenuItem primaryText="Subscript" secondaryText="&#8984;,"/>
               <Divider />
-              <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
-              <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
-              <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
-              <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
-              <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
+              <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />}/>
+              <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />}/>
+              <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />}/>
+              <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />}/>
+              <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />}/>
               <Divider />
-              <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
+              <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/"/>
               <Divider />
               <MenuItem
                   primaryText="Show"
                   rightIcon={<ArrowDropRight />}
                   menuItems={[
-                    <MenuItem primaryText="Show Level 2" />,
-                    <MenuItem primaryText="Grid lines" checked={true} />,
-                    <MenuItem primaryText="Page breaks" insetChildren={true} />,
-                    <MenuItem primaryText="Rules" checked={true} />
+                    <MenuItem primaryText="Show Level 2"/>,
+                    <MenuItem primaryText="Grid lines" checked={true}/>,
+                    <MenuItem primaryText="Page breaks" insetChildren={true}/>,
+                    <MenuItem primaryText="Rules" checked={true}/>
                   ]}
               />
             </Menu>

@@ -51,7 +51,7 @@ class ElementListItem extends React.Component {
     let hotkey = this.hotkey.bind(this);
 
     let elmStyle = {};
-    let prefix = "";
+    let prefix = '';
 
     if (this.props.placeElement == this.props.name) {
       elmStyle = {
@@ -61,7 +61,7 @@ class ElementListItem extends React.Component {
         background: 'rgba(0, 193, 28, 0.23)',
         padding: '8px 8px 8px 36px'
       };
-      prefix = "> ";
+      prefix = '> ';
     } else {
       elmStyle = {
         fontSize: '11px',
