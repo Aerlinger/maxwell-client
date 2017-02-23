@@ -12,8 +12,6 @@ import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
 
-let {TimeSeries, SmoothieChart} = require('smoothie');
-
 let styles = {
   leftColumn: {
     fontFamily: 'Courier New',
@@ -39,7 +37,7 @@ let styles = {
   }
 };
 
-let componentImg = require('../images/components/v1/bjt.png');
+import componentImg from '../images/components/v1/bjt.png';
 
 class EditSimulation extends React.Component {
   constructor(props) {

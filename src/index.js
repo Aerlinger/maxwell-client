@@ -15,7 +15,7 @@ import './styles/App.scss';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-require('jquery-ui');
+import 'jquery-ui';
 
 // Render the main component into the DOM
 ReactDOM.render((

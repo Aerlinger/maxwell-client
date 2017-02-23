@@ -9,9 +9,8 @@ import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Auth from '../modules/Auth';
 
-let componentImg = require('../images/components/v1/bjt.png');
+import componentImg from '../images/components/v1/bjt.png';
 
-let $ = require('jquery');
 
 
 let loadCircuitListItem = function ({

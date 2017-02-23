@@ -11,7 +11,7 @@ import {List, ListItem} from 'material-ui/List';
 
 import SampleCircuits from './SampleCircuits';
 
-let components = require('../modules/components.json');
+import components from '../modules/components.json';
 
 
 const styles = {

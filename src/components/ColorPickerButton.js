@@ -4,7 +4,7 @@ import React from 'react'
 import reactCSS from 'reactcss'
 import {SketchPicker} from 'react-color'
 
-let tinycolor = require('tinycolor2');
+import tinycolor from 'tinycolor2';
 
 class ColorPickerButton extends React.Component {
 

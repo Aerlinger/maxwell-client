@@ -1,6 +1,6 @@
-require('normalize.css/normalize.css');
-require('../styles/App.scss');
-require('../styles/PrettyScroll.css');
+import 'normalize.css/normalize.css';
+import '../styles/App.scss';
+import '../styles/PrettyScroll.css';
 
 import MaxwellCanvas from '../components/MaxwellCanvas';
 import ElementPanel from '../components/ElementPanel';

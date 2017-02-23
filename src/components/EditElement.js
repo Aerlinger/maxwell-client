@@ -11,9 +11,9 @@ import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
 
-let {TimeSeries, SmoothieChart} = require('smoothie');
+import {TimeSeries, SmoothieChart} from 'smoothie';
 
-let componentImg = require('../images/components/v1/bjt.png');
+import componentImg from '../images/components/v1/bjt.png';
 
 let styles = {
   leftColumn: {

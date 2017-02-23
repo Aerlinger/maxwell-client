@@ -1,4 +1,4 @@
-require('normalize.css/normalize.css');
+import 'normalize.css/normalize.css';
 
 import React from 'react';
 import {ListItem} from 'material-ui/List';
