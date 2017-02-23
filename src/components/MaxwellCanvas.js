@@ -18,8 +18,10 @@ class MaxwellCanvas extends React.Component {
   }
 
   bindCircuitEvents(circuitContext) {
+    let props = this.props;
+
     circuitContext.onSelectionChanged = function (changeObj) {
-      console.log('SELECTION CHANGED:', changeObj);
+      props.onSelectionChanged(changeObj);
     };
 
     circuitContext.onComponentHover = function (component) {
@@ -123,6 +125,8 @@ class MaxwellCanvas extends React.Component {
   }
 
   loadCircuit(circuit_name) {
+    console.log("LOAD", this.props);
+
     let bindKeyEvents = this.bindKeyEvents.bind(this);
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);
 
@@ -135,9 +139,11 @@ class MaxwellCanvas extends React.Component {
         let data = JSON.parse(request.responseText);
         let circuit_id = Math.floor(1024 * Math.random());
 
-        Maxwell.createContext(circuit_name + circuit_id, data, canvas, function (circuitContext) {
-          bindCircuitEvents(circuitContext);
-          bindKeyEvents(circuitContext);
+        Maxwell.createContext(circuit_name + circuit_id, data, canvas, function (circuitApplication) {
+          circuitApplication.run();
+
+          bindCircuitEvents(circuitApplication);
+          bindKeyEvents(circuitApplication);
         });
       } else {
         // We reached our target server, but it returned an error

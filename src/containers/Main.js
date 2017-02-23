@@ -5,10 +5,19 @@ require('../styles/PrettyScroll.css');
 import MaxwellCanvas from '../components/MaxwellCanvas';
 import EditPanel from '../components/EditPanel';
 import ElementPanel from '../components/ElementPanel';
+import SelectedComponents from '../components/SelectedComponents';
 
 import React from 'react';
 
 class AppComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedElements: []
+    }
+  }
 
   componentWillReceiveProps() {
     console.log('AppComponent wil receive props');
@@ -18,16 +27,27 @@ class AppComponent extends React.Component {
     console.log('AppComponent mount');
   }
 
+  selectionChanged(elements) {
+    this.state.selectedElements = elements;
+  }
+
   render() {
     console.log('Circuit', this.props.params.circuit_name);
 
     return (
       <div className='index'>
-        <MaxwellCanvas circuit_name={this.props.params.circuit_name}/>
+        <MaxwellCanvas
+            circuit_name={this.props.params.circuit_name}
+            onSelectionChanged={
+              (changeObj) => this.state.selectedElements = changeObj.selection
+            }
+        />
 
-        <ElementPanel />
+        <ElementPanel/>
 
-        <EditPanel />
+
+
+        <SelectedComponents />
       </div>
     );
   }
