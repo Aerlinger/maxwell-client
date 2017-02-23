@@ -209,6 +209,8 @@ class RightPanel extends React.Component {
 
     obj['value'] = raw_value;
 
+    console.log(obj);
+
     if (obj['field_type'] == 'select')
       return this.addSelectField(obj);
     else if (obj['field_type'] == 'boolean')

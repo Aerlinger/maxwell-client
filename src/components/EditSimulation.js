@@ -12,6 +12,8 @@ import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
 
+import TextInput from './inputs/TextInput';
+
 let styles = {
   leftColumn: {
     fontFamily: 'Courier New',
@@ -57,9 +59,23 @@ class EditSimulation extends React.Component {
 
           </ListItem>
 
+
           <Divider />
           <Table selectable={false}>
             <TableBody displayRowCheckbox={false}>
+
+              <TableRow>
+                <TableRowColumn>
+                  <TextInput
+                      inputStyle={{fontFamily: 'Courier'}}
+                      hintText={'name'}
+                      errorText={'hint'}
+                      floatingLabelText={'TEXT INPUT TITLE'}
+                      floatingLabelFixed={true}
+                      value={'TEXT INPUT'}
+                  />
+                </TableRowColumn>
+              </TableRow>
 
               <TableRow>
                 <TableRowColumn>
@@ -91,6 +107,15 @@ class EditSimulation extends React.Component {
 
 
           <CardText>
+
+            <TextInput
+                inputStyle={{fontFamily: 'Courier'}}
+                hintText={'name'}
+                errorText={'hint'}
+                floatingLabelText={'TEXT INPUT TITLE'}
+                floatingLabelFixed={true}
+                value={'TEXT INPUT'}
+            />
 
             <TextField
                 key={'name'}
