@@ -3,9 +3,8 @@ require('../styles/App.scss');
 require('../styles/PrettyScroll.css');
 
 import MaxwellCanvas from '../components/MaxwellCanvas';
-import EditPanel from '../components/EditPanel';
 import ElementPanel from '../components/ElementPanel';
-import SelectedComponents from '../components/SelectedComponents';
+import RightPanel from '../components/RightPanel';
 
 import React from 'react';
 
@@ -45,9 +44,7 @@ class AppComponent extends React.Component {
 
         <ElementPanel/>
 
-
-
-        <SelectedComponents />
+        <RightPanel />
       </div>
     );
   }

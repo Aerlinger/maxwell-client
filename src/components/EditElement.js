@@ -9,10 +9,9 @@ import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
 import {CardText} from 'material-ui/Card';
 
-let { TimeSeries, SmoothieChart } = require('smoothie');
+let {TimeSeries, SmoothieChart} = require('smoothie');
 
 function getTruth(x) {
   if (typeof(x) == 'string')
@@ -99,7 +98,7 @@ const fields = {
   ]
 };
 
-class EditPanel extends React.Component {
+class RightPanel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -218,7 +217,7 @@ class EditPanel extends React.Component {
     chart.streamTo(document.getElementById('current_series'), 500);
 
     setInterval(() => {
-      this.sampleCurrent.bind(this)(100*Math.random());
+      this.sampleCurrent.bind(this)(100 * Math.random());
     }, 500);
   }
 
@@ -235,7 +234,7 @@ class EditPanel extends React.Component {
     chart.streamTo(document.getElementById('voltage_series'), 500);
 
     setInterval(() => {
-      this.sampleVoltage.bind(this)(100*Math.random());
+      this.sampleVoltage.bind(this)(100 * Math.random());
     }, 500);
   }
 
@@ -285,76 +284,74 @@ class EditPanel extends React.Component {
     };
 
     return (
-        <Paper className='side-panel' style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: 50, bottom: 0, overflowY: 'scroll'}}>
-          <List>
+        <List>
 
-            <ListItem
-                primaryText={this.state.name}
-                leftAvatar={<Avatar src={this.state.icon}/>}
-                secondaryText='Description'
-            >
+          <ListItem
+              primaryText={this.state.name}
+              leftAvatar={<Avatar src={this.state.icon}/>}
+              secondaryText='Description'
+          >
 
-            </ListItem>
+          </ListItem>
 
-            <Divider />
-            <Table selectable={false}>
-              <TableBody displayRowCheckbox={false}>
+          <Divider />
+          <Table selectable={false}>
+            <TableBody displayRowCheckbox={false}>
 
-                <TableRow>
-                  <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
-                  <TableRowColumn style={styles.centerColumn}>
-                    <span className='quantity'>{this.state.voltage}</span>
-                    <span className='symbol'>V</span>
-                  </TableRowColumn>
-                  <TableRowColumn style={styles.chart}>
-                    <canvas id='voltage_series' width='200' height='40'></canvas>
-                  </TableRowColumn>
-                </TableRow>
+              <TableRow>
+                <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
+                <TableRowColumn style={styles.centerColumn}>
+                  <span className='quantity'>{this.state.voltage}</span>
+                  <span className='symbol'>V</span>
+                </TableRowColumn>
+                <TableRowColumn style={styles.chart}>
+                  <canvas id='voltage_series' width='200' height='40'></canvas>
+                </TableRowColumn>
+              </TableRow>
 
 
-                <TableRow>
-                  <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
-                  <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
-                  <TableRowColumn style={styles.chart}>
-                    <canvas id='current_series' width='200' height='40'></canvas>
-                    </TableRowColumn>
-                </TableRow>
-              </TableBody>
-            </Table>
+              <TableRow>
+                <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
+                <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
+                <TableRowColumn style={styles.chart}>
+                  <canvas id='current_series' width='200' height='40'></canvas>
+                </TableRowColumn>
+              </TableRow>
+            </TableBody>
+          </Table>
 
-            <Divider />
+          <Divider />
 
-            <Table selectable={false}>
-              <TableBody displayRowCheckbox={false}>
-                {
-                  this.state.info.map((infoObj, i) => (
-
-                      <TableRow key={i}>
-                        <TableRowColumn>{infoObj['label']}</TableRowColumn>
-                        <TableRowColumn>{infoObj['value']}</TableRowColumn>
-                      </TableRow>
-                  ))
-                }
-
-              </TableBody>
-            </Table>
-
-            <Divider />
-
-            <CardText>
+          <Table selectable={false}>
+            <TableBody displayRowCheckbox={false}>
               {
-                this.state.params.map((paramObj) => (
-                    addField(paramObj)
+                this.state.info.map((infoObj, i) => (
+
+                    <TableRow key={i}>
+                      <TableRowColumn>{infoObj['label']}</TableRowColumn>
+                      <TableRowColumn>{infoObj['value']}</TableRowColumn>
+                    </TableRow>
                 ))
               }
 
-              <RaisedButton label='Update' fullWidth={true} primary={true}/>
-            </CardText>
+            </TableBody>
+          </Table>
 
-          </List>
-        </Paper>
+          <Divider />
+
+          <CardText>
+            {
+              this.state.params.map((paramObj) => (
+                  addField(paramObj)
+              ))
+            }
+
+            <RaisedButton label='Update' fullWidth={true} primary={true}/>
+          </CardText>
+
+        </List>
     );
   }
 }
 
-export default EditPanel;
+export default RightPanel;

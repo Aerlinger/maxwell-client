@@ -36,37 +36,27 @@ let selectedComponent = (text) => {
   </div>)
 };
 
-class SelectedComponents extends React.Component {
+class SelectedElements extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-        <Paper className='side-panel' style={{
-          display: 'block',
-          position: 'absolute',
-          width: '296px',
-          right: 0,
-          top: 50,
-          bottom: 0,
-          overflowY: 'scroll'
-        }}>
-          <List>
+        <List>
 
-            <ListItem
-                primaryText="10 Selected Components"
-            >
+          <ListItem
+              primaryText="10 Selected Components"
+          >
 
-            </ListItem>
-            <Divider />
+          </ListItem>
+          <Divider />
 
-            {selectedComponent("Voltage Source")}
+          {selectedComponent("Voltage Source")}
 
-          </List>
-        </Paper>
+        </List>
     );
   }
 }
 
-export default SelectedComponents;
+export default SelectedElements;
