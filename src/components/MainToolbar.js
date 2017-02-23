@@ -4,20 +4,12 @@ import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
 
 import LoadCircuitModal from '../components/LoadCircuitModal';
 import SignUpModal from '../components/SignUpModal';
-
 import bjtImg from '../images/components/v1/bjt.png';
-
-const style = {
-  button: {
-    margin: 12
-  }
-};
 
 class MainToolbar extends React.Component {
   constructor(props) {
@@ -55,7 +47,7 @@ class MainToolbar extends React.Component {
           secondary={true}
           label='Load'
           onClick={
-            evt => this.setState({loadCircuitModalOpen: true})
+            () => this.setState({loadCircuitModalOpen: true})
           }
       />
 
@@ -63,7 +55,7 @@ class MainToolbar extends React.Component {
           secondary={true}
           label='Sign Up'
           onClick={
-            evt => this.setState({signUpModalOpen: true})
+            () => this.setState({signUpModalOpen: true})
           }
       />
 
@@ -72,25 +64,23 @@ class MainToolbar extends React.Component {
   }
 
   render() {
-    let getCircuits = this.getCircuits.bind(this);
-
     return (
         <div>
           <LoadCircuitModal
               open={this.state.loadCircuitModalOpen}
               closeModal={
-                evt => this.setState({loadCircuitModalOpen: false})
+                () => this.setState({loadCircuitModalOpen: false})
               }
           />
 
           <SignUpModal
               open={this.state.signUpModalOpen}
               closeModal={
-                evt => this.setState({signUpModalOpen: false})
+                () => this.setState({signUpModalOpen: false})
               }
           />
 
-          <Toolbar className={MainToolbarStyle.root} style={{height: this.props.top}}>
+          <Toolbar style={{height: this.props.top, borderBottom: '1px solid red'}}>
             <ToolbarGroup firstChild={true}>
               <Avatar
                   style={{background: 'white', top: 12, marginLeft: 15}}
@@ -110,8 +100,9 @@ class MainToolbar extends React.Component {
               <ToolbarMenuItem title='Components'/>
               <ToolbarMenuItem title='Analysis'/>
 
-
+              {this.testButtons()}
             </ToolbarGroup>
+
 
             <ToolbarGroup>
               <FontIcon className='muidocs-icon-custom-sort'/>
@@ -123,7 +114,6 @@ class MainToolbar extends React.Component {
                             href='/logout'
                             primary={true}
                             label='Logout'
-                            style={style.button}
                         />
 
                     ) : (
@@ -132,14 +122,12 @@ class MainToolbar extends React.Component {
                               href='/login'
                               primary={true}
                               label='Login'
-                              style={style.button}
                           />
 
                           <RaisedButton
                               href='/signup'
                               secondary={true}
                               label='Sign Up'
-                              style={style.button}
                           />
                         </div>
                     )

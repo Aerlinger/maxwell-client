@@ -9,11 +9,6 @@ import ToolbarMenuItem from './ToolbarMenuItem';
 
 import jQuery from 'jquery'
 
-const style = {
-  button: {
-    margin: 12
-  }
-};
 
 let menu = {
   main: {
@@ -41,7 +36,7 @@ let menu = {
     "restart": {},
     "step_forward": {},
   },
-  create: {
+  add_element: {
     "wire": {},
     "resistor": {},
     "ground": {},

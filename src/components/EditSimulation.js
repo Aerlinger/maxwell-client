@@ -1,18 +1,13 @@
 import React from 'react';
-import update from 'immutability-helper';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import Slider from 'material-ui/Slider';
 import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
-
-import TextInput from './inputs/TextInput';
 
 import componentImg from '../images/components/v1/bjt.png';
 

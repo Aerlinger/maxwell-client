@@ -5,9 +5,8 @@ import Avatar from 'material-ui/Avatar';
 
 import bjtImg from '../images/components/v1/bjt.png';
 
-let style = {
+const styles = {
   innerDiv: {
-    // backgroundColor: '#333',
     fontSize: '14px',
     margin: 0,
     padding: '8px 8px 8px 48px'
@@ -22,16 +21,17 @@ let style = {
 let selectedElement = (element) => {
   let name = element.constructor.name;
 
-  return (<div>
-    <ListItem primaryText={name}
-              innerDivStyle={style.innerDiv}
-              leftAvatar={
-                <Avatar
-                    style={{background: 'none', borderRadius: 0, top: 6, left: 18}}
-                    src={bjtImg}
-                    size={20}/>
-              }
+  return (<div key={element}>
+    <ListItem
 
+        primaryText={name}
+        innerDivStyle={styles.innerDiv}
+        leftAvatar={
+          <Avatar
+              style={{background: 'none', borderRadius: 0, top: 6, left: 18}}
+              src={bjtImg}
+              size={20}/>
+        }
     />
     <Divider />
   </div>)
@@ -46,15 +46,12 @@ class SelectedElements extends React.Component {
     return (
         <List>
 
-          <ListItem
-              primaryText={`${this.props.selectedElements.length} selected components`}
-          >
-
+          <ListItem primaryText={`${this.props.selectedElements.length} selected components`}>
           </ListItem>
           <Divider />
 
           {
-            this.props.selectedElements.map((element) => selectedElement(element))
+            this.props.selectedElements.map(element => selectedElement(element))
           }
 
         </List>

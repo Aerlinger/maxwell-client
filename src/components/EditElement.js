@@ -16,7 +16,7 @@ import {TimeSeries, SmoothieChart} from 'smoothie';
 import componentImg from '../images/components/v1/bjt.png';
 import Subheader from 'material-ui/Subheader';
 
-let style = {
+let styles = {
   smallRowColumn: {
     height: 24,
     fontFamily: 'Courier New',
@@ -330,21 +330,21 @@ class RightPanel extends React.Component {
               <TableBody displayRowCheckbox={false}>
 
                 <TableRow>
-                  <TableRowColumn style={style.leftColumn}>Voltage</TableRowColumn>
-                  <TableRowColumn style={style.centerColumn}>
+                  <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>
                     <span className='quantity'>{this.state.voltage}</span>
                     <span className='symbol'>V</span>
                   </TableRowColumn>
-                  <TableRowColumn style={style.chart}>
+                  <TableRowColumn style={styles.chart}>
                     <canvas id='voltage_series' width='200' height='40'></canvas>
                   </TableRowColumn>
                 </TableRow>
 
 
                 <TableRow>
-                  <TableRowColumn style={style.leftColumn}>Current</TableRowColumn>
-                  <TableRowColumn style={style.centerColumn}>{this.state.current}A</TableRowColumn>
-                  <TableRowColumn style={style.chart}>
+                  <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
+                  <TableRowColumn style={styles.chart}>
                     <canvas id='current_series' width='200' height='40'></canvas>
                   </TableRowColumn>
                 </TableRow>
@@ -359,9 +359,9 @@ class RightPanel extends React.Component {
               <TableBody displayRowCheckbox={false} stripedRows>
                 {
                   this.state.info.map((infoObj, i) => (
-                      <TableRow key={i} style={style.smallRow}>
-                        <TableRowColumn style={style.smallRowColumn}>{infoObj['label']}</TableRowColumn>
-                        <TableRowColumn style={style.smallRowColumn}>{infoObj['value']}</TableRowColumn>
+                      <TableRow key={i} style={styles.smallRow}>
+                        <TableRowColumn style={styles.smallRowColumn}>{infoObj['label']}</TableRowColumn>
+                        <TableRowColumn style={styles.smallRowColumn}>{infoObj['value']}</TableRowColumn>
                       </TableRow>
                   ))
                 }

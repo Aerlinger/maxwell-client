@@ -1,9 +1,8 @@
 import 'normalize.css/normalize.css';
 import '../styles/App.scss';
-import '../styles/PrettyScroll.css';
 
 import MaxwellCanvas from '../components/MaxwellCanvas';
-import ElementPanel from '../components/ElementPanel';
+import LeftPanel from '../components/LeftPanel';
 import RightPanel from '../components/RightPanel';
 import MainToolbar from '../components/MainToolbar'
 import Auth from '../modules/Auth';
@@ -126,7 +125,7 @@ class RootContainer extends React.Component {
   render() {
     let setPlaceElement = this.setPlaceElement.bind(this);
 
-    let top = 36;
+    let top = 50;
 
     return (
         <div className='index'>
@@ -142,7 +141,7 @@ class RootContainer extends React.Component {
               }
           />
 
-          <ElementPanel
+          <LeftPanel
               top={top}
               setPlaceElement={setPlaceElement}
               placeElement={this.state.placeElement}

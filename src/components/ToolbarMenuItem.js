@@ -4,13 +4,8 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import SelectField from 'material-ui/SelectField';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class ToolbarMenuItem extends React.Component {
 

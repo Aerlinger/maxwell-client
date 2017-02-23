@@ -6,27 +6,6 @@ import {ListItem} from 'material-ui/List';
 import bjtImg from '../images/components/v1/bjt.png';
 import Avatar from 'material-ui/Avatar';
 
-
-let style = {
-  listItem: {
-    fontSize: '12px',
-    backgroundColor: '#333',
-    padding: 0,
-    margin: 0
-  },
-  innerDiv: {
-    // backgroundColor: '#333',
-    fontSize: '11px',
-    margin: 0,
-    padding: '8px 8px 8px 36px'
-  },
-  iconStyles: {
-    margin: 6,
-    top: -3,
-    left: 0
-  }
-};
-
 class ElementListItem extends React.Component {
   hotkey() {
     if (this.props.hotkey) {
@@ -51,7 +30,6 @@ class ElementListItem extends React.Component {
     let hotkey = this.hotkey.bind(this);
 
     let elmStyle = {};
-    let prefix = '';
 
     if (this.props.placeElement == this.props.name) {
       elmStyle = {
@@ -61,7 +39,6 @@ class ElementListItem extends React.Component {
         background: 'rgba(0, 193, 28, 0.23)',
         padding: '8px 8px 8px 36px'
       };
-      prefix = '> ';
     } else {
       elmStyle = {
         fontSize: '11px',
@@ -72,7 +49,7 @@ class ElementListItem extends React.Component {
 
     return (
         <ListItem primaryText={
-          prefix + this.props.children
+          this.props.children
         }
                   onTouchTap={
                     () => this.props.setPlaceElement(this.props.name)

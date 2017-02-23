@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-let style = {
+let styles = {
   symbol: {
     fontFamily: 'Courier New',
     fontSize: 13,
@@ -19,7 +19,7 @@ module.exports = function (props) {
       <div>
         <TextField {...props} />
 
-        <span className='text-symbol' style={style.symbol}>Volts</span>
+        <span className='text-symbol' style={styles.symbol}>Volts</span>
 
       </div>
   );
