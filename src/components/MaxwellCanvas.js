@@ -66,46 +66,7 @@ class MaxwellCanvas extends React.Component {
       let keycode = isLetter(charCode) ? charCode : event.which;
 
       switch (keycode) {
-        case 'W':
-          console.log('WireElm');
-          circuitContext.setPlaceComponent('WireElm');
-          break;
-        case 'R':
-          circuitContext.setPlaceComponent('ResistorElm');
-          break;
-        case 'G':
-          circuitContext.setPlaceComponent('GroundElm');
-          break;
-        case 'S':
-          circuitContext.setPlaceComponent('SwitchElm');
-          break;
-        case 'C':
-          circuitContext.setPlaceComponent('CapacitorElm');
-          break;
-        case 'I':
-          circuitContext.setPlaceComponent('InductorElm');
-          break;
-        case 'V':
-          circuitContext.setPlaceComponent('VoltageElm');
-          break;
-        case 'A':
-          circuitContext.setPlaceComponent('RailElm');
-          break;
-        case 'O':
-          circuitContext.setPlaceComponent('OpAmpElm');
-          break;
-        case 'D':
-          circuitContext.setPlaceComponent('DiodeElm');
-          break;
-        case 'T':
-          circuitContext.setPlaceComponent('TransistorElm');
-          break;
-        case 'M':
-          circuitContext.setPlaceComponent('MosfetElm');
-          break;
-        case 'Q':
-          circuitContext.clearPlaceComponent();
-          break;
+
         case 27: // ESC
           circuitContext.resetSelection();
           break;
@@ -124,11 +85,13 @@ class MaxwellCanvas extends React.Component {
   loadCircuit(circuit_name) {
     let props = this.props;
 
-    // let bindKeyEvents = this.bindKeyEvents.bind(this);
+    let bindKeyEvents = this.bindKeyEvents.bind(this);
     let bindCircuitEvents = this.bindCircuitEvents.bind(this);
 
     let request = new XMLHttpRequest();
     let canvas = this.canvas;
+
+    let canvasComponent = this;
 
     request.open('GET', `/api/default_circuits/${circuit_name}`, true);
     request.onload = function () {
@@ -139,10 +102,12 @@ class MaxwellCanvas extends React.Component {
         Maxwell.createContext(circuit_name + circuit_id, data, canvas, function (circuitApplication) {
           circuitApplication.run();
 
+          canvasComponent.setPlaceElement = circuitApplication.setPlaceComponent.bind(circuitApplication);
+
           props.setCircuit && props.setCircuit(circuitApplication.Circuit);
 
           bindCircuitEvents(circuitApplication);
-          // bindKeyEvents(circuitApplication);
+          bindKeyEvents(circuitApplication);
         });
       } else {
         // We reached our target server, but it returned an error
@@ -158,12 +123,17 @@ class MaxwellCanvas extends React.Component {
     request.send();
   }
 
-  componentWillReceiveProps(nextProps) {
-    let loadCircuit = this.loadCircuit.bind(this);
-    let circuit_name = this.props.circuit_name || 'ohms';
 
+  componentWillReceiveProps(nextProps) {
     if (this.props.circuit_name !== nextProps.circuit_name) {
+      let loadCircuit = this.loadCircuit.bind(this);
+      let circuit_name = this.props.circuit_name || 'ohms';
+
       loadCircuit(circuit_name);
+    }
+
+    if (nextProps.placeElement && (this.props.placeElement !== nextProps.placeElement)) {
+      this.setPlaceElement(nextProps.placeElement);
     }
   }
 

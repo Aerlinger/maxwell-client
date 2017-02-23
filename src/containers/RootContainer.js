@@ -131,6 +131,7 @@ class RootContainer extends React.Component {
           <div className='index'>
             <MaxwellCanvas
                 circuit_name={this.props.params.circuit_name}
+                placeElement={this.state.placeElement}
                 setCircuit={
                   (circuit) => this.setState({circuit: circuit})
                 }
