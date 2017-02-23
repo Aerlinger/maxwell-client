@@ -7,6 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
+import LoadCircuitModal from '../components/LoadCircuitModal';
+
 import bjtImg from '../images/components/v1/bjt.png';
 
 const style = {
@@ -19,7 +21,7 @@ class MainToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 3
+      loadCircuitModalOpen: true
     };
   }
 
@@ -111,6 +113,13 @@ class MainToolbar extends React.Component {
 
     return (
         <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
+          <LoadCircuitModal
+              open={this.state.loadCircuitModalOpen}
+              closeModal={
+                evt => this.setState({loadCircuitModalOpen: false})
+              }
+          />
+
           <ToolbarGroup firstChild={true}>
             <Avatar
                 style={{background: 'white', top: 12, marginLeft: 15}}
@@ -126,8 +135,14 @@ class MainToolbar extends React.Component {
             <ToolbarMenuItem title='Components'/>
             <ToolbarMenuItem title='Analysis'/>
 
-            <ToolbarMenuItem title='Create' onClick={saveCircuit}/>
-            <ToolbarMenuItem title='Get' onClick={getCircuits}/>
+            <RaisedButton secondary={true} label='Save' onClick={saveCircuit}/>
+            <RaisedButton
+                secondary={true}
+                label='Load'
+                onClick={
+                  evt => this.setState({loadCircuitModalOpen: true})
+                }
+            />
 
             {/*<SignUpModal/>*/}
             {/*<FlashNotification/>*/}

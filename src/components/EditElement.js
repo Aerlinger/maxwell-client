@@ -47,7 +47,6 @@ function getTruth(x) {
     return !!x;
 }
 
-
 const fields = {
   name: 'Bipolar Junction Transistor',
   icon: componentImg,

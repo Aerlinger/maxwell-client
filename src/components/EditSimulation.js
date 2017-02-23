@@ -52,7 +52,7 @@ class EditSimulation extends React.Component {
         <List>
 
           <ListItem
-              primaryText="Simulation Settings"
+              primaryText='Simulation Settings'
               leftAvatar={<Avatar src={componentImg}/>}
               secondaryText='Description'
           >
@@ -64,23 +64,23 @@ class EditSimulation extends React.Component {
             <TableBody displayRowCheckbox={false}>
 
               <TableRow>
-                <Toggle label={"title"}
-                        key={"name"}
+                <Toggle label={'title'}
+                        key={'name'}
                         labelPosition='right'
-                        value={"value"}/>
+                        value={'value'}/>
 
               </TableRow>
 
               <TableRow>
                 <ListItem>
                   <TextField
-                      key={"name"}
+                      key={'name'}
                       inputStyle={{fontFamily: 'Courier'}}
-                      hintText={"name"}
-                      errorText={"hint"}
-                      floatingLabelText={"title"}
+                      hintText={'name'}
+                      errorText={'hint'}
+                      floatingLabelText={'title'}
                       floatingLabelFixed={true}
-                      value={"value"}
+                      value={'value'}
                   />
                 </ListItem>
               </TableRow>
@@ -92,23 +92,23 @@ class EditSimulation extends React.Component {
           <CardText>
 
             <TextField
-                key={"name"}
+                key={'name'}
                 inputStyle={{fontFamily: 'Courier'}}
-                hintText={"name"}
-                errorText={"hint"}
-                floatingLabelText={"title"}
+                hintText={'name'}
+                errorText={'hint'}
+                floatingLabelText={'title'}
                 floatingLabelFixed={true}
-                value={"value"}
+                value={'value'}
             />
 
             <TextField
-                key={"name2"}
+                key={'name2'}
                 inputStyle={{fontFamily: 'Courier'}}
-                hintText={"name"}
-                errorText={"hint"}
-                floatingLabelText={"title"}
+                hintText={'name'}
+                errorText={'hint'}
+                floatingLabelText={'title'}
                 floatingLabelFixed={true}
-                value={"value"}
+                value={'value'}
             />
 
             <Slider
@@ -120,13 +120,13 @@ class EditSimulation extends React.Component {
             />
 
             <TextField
-                key={"name3"}
+                key={'name3'}
                 inputStyle={{fontFamily: 'Courier'}}
-                hintText={"name"}
-                errorText={"hint"}
-                floatingLabelText={"title"}
+                hintText={'name'}
+                errorText={'hint'}
+                floatingLabelText={'title'}
                 floatingLabelFixed={true}
-                value={"value"}
+                value={'value'}
             />
 
 

@@ -8,7 +8,7 @@ import RightPanel from '../components/RightPanel';
 
 import React from 'react';
 
-class AppComponent extends React.Component {
+class RootContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -19,11 +19,11 @@ class AppComponent extends React.Component {
   }
 
   componentWillReceiveProps() {
-    console.log('AppComponent wil receive props');
+    console.log('RootContainer wil receive props');
   }
   
   componentDidMount() {
-    console.log('AppComponent mount');
+    console.log('RootContainer mount');
   }
 
   selectionChanged(elements) {
@@ -52,4 +52,4 @@ class AppComponent extends React.Component {
   }
 }
 
-export default AppComponent;
+export default RootContainer;

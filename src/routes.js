@@ -1,6 +1,6 @@
 import Base from './components/Base';
 import Dashboard from './containers/SettingsPage';
-import Main from './containers/Main';
+import Main from './containers/RootContainer';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import Auth from './modules/Auth';
