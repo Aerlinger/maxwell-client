@@ -7,34 +7,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
+import Auth from '../modules/Auth';
+
 let componentImg = require('../images/components/v1/bjt.png');
 
-let sampleCircuits = [
-  {
-    title: 'Circuit title',
-    createdAt: new Date('2017-02-19 01:35:48.261Z'),
-    updatedAt: new Date('2017-02-19 01:35:48.261Z'),
-    description: 'Circuit description Circuit description Circuit description Circuit description Circuit descriptionCircuit description Circuit descriptionCircuit description Circuit description',
-    thumbnail: componentImg
-  },
-  {
-    title: 'Circuit title 2',
-    description: 'Circuit description 2',
-    createdAt: new Date('2017-02-19 01:35:48.261Z'),
-    updatedAt: new Date('2017-02-19 01:35:48.261Z'),
-    thumbnail: componentImg
-  },
-  {
-    title: 'Circuit title 3',
-    description: 'Circuit description 3',
-    createdAt: new Date('2017-02-19 01:35:48.261Z'),
-    updatedAt: new Date('2017-02-19 01:35:48.261Z'),
-    thumbnail: componentImg
-  },
-];
+let $ = require('jquery');
+
 
 let loadCircuitListItem = function ({
-    title,
+    name,
     description,
     createdAt,
     updatedAt,
@@ -42,12 +23,12 @@ let loadCircuitListItem = function ({
 }) {
   return <div>
     <ListItem
-        key={title}
-        primaryText={title}
+        key={name}
+        primaryText={name}
         leftAvatar={<Avatar src={componentImg}/>}
         rightAvatar={
           <small style={{fontSize: 11, color: "#777", fontStyle: "italic"}}>
-            Updated: {createdAt.toDateString()}
+            Updated: {new Date(createdAt).toDateString()}
           </small>
         }
         secondaryText={
@@ -62,6 +43,14 @@ let loadCircuitListItem = function ({
 };
 
 class LoadCircuitModal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      circuits: []
+    }
+  }
+
   handleOpen = () => {
     // this.setState({open: true});
   };
@@ -69,6 +58,25 @@ class LoadCircuitModal extends React.Component {
   handleClose = () => {
     // this.setState({open: false});
   };
+
+  componentDidMount() {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('get', '/api/circuits');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // set the authorization HTTP header
+    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200) {
+        this.setState({
+          circuits: xhr.response
+        });
+      }
+    });
+
+    xhr.send();
+  }
 
   render() {
     const actions = [
@@ -88,7 +96,7 @@ class LoadCircuitModal extends React.Component {
     return (
         <div>
           <Dialog
-              title='Sign Up'
+              title='Load circuit'
               actions={actions}
               modal={false}
               open={this.props.open}
@@ -102,7 +110,7 @@ class LoadCircuitModal extends React.Component {
             <List>
 
               {
-                sampleCircuits.map(sampleCircuit => loadCircuitListItem(sampleCircuit))
+                this.state.circuits.map(circuit => loadCircuitListItem(circuit))
               }
 
             </List>
