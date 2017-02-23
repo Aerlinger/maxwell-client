@@ -21,7 +21,7 @@ class MainToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadCircuitModalOpen: true
+      loadCircuitModalOpen: false
     };
   }
 

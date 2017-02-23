@@ -1,8 +1,3 @@
-**Client side:**
-npm run serve
-
-**API server:**
-npm run serve-api
-
-
-
+**Run Instructions:**
+- npm install
+- npm run start

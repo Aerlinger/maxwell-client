@@ -91,7 +91,4 @@ class ElementPanel extends React.Component {
   }
 }
 
-
-ElementPanel.defaultProps = {};
-
 export default ElementPanel;

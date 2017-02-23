@@ -62,25 +62,28 @@ class EditSimulation extends React.Component {
             <TableBody displayRowCheckbox={false}>
 
               <TableRow>
+                <TableRowColumn>
                 <Toggle label={'title'}
                         key={'name'}
                         labelPosition='right'
                         value={'value'}/>
-
+                </TableRowColumn>
               </TableRow>
 
               <TableRow>
-                <ListItem>
-                  <TextField
-                      key={'name'}
-                      inputStyle={{fontFamily: 'Courier'}}
-                      hintText={'name'}
-                      errorText={'hint'}
-                      floatingLabelText={'title'}
-                      floatingLabelFixed={true}
-                      value={'value'}
-                  />
-                </ListItem>
+                <TableRowColumn>
+                  <ListItem>
+                    <TextField
+                        key={'name'}
+                        inputStyle={{fontFamily: 'Courier'}}
+                        hintText={'name'}
+                        errorText={'hint'}
+                        floatingLabelText={'title'}
+                        floatingLabelFixed={true}
+                        value={'value'}
+                    />
+                  </ListItem>
+                </TableRowColumn>
               </TableRow>
 
             </TableBody>

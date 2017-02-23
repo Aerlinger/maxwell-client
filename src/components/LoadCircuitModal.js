@@ -20,13 +20,12 @@ let loadCircuitListItem = function ({
     updatedAt,
     thumbnail
 }) {
-  return <div>
+  return <div key={name + createdAt}>
     <ListItem
-        key={name}
         primaryText={name}
         leftAvatar={<Avatar src={componentImg}/>}
         rightAvatar={
-          <small style={{fontSize: 11, color: "#777", fontStyle: "italic"}}>
+          <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
             Updated: {new Date(createdAt).toDateString()}
           </small>
         }
