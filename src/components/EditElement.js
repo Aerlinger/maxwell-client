@@ -13,7 +13,7 @@ import {CardText} from 'material-ui/Card';
 
 let {TimeSeries, SmoothieChart} = require('smoothie');
 
-var componentImg = require('../images/components/v1/bjt.png');
+let componentImg = require('../images/components/v1/bjt.png');
 
 let styles = {
   leftColumn: {

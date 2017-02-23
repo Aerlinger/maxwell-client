@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper';
 
 import EditElement from './EditElement';
 import SelectedElements from './SelectedElements';
+import EditSimulation from './EditSimulation';
 
 class RightPanel extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class RightPanel extends React.Component {
   }
 
   subPanel() {
-    if (this.props.selectedElements.length == 1) {
+    if (this.props.selectedElements.length == 0) {
+      return <EditSimulation />
+    } else if (this.props.selectedElements.length == 1) {
       return <EditElement
           selectedElement={this.props.selectedElements[0]}
       />

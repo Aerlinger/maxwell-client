@@ -21,23 +21,19 @@ class MaxwellCanvas extends React.Component {
     let props = this.props;
 
     circuitContext.onSelectionChanged = function (changeObj) {
-      console.log(changeObj);
-
       props.onSelectionChanged(changeObj);
     };
 
     circuitContext.onComponentHover = function (component) {
-      console.log('ON COMPONENT HOVER:', component.toString(), 'V:', component.volts);
+      props.onComponentHover && props.onComponentHover(component);
     };
 
     circuitContext.onComponentUnhover = function (component) {
-      console.log('ON COMPONENT UNHOVER:', component.toString());
+      props.onComponentHover && props.onComponentHover(component);
     };
 
     circuitContext.onComponentClick = function (component) {
-      console.log('ON COMPONENT CLICK:', component);
-
-      //  TODO: Render Form
+      props.onComponentClick && props.onComponentClick(component);
     };
 
     circuitContext.onComponentsDrag = function (components) {
