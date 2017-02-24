@@ -10,7 +10,7 @@ import {Link} from 'react-router';
 
 const customContentStyle = {
   width: '300px',
-  maxWidth: 'none',
+  maxWidth: 'none'
 };
 
 const SignUpForm = ({

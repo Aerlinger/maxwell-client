@@ -2,8 +2,7 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory, Router } from 'react-router';
-import darkBaseTheme from './styles/CustomStyle';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MaxwellTheme from './styles/CustomStyle';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import routes from './routes';
 
@@ -17,9 +16,13 @@ injectTapEventPlugin();
 
 import 'jquery-ui';
 
-// Render the main component into the DOM
+/**
+ * Render the root component into the DOM via ReactRouter
+ *
+ * This is theme customization goes.
+ */
 ReactDOM.render((
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <MuiThemeProvider muiTheme={MaxwellTheme}>
       <Router history={browserHistory} routes={routes} />
     </MuiThemeProvider>
 ), document.getElementById('app'));

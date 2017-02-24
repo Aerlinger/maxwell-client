@@ -10,12 +10,25 @@ import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
+import {blueGrey900} from 'material-ui/styles/colors';
 
 import {TimeSeries, SmoothieChart} from 'smoothie';
 
 import componentImg from '../images/components/v1/bjt.png';
+import Subheader from 'material-ui/Subheader';
+
+import TextInput from './inputs/TextInput';
 
 let styles = {
+  smallRowColumn: {
+    height: 24,
+    fontFamily: 'Courier New',
+    fontSize: 12,
+    fontWeight: 'bold'
+  },
+  smallRow: {
+    height: 24
+  },
   leftColumn: {
     fontFamily: 'Courier New',
     fontSize: 12,
@@ -37,6 +50,11 @@ let styles = {
     paddingTop: 3,
     paddingLeft: 0,
     paddingRight: 0
+  },
+  textField: {
+    size: '11px',
+    fontSize: '11px',
+    fontFamily: 'Courier New'
   }
 };
 
@@ -56,6 +74,14 @@ const fields = {
   current: 5,
   power: 1,
   info: [
+    {
+      label: 'Mode',
+      value: 'Forward-Active'
+    },
+    {
+      label: 'Mode',
+      value: 'Forward-Active'
+    },
     {
       label: 'Mode',
       value: 'Forward-Active'
@@ -127,7 +153,10 @@ class RightPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = fields;
+    this.state = {
+        ...fields,
+        clientHeight: 200
+    };
   }
 
   findParam(name) {
@@ -177,17 +206,12 @@ class RightPanel extends React.Component {
       hint,
       value
   }) {
-    return (<TextField
-        key={name}
-
-        inputStyle={{fontFamily: 'Courier'}}
-        hintText={name}
-        errorText={hint}
-        floatingLabelText={title}
-        floatingLabelFixed={true}
-        value={value}
-        onChange={this.handleChange.bind(this, name)}
-    />);
+    return <TextInput
+        hintText={'props.hintText'}
+        errorText={'props.errorText'}
+        labelText={'props.labelText'}
+        value={'props.value'}
+      />;
   }
 
   addBooleanField({
@@ -208,6 +232,8 @@ class RightPanel extends React.Component {
     let raw_value = value ? value : default_value;
 
     obj['value'] = raw_value;
+
+    console.log(obj);
 
     if (obj['field_type'] == 'select')
       return this.addSelectField(obj);
@@ -278,6 +304,10 @@ class RightPanel extends React.Component {
   componentDidMount() {
     this.setupVoltageScope.bind(this)();
     this.setupCurrentScope.bind(this)();
+
+    let { clientHeight } = this.refs.elementHeader;
+
+    this.setState({editHeaderHeight: clientHeight});
   }
 
   render() {
@@ -288,70 +318,92 @@ class RightPanel extends React.Component {
 
     return (
         <List>
+          <div className='editElementHeader' ref='elementHeader'>
 
-          <ListItem
-              primaryText={selectedElement.getName()}
-              leftAvatar={<Avatar src={this.state.icon}/>}
-              secondaryText='Description'
-          >
+            <ListItem
+                primaryText={selectedElement.getName()}
+                leftAvatar={<Avatar src={this.state.icon}/>}
+                secondaryText='Description'
+                style={{backgroundColor: blueGrey900}}
+            >
 
-          </ListItem>
+            </ListItem>
 
-          <Divider />
-          <Table selectable={false}>
-            <TableBody displayRowCheckbox={false}>
+            <Divider />
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false}>
 
-              <TableRow>
-                <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
-                <TableRowColumn style={styles.centerColumn}>
-                  <span className='quantity'>{this.state.voltage}</span>
-                  <span className='symbol'>V</span>
-                </TableRowColumn>
-                <TableRowColumn style={styles.chart}>
-                  <canvas id='voltage_series' width='200' height='40'></canvas>
-                </TableRowColumn>
-              </TableRow>
+                <TableRow>
+                  <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>
+                    <span className='quantity'>{this.state.voltage}</span>
+                    <span className='symbol'>V</span>
+                  </TableRowColumn>
+                  <TableRowColumn style={styles.chart}>
+                    <canvas id='voltage_series' width='200' height='40'></canvas>
+                  </TableRowColumn>
+                </TableRow>
 
+                <TableRow>
+                  <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
+                  <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
+                  <TableRowColumn style={styles.chart}>
+                    <canvas id='current_series' width='200' height='40'></canvas>
+                  </TableRowColumn>
+                </TableRow>
+              </TableBody>
+            </Table>
+            <Divider />
 
-              <TableRow>
-                <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
-                <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
-                <TableRowColumn style={styles.chart}>
-                  <canvas id='current_series' width='200' height='40'></canvas>
-                </TableRowColumn>
-              </TableRow>
-            </TableBody>
-          </Table>
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false} stripedRows>
+                {
+                  this.state.info.map((infoObj, i) => (
+                      <TableRow key={i} style={styles.smallRow}>
+                        <TableRowColumn style={styles.smallRowColumn}>{infoObj['label']}</TableRowColumn>
+                        <TableRowColumn style={styles.smallRowColumn}>{infoObj['value']}</TableRowColumn>
+                      </TableRow>
+                  ))
+                }
 
-          <Divider />
+              </TableBody>
+            </Table>
 
-          <Table selectable={false}>
-            <TableBody displayRowCheckbox={false}>
+            <Divider />
+            <Subheader>Properties</Subheader>
+            <Divider />
+
+          </div>
+
+          <div
+              style={{
+                position: 'absolute',
+                top: this.state.editHeaderHeight,
+                left: 0,
+                right: 0,
+                bottom: 0
+              }}>
+
+            <CardText
+                style={{
+                  height: '100%',
+                  position: 'absolute',
+                  overflowY: 'auto',
+                  overflowX: 'hidden',
+                  backgroundColor: '#444'
+                }}
+            >
+
               {
-                this.state.info.map((infoObj, i) => (
-
-                    <TableRow key={i}>
-                      <TableRowColumn>{infoObj['label']}</TableRowColumn>
-                      <TableRowColumn>{infoObj['value']}</TableRowColumn>
-                    </TableRow>
-                ))
+                //this.state.params.map((paramObj) => addField(paramObj))
+                Object.keys(fields).map(
+                    fieldKey => addField(fields[fieldKey])
+                )
               }
 
-            </TableBody>
-          </Table>
-
-          <Divider />
-
-          <CardText>
-            {
-              //this.state.params.map((paramObj) => addField(paramObj))
-              Object.keys(fields).map(
-                  fieldKey => addField(fields[fieldKey])
-              )
-            }
-
-            <RaisedButton label='Update' fullWidth={true} primary={true}/>
-          </CardText>
+              <RaisedButton label='Update' fullWidth={true} primary={true}/>
+            </CardText>
+          </div>
 
         </List>
     );

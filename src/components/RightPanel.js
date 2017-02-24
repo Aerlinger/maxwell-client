@@ -30,7 +30,7 @@ class RightPanel extends React.Component {
     return (
         <Paper
             className='side-panel'
-            style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: 50, bottom: 0, overflowY: 'scroll'}}
+            style={{display: 'block', position: 'absolute', width: '296px', right: 0, top: this.props.top, bottom: 0, overflowY: 'hidden'}}
         >
           {subPanel()}
         </Paper>

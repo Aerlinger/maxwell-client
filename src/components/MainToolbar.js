@@ -3,20 +3,30 @@ import Auth from '../modules/Auth';
 import FontIcon from 'material-ui/FontIcon';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import {fullWhite} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Chip from 'material-ui/Chip';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
+import {blue300, indigo900} from 'material-ui/styles/colors';
 
-import MainToolbarStyle from '../styles/MainToolbar.css';
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
 
 import LoadCircuitModal from '../components/LoadCircuitModal';
 import SignUpModal from '../components/SignUpModal';
-
 import bjtImg from '../images/components/v1/bjt.png';
+import FlatButton from 'material-ui/FlatButton';
 
-const style = {
-  button: {
-    margin: 12
-  }
+const styles = {
+  chip: {
+    margin: 0,
+  },
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
 };
 
 class MainToolbar extends React.Component {
@@ -48,95 +58,122 @@ class MainToolbar extends React.Component {
     xhr.send();
   }
 
-  render() {
-    let getCircuits = this.getCircuits.bind(this);
+  chip() {
+    return <Chip
+        backgroundColor={blue300}
+        onRequestDelete={this.handleRequestDelete}
+        onTouchTap={this.handleTouchTap}
+        style={styles.chip}
+    >
+      <Avatar size={24} color={blue300} backgroundColor={indigo900}>
+        MB
+      </Avatar>
+      Colored Chip
+    </Chip>
+  }
 
+  tooltip() {
+    return <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+      <ActionGrade />
+    </IconButton>
+  }
+
+  testButtons() {
+    return <div>
+      <RaisedButton label='Default' onClick={() => this.setState({loadCircuitModalOpen: true})}/>
+      <RaisedButton primary={true} label='Primary' onClick={this.props.saveCircuit}/>
+      <RaisedButton secondary={true} label='Secondary' onClick={() => this.setState({signUpModalOpen: true})}/>
+      <RaisedButton disabled={true} label='Disabled' onClick={this.props.dump}/>
+
+      <FlatButton label='Default' onClick={() => this.setState({loadCircuitModalOpen: true})}/>
+      <FlatButton primary={true} label='Primary' onClick={this.props.saveCircuit}/>
+      <FlatButton secondary={true} label='Secondary' onClick={() => this.setState({signUpModalOpen: true})}/>
+      <FlatButton disabled={true} label='Disabled' onClick={this.props.dump}/>
+
+      <FlatButton icon={<ActionAndroid />}/>
+      <FlatButton backgroundColor="#a4c639" hoverColor="#8AA62F" icon={<ActionAndroid color={fullWhite}/>}/>
+
+
+    </div>
+  }
+
+  handleRequestDelete() {
+    alert('You clicked the delete button.');
+  }
+
+  handleTouchTap() {
+    alert('You clicked the Chip.');
+  }
+
+  render() {
     return (
-        <Toolbar className={MainToolbarStyle.root} style={{height: 50}}>
+        <div>
           <LoadCircuitModal
               open={this.state.loadCircuitModalOpen}
               closeModal={
-                evt => this.setState({loadCircuitModalOpen: false})
+                () => this.setState({loadCircuitModalOpen: false})
               }
           />
 
           <SignUpModal
               open={this.state.signUpModalOpen}
               closeModal={
-                evt => this.setState({signUpModalOpen: false})
+                () => this.setState({signUpModalOpen: false})
               }
           />
 
-          <ToolbarGroup firstChild={true}>
-            <Avatar
-                style={{background: 'white', top: 12, marginLeft: 15}}
-                src={bjtImg}
-                size={32}
-            />
+          <Toolbar style={{height: this.props.top, borderBottom: '1px solid blue'}}>
+            <ToolbarGroup firstChild={true}>
+              <Avatar
+                  style={{background: 'white', top: 12, marginLeft: 15}}
+                  src={bjtImg}
+                  size={32}
+              />
 
-            <ToolbarTitle text='Maxwell' style={{color: 'white', marginLeft: 30}}>
-            </ToolbarTitle>
+              <ToolbarTitle text='Maxwell' style={
+                {color: 'white', marginLeft: 30, fontFamily: 'Courier New'}
+              }>
+              </ToolbarTitle>
 
-            <ToolbarMenuItem title='Circuit'/>
-            <ToolbarMenuItem title='Edit'/>
-            <ToolbarMenuItem title='Components'/>
-            <ToolbarMenuItem title='Analysis'/>
+              <ToolbarMenuItem title='Circuit'/>
+              <ToolbarMenuItem title='Edit'/>
 
-            <RaisedButton secondary={true} label='Save' onClick={this.props.saveCircuit}/>
-            <RaisedButton
-                secondary={true}
-                label='Load'
-                onClick={
-                  evt => this.setState({loadCircuitModalOpen: true})
-                }
-            />
+              {this.testButtons()}
+            </ToolbarGroup>
 
-            <RaisedButton
-                secondary={true}
-                label='Sign Up'
-                onClick={
-                  evt => this.setState({signUpModalOpen: true})
-                }
-            />
 
-            <RaisedButton secondary={true} label='dump' onClick={this.props.dump}/>
+            <ToolbarGroup>
+              <FontIcon className='muidocs-icon-custom-sort'/>
+              <ToolbarSeparator />
 
-          </ToolbarGroup>
-
-          <ToolbarGroup>
-            <FontIcon className='muidocs-icon-custom-sort'/>
-            <ToolbarSeparator />
-
-            {
-              Auth.isUserAuthenticated() ? (
-                      <RaisedButton
-                          href='/logout'
-                          primary={true}
-                          label='Logout'
-                          style={style.button}
-                      />
-
-                  ) : (
-                      <div>
+              {
+                Auth.isUserAuthenticated() ? (
                         <RaisedButton
-                            href='/login'
-                            primary={true}
-                            label='Login'
-                            style={style.button}
-                        />
-
-                        <RaisedButton
-                            href='/signup'
+                            href='/logout'
                             secondary={true}
-                            label='Sign Up'
-                            style={style.button}
+                            label='Logout'
                         />
-                      </div>
-                  )
-            }
 
-          </ToolbarGroup>
-        </Toolbar>
+                    ) : (
+                        <div>
+                          <RaisedButton
+                              href='/login'
+                              primary={true}
+                              label='Login'
+                          />
+
+                          <RaisedButton
+                              href='/signup'
+                              secondary={true}
+                              label='Sign Up'
+                          />
+                        </div>
+                    )
+              }
+
+            </ToolbarGroup>
+          </Toolbar>
+        </div>
     );
   }
 }

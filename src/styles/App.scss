@@ -5,8 +5,48 @@ $grid-major-color: rgba(221, 223, 244, 0.69);
 $grid-minor-color: rgba(205, 205, 255, 0.3);
 $background-color: #FCFCFF;
 
+* {
+  font-family: Roboto, sans-serif;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Regular-webfont.eot');
+  src: url('fonts/roboto/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/roboto/Roboto-Regular-webfont.woff') format('woff'),
+  url('fonts/roboto/Roboto-Regular-webfont.ttf') format('truetype'),
+  url('fonts/roboto/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Italic-webfont.eot');
+  src: url('fonts/roboto/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/roboto/Roboto-Italic-webfont.woff') format('woff'),
+  url('fonts/roboto/Roboto-Italic-webfont.ttf') format('truetype'),
+  url('fonts/roboto/Roboto-Italic-webfont.svg#RobotoItalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Bold-webfont.eot');
+  src: url('fonts/roboto/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/roboto/Roboto-Bold-webfont.woff') format('woff'),
+  url('fonts/roboto/Roboto-Bold-webfont.ttf') format('truetype'),
+  url('fonts/roboto/Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
 /* Base Application Styles */
 body {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
   background-color: $background-color !important;
   background-image: linear-gradient($grid-major-color 1px, transparent 1px),
   linear-gradient(90deg, $grid-major-color 1px, transparent 1px),
@@ -45,15 +85,15 @@ body {
   border-right: 2px solid #989797;
 }
 
-.side-panel::-webkit-scrollbar, .element-panel::-webkit-scrollbar {
+.side-panel *::-webkit-scrollbar, .element-panel *::-webkit-scrollbar {
   width: 0.3em;
 }
 
-.side-panel::-webkit-scrollbar-track, .element-panel::-webkit-scrollbar-track {
+.side-panel *::-webkit-scrollbar-track, .element-panel *::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-.side-panel::-webkit-scrollbar-thumb, .element-panel::-webkit-scrollbar-thumb {
+.side-panel *::-webkit-scrollbar-thumb, .element-panel *::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }

@@ -1,23 +1,84 @@
 import 'normalize.css/normalize.css';
 import '../styles/App.scss';
-import '../styles/PrettyScroll.css';
 
 import MaxwellCanvas from '../components/MaxwellCanvas';
-import ElementPanel from '../components/ElementPanel';
+import LeftPanel from '../components/LeftPanel';
 import RightPanel from '../components/RightPanel';
 import MainToolbar from '../components/MainToolbar'
 import Auth from '../modules/Auth';
 
 import React from 'react';
 
+
 class RootContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      placeElement: null,
       selectedElements: [],
       circuit: null
     }
+  }
+
+  bindKeyEvents() {
+    function isLetter(str) {
+      return str.length === 1 && str.match(/[a-z]/i);
+    }
+
+    let setPlaceElement = this.setPlaceElement.bind(this);
+
+    document.addEventListener('keydown', function (event) {
+      let charCode = String.fromCharCode(event.which);
+      let keycode = isLetter(charCode) ? charCode : event.which;
+
+      switch (keycode) {
+        case 'W':
+          console.log('WireElm');
+          setPlaceElement('WireElm');
+          break;
+        case 'R':
+          setPlaceElement('ResistorElm');
+          break;
+        case 'G':
+          setPlaceElement('GroundElm');
+          break;
+        case 'S':
+          setPlaceElement('SwitchElm');
+          break;
+        case 'C':
+          setPlaceElement('CapacitorElm');
+          break;
+        case 'I':
+          setPlaceElement('InductorElm');
+          break;
+        case 'V':
+          setPlaceElement('VoltageElm');
+          break;
+        case 'A':
+          setPlaceElement('RailElm');
+          break;
+        case 'O':
+          setPlaceElement('OpAmpElm');
+          break;
+        case 'D':
+          setPlaceElement('DiodeElm');
+          break;
+        case 'T':
+          setPlaceElement('TransistorElm');
+          break;
+        case 'M':
+          setPlaceElement('MosfetElm');
+          break;
+        case 'Q':
+          setPlaceElement(null);
+          break;
+      }
+    })
+  }
+
+  setPlaceElement(placeElement) {
+    this.setState({placeElement});
   }
 
   saveCircuit() {
@@ -49,6 +110,7 @@ class RootContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.bindKeyEvents();
     console.log('RootContainer mount');
   }
 
@@ -61,34 +123,44 @@ class RootContainer extends React.Component {
   }
 
   render() {
-    console.log('Circuit', this.props.params.circuit_name);
+    let setPlaceElement = this.setPlaceElement.bind(this);
+
+    let top = 50;
 
     return (
-        <div>
-          <div className='index'>
-            <MaxwellCanvas
-                circuit_name={this.props.params.circuit_name}
-                setCircuit={
-                  (circuit) => this.setState({circuit: circuit})
-                }
-                onSelectionChanged={
-                  (changeObj) => this.setState({selectedElements: changeObj.selection})
-                }
-            />
+        <div className='index'>
+          <MaxwellCanvas
+              top={top}
+              circuit_name={this.props.params.circuit_name}
+              placeElement={this.state.placeElement}
+              setCircuit={
+                (circuit) => this.setState({circuit: circuit})
+              }
+              onSelectionChanged={
+                (changeObj) => this.setState({selectedElements: changeObj.selection})
+              }
+          />
 
-            <ElementPanel/>
+          <LeftPanel
+              top={top}
+              setPlaceElement={setPlaceElement}
+              placeElement={this.state.placeElement}
+          />
 
-            <RightPanel
-                selectedElements={this.state.selectedElements}
-            />
-          </div>
+          <RightPanel
+              top={top}
+              selectedElements={this.state.selectedElements}
+          />
 
           <MainToolbar
+              top={top}
               circuit={this.state.circuit}
               dump={this.dump.bind(this)}
               saveCircuit={this.saveCircuit.bind(this)}
           />
+
         </div>
+
     );
   }
 }
