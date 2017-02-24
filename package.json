@@ -92,6 +92,7 @@
     "jquery-ui-bundle": "^1.11.4",
     "jquery-ui-dist": "^1.12.1",
     "jsonwebtoken": "^5.0.4",
+    "material-ui-number-input": "^5.0.17",
     "mongoose": "^4.1.2",
     "morgan": "~1.5.1",
     "normalize.css": "^4.0.0",
@@ -101,6 +102,7 @@
     "react-bootstrap": "^0.30.7",
     "react-color": "^2.11.1",
     "react-dom": "^15.0.0",
+    "react-material-ui-number-input": "^1.0.4",
     "react-tap-event-plugin": "^2.0.1",
     "serve-favicon": "~2.2.0",
     "smoothie": "^1.27.0"

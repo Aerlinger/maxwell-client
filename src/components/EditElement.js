@@ -208,7 +208,7 @@ class RightPanel extends React.Component {
 
         inputStyle={styles.textField}
         style={styles.textField}
-        textFieldStyle={styles.textField}
+        textareaStyle={styles.textField}
         hintStyle={styles.textField}
         hintText={name}
         errorText={hint}

@@ -13,6 +13,8 @@ import {CardText} from 'material-ui/Card';
 import MenuItem from 'material-ui/MenuItem';
 import Toggle from 'material-ui/Toggle';
 
+import NumberField from './NumberField';
+
 import componentImg from '../images/components/v1/bjt.png';
 
 let styles = {
@@ -103,6 +105,29 @@ class EditSimulation extends React.Component {
     />;
   }
 
+  onChange(event, value) {
+    console.log(value);
+  }
+
+  onValid(valid) {
+    console.log(value);
+  }
+
+  onRequestValue(value) {
+    console.log(value);
+  }
+
+  numberInput(title, value){
+    return <NumberInput
+        floatingLabelText={title}
+        value={value}
+        strategy="ignore"
+        min={0}
+        max={100}
+        required
+    />;
+  }
+
   render() {
     return (
         <List
@@ -118,11 +143,12 @@ class EditSimulation extends React.Component {
           />
           <Divider />
 
+          <NumberField/>
 
           {this.textInput('text title', 'val')}
           {this.toggleInput('text title', 'val')}
           {this.textInput('text title', 'val')}
-          {this.textInput('text title', 'val')}
+
           {this.selectInput('text title', 'val')}
           {this.slider()}
 
