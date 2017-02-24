@@ -57,7 +57,7 @@ let overrides = {
     titleFontSize: 20
   },
   raisedButton: {
-    color: blue900,
+    color: '#F00',
     textColor: fullWhite,
     primaryColor: green500,
     primaryTextColor: fullWhite,
