@@ -4,7 +4,10 @@ module.exports.connect = (uri) => {
   let gracefulShutdown;
 
 // Establish a connection to the database
-  mongoose.connect(uri);
+  mongoose.connect(uri, {
+    user: 'test',
+    password: 'iamsecret'
+  });
   mongoose.Promise = global.Promise;
 
 // CONNECTION EVENTS
