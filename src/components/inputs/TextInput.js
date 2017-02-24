@@ -1,26 +1,52 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import {blueGrey900, green100, green200} from 'material-ui/styles/colors';
 
 let styles = {
-  symbol: {
+  textField: {
+    fontSize: '13px',
     fontFamily: 'Courier New',
-    fontSize: 13,
-    position: 'relative',
-    bottom: 59,
-    right: 3,
-    float: 'right',
-    color: 'gray',
-    fontWeight: 'bold'
+    color: '#FFF'
+  },
+  floatingLabelStyle: {
+    fontSize: '16px',
+    //color: '#0FF'
+  },
+
+  // Unused for now...
+  underlineStyle: {
+    color: green100,
+    borderColor: green100
+  },
+  underlineFocusStyle: {
+    borderColor: '#bf4f00',
+    color: '#ff9c00'
+  },
+  errorStyle: {
+    color: '#F00'
   }
 };
 
 module.exports = function (props) {
   return (
-      <div>
-        <TextField {...props} />
 
-        <span className='text-symbol' style={styles.symbol}>Volts</span>
+      <TextField
+          key={name}
 
-      </div>
+          inputStyle={styles.textField}
+          //textareaStyle={styles.textField}
+          //hintStyle={styles.textField}
+          //underlineFocusStyle={styles.underlineFocusStyle}
+          //underlineStyle={styles.underlineStyle}
+          floatingLabelStyle={styles.floatingLabelStyle}
+          //floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          //errorStyle={styles.errorStyle}
+
+          //errorText={props.errorText}
+          floatingLabelText={props.labelText}
+          floatingLabelFixed={true}
+          value={props.value}
+
+      />
   );
 };

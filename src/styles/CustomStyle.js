@@ -1,8 +1,11 @@
 import {
+  cyan50,
   cyan700,
   grey500,
   grey600,
   grey900,
+  indigo50,
+  indigo200,
   indigoA700,
   greenA700,
   green500,
@@ -13,6 +16,7 @@ import {
   redA700,
   red900,
   blueGrey900,
+  lightBlue200,
   blue900,
   orange900,
   lightBlue50,
@@ -36,7 +40,7 @@ let baseTheme = {
     accent3Color: '#ff00fe',
     textColor: fullWhite,
     secondaryTextColor: fade(fullWhite, 0.7),
-    alternateTextColor: '#FFF',
+    alternateTextColor: fullWhite,
     // alternateTextColor: '#303030',
     canvasColor: '#303030',
     borderColor: fade(fullWhite, 0.3),
@@ -54,15 +58,15 @@ let overrides = {
   },
   raisedButton: {
     color: blue900,
-    textColor: 'white',
+    textColor: fullWhite,
     primaryColor: green500,
-    primaryTextColor: 'white',
+    primaryTextColor: fullWhite,
     secondaryColor: red900,
-    secondaryTextColor: 'white',
+    secondaryTextColor: fullWhite,
     disabledTextColor: grey500
   },
   flatButton: {
-    textColor: 'white',
+    textColor: fullWhite,
     primaryTextColor: lightGreenA700,
     secondaryTextColor: red500
   },
@@ -72,15 +76,15 @@ let overrides = {
   },
   textField: {
     errorColor: indigoA700,
-    borderColor: green500,
-    focusColor: 'rgb(0, 255, 24)',
-    floatingLabelColor: 'rgb(0, 158, 24)',
+    borderColor: lightBlue50,
+    focusColor: cyan50,
+    floatingLabelColor: lightBlue50,
     textColor: lightBlue50
   },
   tabs: {
     backgroundColor: 'rgb(0, 158, 24)',
-    textColor: fade('white', 0.7),
-    selectedTextColor: 'white'
+    textColor: fade(fullWhite, 0.9),
+    selectedTextColor: fullWhite
   },
   inkBar: {
     backgroundColor: '#0F0',

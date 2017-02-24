@@ -10,11 +10,14 @@ import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
+import {blueGrey900} from 'material-ui/styles/colors';
 
 import {TimeSeries, SmoothieChart} from 'smoothie';
 
 import componentImg from '../images/components/v1/bjt.png';
 import Subheader from 'material-ui/Subheader';
+
+import TextInput from './inputs/TextInput';
 
 let styles = {
   smallRowColumn: {
@@ -203,20 +206,12 @@ class RightPanel extends React.Component {
       hint,
       value
   }) {
-    return (<TextField
-        key={name}
-
-        inputStyle={styles.textField}
-        style={styles.textField}
-        textareaStyle={styles.textField}
-        hintStyle={styles.textField}
-        hintText={name}
-        errorText={hint}
-        floatingLabelText={title}
-        floatingLabelFixed={true}
-        value={value}
-        onChange={this.handleChange.bind(this, name)}
-    />);
+    return <TextInput
+        hintText={'props.hintText'}
+        errorText={'props.errorText'}
+        labelText={'props.labelText'}
+        value={'props.value'}
+      />;
   }
 
   addBooleanField({
@@ -329,6 +324,7 @@ class RightPanel extends React.Component {
                 primaryText={selectedElement.getName()}
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
+                style={{backgroundColor: blueGrey900}}
             >
 
             </ListItem>
@@ -357,6 +353,7 @@ class RightPanel extends React.Component {
                 </TableRow>
               </TableBody>
             </Table>
+            <Divider />
 
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false} stripedRows>
@@ -396,6 +393,7 @@ class RightPanel extends React.Component {
                   backgroundColor: '#444'
                 }}
             >
+
               {
                 //this.state.params.map((paramObj) => addField(paramObj))
                 Object.keys(fields).map(

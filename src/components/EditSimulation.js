@@ -12,6 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
 import MenuItem from 'material-ui/MenuItem';
 import Toggle from 'material-ui/Toggle';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import {blueGrey900} from 'material-ui/styles/colors';
 
 import NumberField from './NumberField';
 
@@ -141,8 +143,25 @@ class EditSimulation extends React.Component {
               primaryText='Simulation Settings'
               leftAvatar={<Avatar src={componentImg}/>}
               secondaryText={this.state.name}
+              style={{backgroundColor: blueGrey900}}
           />
           <Divider />
+
+
+          <ListItem
+
+              rightAvatar={
+                <Avatar size={20}>
+                  Right
+                </Avatar>
+              }
+          >
+            <TextField
+                floatingLabelText={'title'}
+                floatingLabelFixed={true}
+                value={'value'}
+            />
+          </ListItem>
 
           <div style={styles.cardText}>
 
