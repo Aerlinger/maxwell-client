@@ -28,7 +28,6 @@ class ElementListItem extends React.Component {
 
   render() {
     let hotkey = this.hotkey.bind(this);
-
     let elmStyle = {};
 
     if (this.props.placeElement == this.props.name) {

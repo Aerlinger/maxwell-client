@@ -72,6 +72,12 @@ class MainToolbar extends React.Component {
     </Chip>
   }
 
+  tooltip() {
+    return <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+      <ActionGrade />
+    </IconButton>
+  }
+
   testButtons() {
     return <div>
       <RaisedButton label='Default' onClick={() => this.setState({loadCircuitModalOpen: true})}/>
@@ -87,9 +93,7 @@ class MainToolbar extends React.Component {
       <FlatButton icon={<ActionAndroid />}/>
       <FlatButton backgroundColor="#a4c639" hoverColor="#8AA62F" icon={<ActionAndroid color={fullWhite}/>}/>
 
-      <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
-        <ActionGrade />
-      </IconButton>
+
     </div>
   }
 
@@ -118,7 +122,7 @@ class MainToolbar extends React.Component {
               }
           />
 
-          <Toolbar style={{height: this.props.top, borderBottom: '1px solid red'}}>
+          <Toolbar style={{height: this.props.top, borderBottom: '1px solid blue'}}>
             <ToolbarGroup firstChild={true}>
               <Avatar
                   style={{background: 'white', top: 12, marginLeft: 15}}
@@ -130,8 +134,6 @@ class MainToolbar extends React.Component {
                 {color: 'white', marginLeft: 30, fontFamily: 'Courier New'}
               }>
               </ToolbarTitle>
-
-              <ToolbarSeparator />
 
               <ToolbarMenuItem title='Circuit'/>
               <ToolbarMenuItem title='Edit'/>
@@ -148,7 +150,7 @@ class MainToolbar extends React.Component {
                 Auth.isUserAuthenticated() ? (
                         <RaisedButton
                             href='/logout'
-                            primary={true}
+                            secondary={true}
                             label='Logout'
                         />
 

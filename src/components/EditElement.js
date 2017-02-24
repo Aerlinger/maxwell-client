@@ -358,10 +358,6 @@ class RightPanel extends React.Component {
               </TableBody>
             </Table>
 
-            <Divider />
-            <Subheader>Attributes</Subheader>
-            <Divider />
-
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false} stripedRows>
                 {
@@ -396,7 +392,8 @@ class RightPanel extends React.Component {
                   height: '100%',
                   position: 'absolute',
                   overflowY: 'auto',
-                  overflowX: 'hidden'
+                  overflowX: 'hidden',
+                  backgroundColor: '#444'
                 }}
             >
               {

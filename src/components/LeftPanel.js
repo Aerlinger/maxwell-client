@@ -1,8 +1,6 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 import ElementList from './ElementList';
 import SampleCircuits from './SampleCircuits';
@@ -24,16 +22,8 @@ class LeftPanel extends React.Component {
         <Paper className='element-panel' style={
           Object.assign(styles, {top: this.props.top})
         }>
-          <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
-            <ActionGrade />
-          </IconButton>
-
           <Tabs>
-
             <Tab label='Elements'>
-              <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
-                <ActionGrade />
-              </IconButton>
               <ElementList
                   setPlaceElement={setPlaceElement}
                   placeElement={this.props.placeElement}

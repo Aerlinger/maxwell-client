@@ -1,16 +1,13 @@
 import React from 'react';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
-import ElementListItem from './ElementListItem';
 import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
-
-import bjtImg from '../images/components/v1/bjt.png';
-
 import {List, ListItem} from 'material-ui/List';
 
+import bjtImg from '../images/components/v1/bjt.png';
+import ElementListItem from './ElementListItem';
 import SampleCircuits from './SampleCircuits';
-
 import components from '../modules/components.json';
 
 
@@ -32,7 +29,6 @@ const styles = {
 
 
 class ElementPanel extends React.Component {
-
 
   render() {
     let placeElement = this.props.placeElement;

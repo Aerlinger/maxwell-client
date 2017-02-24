@@ -46,7 +46,7 @@ class ToolbarMenuItem extends React.Component {
                   fontSize: 'bold'
                 }}
                 style={{
-                  borderBottom: '2px solid red'
+                  //borderBottom: '2px solid red'
                 }}
                 labelPosition="before"
                 icon={

@@ -1,11 +1,19 @@
 import {
   cyan700,
+  grey500,
   grey600,
+  grey900,
   indigoA700,
   greenA700,
+  green500,
+  green800,
   green900,
+  lightGreenA700,
+  red500,
   redA700,
+  red900,
   blueGrey900,
+  blue900,
   orange900,
   lightBlue50,
   purpleA700,
@@ -42,37 +50,37 @@ let overrides = {
   toolbar: {
     color: fade('#FF00FE', 0.54),
     height: 100,
-    titleFontSize: 40
-  },
-  button: {
-    height: 56
-  },
-  flatButton: {
-    color: 'blue'
+    titleFontSize: 20
   },
   raisedButton: {
-    color: 'pink',
-    textColor: 'green',
-    primaryColor: 'blue',
-    primaryTextColor: 'brown',
-    secondaryColor: 'yellow',
-    secondaryTextColor: 'orange'
+    color: blue900,
+    textColor: 'white',
+    primaryColor: green500,
+    primaryTextColor: 'white',
+    secondaryColor: red900,
+    secondaryTextColor: 'white',
+    disabledTextColor: grey500
+  },
+  flatButton: {
+    textColor: 'white',
+    primaryTextColor: lightGreenA700,
+    secondaryTextColor: red500
   },
   tableRow: {
     hoverColor: baseTheme.palette.accent2Color,
-    stripeColor: fade(lighten(blueGrey900, 0.5), 0.8)
+    stripeColor: 'rgba(146, 152, 155, 0.09)'
   },
   textField: {
     errorColor: indigoA700,
-    borderColor: purpleA700,
-    focusColor: cyan700,
-    floatingLabelColor: purpleA700,
+    borderColor: green500,
+    focusColor: 'rgb(0, 255, 24)',
+    floatingLabelColor: 'rgb(0, 158, 24)',
     textColor: lightBlue50
   },
   tabs: {
-    backgroundColor: 'orange',
-    textColor: fade(indigoA700, 0.7),
-    selectedTextColor: '#F89999'
+    backgroundColor: 'rgb(0, 158, 24)',
+    textColor: fade('white', 0.7),
+    selectedTextColor: 'white'
   },
   inkBar: {
     backgroundColor: '#0F0',

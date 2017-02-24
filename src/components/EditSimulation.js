@@ -33,7 +33,8 @@ let styles = {
     position: 'absolute',
     right: 0,
     left: 0,
-    paddingBottom: 104
+    paddingBottom: 104,
+    backgroundColor: '#444'
   }
 };
 
@@ -63,12 +64,12 @@ class EditSimulation extends React.Component {
 
   textInput(title, value) {
     return <TextField
-            style={styles.input}
-            inputStyle={{fontFamily: 'Courier'}}
-            floatingLabelText={title}
-            floatingLabelFixed={true}
-            value={value}
-        />;
+        style={styles.input}
+        inputStyle={{fontFamily: 'Courier'}}
+        floatingLabelText={title}
+        floatingLabelFixed={true}
+        value={value}
+    />;
   }
 
   selectInput(title, value) {
@@ -117,7 +118,7 @@ class EditSimulation extends React.Component {
     console.log(value);
   }
 
-  numberInput(title, value){
+  numberInput(title, value) {
     return <NumberInput
         floatingLabelText={title}
         value={value}
@@ -143,14 +144,17 @@ class EditSimulation extends React.Component {
           />
           <Divider />
 
-          <NumberField/>
+          <div style={styles.cardText}>
 
-          {this.textInput('text title', 'val')}
-          {this.toggleInput('text title', 'val')}
-          {this.textInput('text title', 'val')}
+            <NumberField/>
 
-          {this.selectInput('text title', 'val')}
-          {this.slider()}
+            {this.textInput('text title', 'val')}
+            {this.toggleInput('text title', 'val')}
+            {this.textInput('text title', 'val')}
+
+            {this.selectInput('text title', 'val')}
+            {this.slider()}
+          </div>
 
 
         </List>
