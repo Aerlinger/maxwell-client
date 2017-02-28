@@ -186,9 +186,11 @@ class RightPanel extends React.Component {
   }) {
     return <SelectInput
         key={name}
+        name={name}
         floatingLabelText={title}
         description={description}
         value={value}
+        selectedElement={this.props.selectedElement}
     >
       {
         Object.keys(select_values).map((key, index) => (
@@ -212,12 +214,14 @@ class RightPanel extends React.Component {
 
     return <NumberField
         key={title}
+        name={name}
         hintText={'props.hintText'}
         errorText={'props.errorText'}
         unit={unit}
         labelText={title}
         description={description}
         symbol={symbol}
+        selectedElement={this.props.selectedElement}
         min={min}
         max={max}
         value={value.toString()}
@@ -228,20 +232,24 @@ class RightPanel extends React.Component {
       name,
       title,
       description = 'description',
-      value,
-      range
+      value
   }) {
     return <ToggleInput label={title}
-                   key={title}
-                   labelPosition='right'
+                        name={name}
+                        key={title}
+                        labelPosition='right'
                         description={description}
-                   toggled={value}
-                   defaultToggled={value}
-                   onChange={this.handleChange.bind(this, name)}/>;
+                        toggled={value}
+                        defaultToggled={value}
+                        selectedElement={this.props.selectedElement}
+                        onChange={this.handleChange.bind(this, name)}/>;
   }
 
   addField(obj) {
-    let value = obj['value'];
+
+    let elmParams = this.props.selectedElement.params;
+
+    let value = elmParams[obj['name']];
     let default_value = obj['default_value'];
     let raw_value = value ? value : default_value;
 
@@ -408,13 +416,13 @@ class RightPanel extends React.Component {
             >
 
               {
-                Object.keys(fields).map(fieldKey => addField(fields[fieldKey]))
+                Object.keys(fields).map(fieldKey => addField(Object.assign(fields[fieldKey], {name: fieldKey})))
               }
 
               <Divider />
 
               <CardText>
-              <RaisedButton label='Update' fullWidth={true} primary={true}/>
+                <RaisedButton label='Update' fullWidth={true} primary={true}/>
               </CardText>
             </div>
           </div>

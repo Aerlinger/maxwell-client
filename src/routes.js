@@ -1,6 +1,6 @@
 import Base from './components/Base';
 import Dashboard from './containers/SettingsPage';
-import Main from './containers/RootContainer';
+import RootContainer from './containers/RootContainer';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import Auth from './modules/Auth';
@@ -36,12 +36,12 @@ const routes = {
     },
     {
       path: '/:circuit_name',
-      component: Main
+      component: RootContainer
       // getComponent: (location, callback) => {
         // if (Auth.isUserAuthenticated()) {
         //   callback(null, Dashboard);
         // } else {
-        //   callback(null, Main);
+        //   callback(null, RootContainer);
         // }
       // }
     }

@@ -22,6 +22,8 @@ export default class SelectInput extends React.Component {
 
   handleChange = (event, index, value) => {
     this.setState({value: value});
+
+    this.props.selectedElement.update({[this.props.name]: value});
   };
 
   componentWillReceiveProps(nextProps) {

@@ -22,6 +22,8 @@ export default class ToggleInput extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({toggled: value});
+
+    this.props.selectedElement.update({[this.props.name]: value});
   };
 
   componentWillReceiveProps(nextProps) {

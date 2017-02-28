@@ -44,6 +44,8 @@ export default class NumberField extends React.Component {
 
   setValue(value) {
     this.setState({value: value});
+
+    this.props.selectedElement.update({[this.props.name]: value});
   }
 
   handleChange(event, value) {
