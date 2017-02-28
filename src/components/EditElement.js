@@ -411,7 +411,7 @@ class RightPanel extends React.Component {
                 Object.keys(fields).map(fieldKey => addField(fields[fieldKey]))
               }
 
-              <br />
+              <Divider />
 
               <CardText>
               <RaisedButton label='Update' fullWidth={true} primary={true}/>

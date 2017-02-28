@@ -136,7 +136,7 @@ class MainToolbar extends React.Component {
               />
 
               <ToolbarTitle text='Maxwell' style={
-                {color: 'white', marginLeft: 30, fontFamily: 'Courier New'}
+                {color: 'white', marginLeft: 30, marginRight: 30, fontFamily: 'Courier New'}
               }>
               </ToolbarTitle>
 
@@ -145,7 +145,6 @@ class MainToolbar extends React.Component {
               <RunMenu title='Run'/>
               <ExploreMenu title='Explore'/>
 
-              {this.testButtons()}
             </ToolbarGroup>
 
 

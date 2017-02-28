@@ -17,9 +17,13 @@ import Toggle from 'material-ui/Toggle';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import {blueGrey900} from 'material-ui/styles/colors';
 
+import componentImg from '../images/components/v1/bjt.png';
+
+import TextInput from './inputs/TextInput';
+import SelectInput from './inputs/SelectInput';
+import ToggleInput from './inputs/ToggleInput';
 import NumberField from './inputs/NumberField';
 
-import componentImg from '../images/components/v1/bjt.png';
 
 let styles = {
   input: {
@@ -48,6 +52,11 @@ let styles = {
  * Params:
  */
 class EditSimulation extends React.Component {
+  state = {
+    open: false,
+  };
+
+
   constructor(props) {
     super(props);
 
@@ -66,39 +75,6 @@ class EditSimulation extends React.Component {
     }
   }
 
-  textInput(title, value) {
-    return <TextField
-        style={styles.input}
-        inputStyle={{fontFamily: 'Courier'}}
-        floatingLabelText={title}
-        floatingLabelFixed={true}
-        value={value}
-    />;
-  }
-
-  selectInput(title, value) {
-    const items = [
-      <MenuItem key={1} value={1} primaryText="Never"/>,
-      <MenuItem key={2} value={2} primaryText="Every Night"/>,
-      <MenuItem key={3} value={3} primaryText="Weeknights"/>,
-      <MenuItem key={4} value={4} primaryText="Weekends"/>,
-      <MenuItem key={5} value={5} primaryText="Weekly"/>,
-    ];
-
-    return <SelectField
-        style={styles.input}
-        floatingLabelText={title}
-        value={value}
-        errorText={'Should be Night'}
-    >
-      {items}
-    </SelectField>;
-  }
-
-  toggleInput(title, value) {
-    return <ListItem primaryText={title} rightToggle={<Toggle />}/>;
-  }
-
   slider() {
     return <Slider
         style={styles.input}
@@ -110,34 +86,18 @@ class EditSimulation extends React.Component {
     />;
   }
 
-  onChange(event, value) {
-    console.log(value);
-  }
-
-  onValid(valid) {
-    console.log(value);
-  }
-
-  onRequestValue(value) {
-    console.log(value);
-  }
-
-  numberInput(title, value) {
-    return <NumberInput
-        floatingLabelText={title}
-        value={value}
-        strategy="ignore"
-        min={0}
-        max={100}
-        required
-    />;
-  }
+  handleNestedListToggle = (item) => {
+    this.setState({
+      open: item.state.open,
+    });
+  };
 
   render() {
     return (
         <List
             style={{
-              overflow: 'hidden'
+              overflow: 'hidden',
+              padding: 0
             }}
         >
 
@@ -146,55 +106,55 @@ class EditSimulation extends React.Component {
               leftAvatar={<Avatar src={componentImg}/>}
               secondaryText={this.state.name}
               style={{backgroundColor: blueGrey900}}
+              />
+
+          <NumberField
+              labelText='Time step'
+              description='Simulation speed (higher value resuls in faster simulation)'
+              min={0}
+              value='99'
           />
+
+          <NumberField
+              labelText='Simulation speed'
+              description='Simulation speed (higher value resuls in faster simulation)'
+              min={0}
+              value='99'
+          />
+
+          <NumberField
+              labelText='Current Speed'
+              description='Simulation speed (higher value resuls in faster simulation)'
+              min={0}
+              value='99'
+          />
+
+          <NumberField
+              labelText='Voltage Range'
+              description='Simulation speed (higher value resuls in faster simulation)'
+              min={0}
+              value='99'
+          />
+
+
           <Divider />
 
           <ListItem
-              innerDivStyle={{paddingTop: 0}}
-              rightIcon={
-                <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left" style={{position: 'absolute', right: '10px', top: 15}}>
-                  <ActionGrade />
-                </IconButton>
-              }
-          >
-            <TextField
-                floatingLabelText={'title'}
-                floatingLabelFixed={true}
-                value={'value'}
-            />
-          </ListItem>
+              primaryText="Advanced Options"
+              primaryTogglesNestedList={true}
+              leftIcon={<CommunicationChatBubble />}
+              open={this.state.open}
+              onNestedListToggle={this.handleNestedListToggle}
+              nestedItems={[
+                <ListItem key={1} primaryText="Drafts" leftIcon={<CommunicationChatBubble />} />,
+              ]}
+          />
 
-          <ListItem
-              innerDivStyle={{paddingTop: 0, paddingBottom: 0}}
-              disableTouchRipple={true}
-              rightIcon={
-                <IconButton iconStyle={{width: 24, height: 24}} tooltip="top-left" touch={true} tooltipPosition="top-left" style={{position: 'absolute', right: 15, top: 15}}>
-                  <ActionGrade />
-                </IconButton>
-              }
-          >
-            <TextField
-                floatingLabelText={'title'}
-                floatingLabelFixed={true}
-                value={'value'}
-            />
-          </ListItem>
+          <Divider />
 
-          <NumberField/>
-
-
-          <div style={styles.cardText}>
-
-            <NumberField/>
-
-            {this.textInput('text title', 'val')}
-            {this.toggleInput('text title', 'val')}
-            {this.textInput('text title', 'val')}
-
-            {this.selectInput('text title', 'val')}
-            {this.slider()}
-          </div>
-
+          <CardText>
+            <RaisedButton label='Update Simulation' fullWidth={true} primary={true}/>
+          </CardText>
 
         </List>
     );
