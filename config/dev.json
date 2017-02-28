@@ -1,4 +1,4 @@
 {
-  "dbUri": "mongodb://ds161059.mlab.com:61059/heroku_8w024jrf",
+  "dbUri": "mongodb://localhost/maxwell_dev",
   "jwtSecret": "a secret phrase!!"
 }

@@ -19,7 +19,11 @@ let menu = {
     "Load From JSON": {},
     "Export to schematic...": {},
     "Export JSON": {},
-    "Report a bug...": {}
+    "Embed...": {},
+    "Report a bug...": {},
+    "Options...": {},
+    "Advanced Options...": {},
+    "About": {}
   },
   edit: {
     "Undo": {},
@@ -29,12 +33,16 @@ let menu = {
     "Paste": {},
     "Duplicate": {},
     "Select All": {},
+    "Zoom in": {},
+    "Zoom out": {},
   },
   run: {
     "run": {},
     "pause": {},
     "restart": {},
     "step_forward": {},
+    "step_backward": {},
+    "run to time...": {}
   },
   add_element: {
     "wire": {},
@@ -48,10 +56,13 @@ let menu = {
     "Add probe at selected element": {},
   },
   options: {
-    "Options...": {},
-    "Advanced Options...": {},
+
   },
   circuits: {
+    "community circuits": {}
+  },
+  help: {
+    "keymap": {}
   }
 };
 

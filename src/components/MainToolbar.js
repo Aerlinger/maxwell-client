@@ -8,11 +8,15 @@ import {fullWhite} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Chip from 'material-ui/Chip';
-import SvgIconFace from 'material-ui/svg-icons/action/face';
 import {blue300, indigo900} from 'material-ui/styles/colors';
 
 import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
+
+import CircuitMenu from './menus/CircuitMenu';
+import EditMenu from './menus/EditMenu';
+import RunMenu from './menus/RunMenu';
+import ExploreMenu from './menus/ExploreMenu';
 
 import LoadCircuitModal from '../components/LoadCircuitModal';
 import SignUpModal from '../components/SignUpModal';
@@ -92,8 +96,6 @@ class MainToolbar extends React.Component {
 
       <FlatButton icon={<ActionAndroid />}/>
       <FlatButton backgroundColor="#a4c639" hoverColor="#8AA62F" icon={<ActionAndroid color={fullWhite}/>}/>
-
-
     </div>
   }
 
@@ -135,8 +137,10 @@ class MainToolbar extends React.Component {
               }>
               </ToolbarTitle>
 
-              <ToolbarMenuItem title='Circuit'/>
-              <ToolbarMenuItem title='Edit'/>
+              <CircuitMenu title='Circuit'/>
+              <EditMenu title='Edit'/>
+              <RunMenu title='Run'/>
+              <ExploreMenu title='Explore'/>
 
               {this.testButtons()}
             </ToolbarGroup>
