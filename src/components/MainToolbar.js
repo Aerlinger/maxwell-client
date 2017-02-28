@@ -10,16 +10,17 @@ import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Chip from 'material-ui/Chip';
 import {blue300, indigo900} from 'material-ui/styles/colors';
 
-import ToolbarMenuItem from './ToolbarMenuItem';
 import Avatar from 'material-ui/Avatar';
+
+import ExportJsonModal from './modals/ExportJsonModal';
 
 import CircuitMenu from './menus/CircuitMenu';
 import EditMenu from './menus/EditMenu';
 import RunMenu from './menus/RunMenu';
 import ExploreMenu from './menus/ExploreMenu';
 
-import LoadCircuitModal from '../components/LoadCircuitModal';
-import SignUpModal from '../components/SignUpModal';
+import LoadCircuitModal from './modals/LoadCircuitModal';
+import SignUpModal from './modals/SignUpModal';
 import bjtImg from '../images/components/v1/bjt.png';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -110,6 +111,8 @@ class MainToolbar extends React.Component {
   render() {
     return (
         <div>
+          <ExportJsonModal />
+
           <LoadCircuitModal
               open={this.state.loadCircuitModalOpen}
               closeModal={
