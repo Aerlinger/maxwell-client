@@ -78,29 +78,27 @@ class LoadCircuitModal extends React.Component {
     ];
 
     return (
-        <div>
-          <Dialog
-              title='Load circuit'
-              actions={actions}
-              modal={false}
-              open={this.props.open}
-              onRequestClose={this.props.closeModal}
-              contentStyle={{'padding': 0}}
-              style={{'padding': 0}}
-              bodyStyle={{'padding': 0}}
-              autoScrollBodyContent={true}
-          >
+        <Dialog
+            title='Load circuit'
+            actions={actions}
+            modal={false}
+            open={this.props.open}
+            onRequestClose={this.props.closeModal}
+            contentStyle={{'padding': 0}}
+            style={{'padding': 0}}
+            bodyStyle={{'padding': 0}}
+            autoScrollBodyContent={true}
+        >
 
-            <List>
+          <List>
 
-              {
-                this.state.circuits.map(circuit => this.loadCircuitListItem(circuit))
-              }
+            {
+              this.state.circuits.map(circuit => this.loadCircuitListItem(circuit))
+            }
 
-            </List>
+          </List>
 
-          </Dialog>
-        </div>
+        </Dialog>
     );
   }
 }

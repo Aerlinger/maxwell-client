@@ -132,7 +132,11 @@ class MainToolbar extends React.Component {
               }>
               </ToolbarTitle>
 
-              <CircuitMenu title='Circuit'/>
+              <CircuitMenu
+                  title='Circuit'
+                  circuit={this.props.circuit}
+              />
+
               <EditMenu title='Edit'/>
               <RunMenu title='Run'/>
               <ExploreMenu title='Explore'/>

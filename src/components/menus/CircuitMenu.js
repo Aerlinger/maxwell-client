@@ -6,7 +6,9 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+
 import LoadCircuitModal from '../modals/LoadCircuitModal';
+import ExportJsonModal from '../modals/ExportJsonModal';
 
 class CircuitMenu extends React.Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class CircuitMenu extends React.Component {
 
     this.state = {
       open: false,
-      loadCircuitModalOpen: false
+      loadCircuitModalOpen: false,
+      exportJsonModalOpen: false
     };
   }
 
@@ -34,10 +37,16 @@ class CircuitMenu extends React.Component {
     });
   };
 
-  openLoadCircuitModal() {
+  openExportJsonModal() {
     this.setState({
       open: false,
-      loadCircuitModalOpen: true
+      exportJsonModalOpen: true
+    })
+  }
+
+  closeExportJsonModal() {
+    this.setState({
+      exportJsonModalOpen: false
     })
   }
 
@@ -47,15 +56,33 @@ class CircuitMenu extends React.Component {
     })
   }
 
+  openLoadCircuitModal() {
+    this.setState({
+      open: false,
+      loadCircuitModalOpen: true
+    })
+  }
+
   render() {
     let openLoadCircuitModal = this.openLoadCircuitModal.bind(this);
     let closeLoadCircuitModal = this.closeLoadCircuitModal.bind(this);
+
+    let openJsonExportModal = this.openExportJsonModal.bind(this);
+    let closeJsonExportModal = this.closeExportJsonModal.bind(this);
+
+    console.log("STATE", this.state);
 
     return (
         <div>
           <LoadCircuitModal
               open={this.state.loadCircuitModalOpen}
               closeModal={closeLoadCircuitModal}
+          />
+
+          <ExportJsonModal
+              open={this.state.exportJsonModalOpen}
+              closeModal={closeJsonExportModal}
+              circuit={this.props.circuit}
           />
 
           <div className='button-wrapper'>
@@ -98,7 +125,7 @@ class CircuitMenu extends React.Component {
                         rightIcon={<ArrowDropRight />}
                         menuItems={[
                           <MenuItem primaryText="Embeddable link"/>,
-                          <MenuItem primaryText="Circuit JSON"/>,
+                          <MenuItem primaryText="Circuit JSON..." onClick={openJsonExportModal}/>,
                           <MenuItem primaryText="Schematic Diagram..."/>
                         ]}
 

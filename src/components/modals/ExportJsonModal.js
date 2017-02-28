@@ -3,38 +3,25 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import {CardText} from 'material-ui/Card';
-import {Link} from 'react-router';
 
 const customContentStyle = {
   width: '500px',
   maxWidth: 'none'
 };
 
-class ExportJsonModal extends React.Component {
-  state = {
-    open: false
-  };
+export default class ExportJsonModal extends React.Component {
+  constructor(props) {
+    super(props);
 
-  handleOpen = () => {
-    this.setState({open: true});
+    this.selectText = this.selectText.bind(this);
+  }
 
-    if (this.textarea) {
-      this.textarea.select();
-    }
-  };
+  selectText() {
+    this.textarea && this.textarea.select();
+  }
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-  /**
-   * Class constructor.
-   */
-  constructor(props, context) {
-    super(props, context);
+  componentDidMount() {
+    this.selectText()
   }
 
   render() {
@@ -42,7 +29,7 @@ class ExportJsonModal extends React.Component {
       <FlatButton
           label="Close"
           secondary={true}
-          onTouchTap={this.handleClose}
+          onTouchTap={this.props.closeModal}
       />,
       <FlatButton
           label="Copy to clipboard"
@@ -51,27 +38,29 @@ class ExportJsonModal extends React.Component {
       />
     ];
 
+    let circuit = this.props.circuit;
+
     return (
-        <div>
-          <Dialog
-              contentStyle={customContentStyle}
-              title="JSON"
-              actions={actions}
-              modal={true}
-              open={this.state.open}
-              onRequestClose={this.props.closeModal}
-          >
+        <Dialog
+            contentStyle={customContentStyle}
+            title="JSON"
+            actions={actions}
+            modal={false}
+            open={this.props.open}
+            onRequestClose={this.props.closeModal}
+        >
 
-            <textarea readOnly ref={(input) => { this.textarea = input; }} style={{width: '100%', height: 600, fontFamily: 'Courier New', color: 'black', fontSize: 12}}>
-              Inner text
-            </textarea>
+            <textarea
+                readOnly
+                ref={(input) => this.textarea = input}
+                style={{width: '100%', height: 600, fontFamily: 'Courier New', color: 'black', fontSize: 12}}
+                defaultValue={circuit && JSON.stringify(circuit.serialize(), null, 2)}
+            />
 
-            <Divider />
+          <Divider />
 
-          </Dialog>
-        </div>
+        </Dialog>
     );
   }
 }
 
-export default ExportJsonModal;
