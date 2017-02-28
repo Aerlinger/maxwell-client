@@ -175,7 +175,7 @@ class MaxwellCanvas extends React.Component {
 
     if (this.props.circuit_name && (this.props.circuit_name !== nextProps.circuit_name)) {
       let loadPresetCircuit = this.loadPresetCircuit.bind(this);
-      let circuit_name = this.props.circuit_name || 'ohms';
+      let circuit_name = nextProps.circuit_name || 'ohms';
 
       loadPresetCircuit(circuit_name);
     }

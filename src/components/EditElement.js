@@ -278,16 +278,18 @@ class RightPanel extends React.Component {
 
     let chart = new SmoothieChart({
       millisPerPixel: 35,
-      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 0},
-      labels: {fillStyle: '#000000', precision: 0}
+      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 4},
+      labels: {fillStyle: '#FFF', precision: 2}
     });
 
     chart.addTimeSeries(this.currentSeries, {strokeStyle: 'rgba(0, 0, 200, 1)', lineWidth: 1});
     chart.streamTo(document.getElementById('current_series'), 500);
 
     setInterval(() => {
-      this.sampleCurrent.bind(this)(100 * Math.random());
-    }, 500);
+      let current = this.props.selectedElement ? this.props.selectedElement.getCurrent() : 0;
+
+      this.sampleCurrent.bind(this)(current);
+    }, 50);
   }
 
   setupVoltageScope() {
@@ -295,16 +297,18 @@ class RightPanel extends React.Component {
 
     let chart = new SmoothieChart({
       millisPerPixel: 35,
-      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 0},
-      labels: {fillStyle: '#000000', precision: 0}
+      grid: {fillStyle: 'transparent', millisPerLine: 1000, lineWidth: 0.5, verticalSections: 4},
+      labels: {fillStyle: '#FFF', precision: 2}
     });
 
     chart.addTimeSeries(this.voltageSeries, {strokeStyle: 'rgba(255, 0, 200, 1)', lineWidth: 1});
     chart.streamTo(document.getElementById('voltage_series'), 500);
 
     setInterval(() => {
-      this.sampleVoltage.bind(this)(100 * Math.random());
-    }, 500);
+      let voltage = this.props.selectedElement ? this.props.selectedElement.getVoltageDiff() : 0;
+
+      this.sampleVoltage.bind(this)(voltage);
+    }, 50);
   }
 
   sampleCurrent(voltage) {
@@ -357,7 +361,7 @@ class RightPanel extends React.Component {
                     <span className='symbol'>V</span>
                   </TableRowColumn>
                   <TableRowColumn style={styles.chart}>
-                    <canvas id='voltage_series' width='200' height='40'></canvas>
+                    <canvas id='voltage_series' width='150' height='40'></canvas>
                   </TableRowColumn>
                 </TableRow>
 
@@ -365,7 +369,7 @@ class RightPanel extends React.Component {
                   <TableRowColumn style={styles.leftColumn}>Current</TableRowColumn>
                   <TableRowColumn style={styles.centerColumn}>{this.state.current}A</TableRowColumn>
                   <TableRowColumn style={styles.chart}>
-                    <canvas id='current_series' width='200' height='40'></canvas>
+                    <canvas id='current_series' width='150' height='40'></canvas>
                   </TableRowColumn>
                 </TableRow>
               </TableBody>
