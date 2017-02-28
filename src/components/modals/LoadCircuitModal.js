@@ -5,11 +5,9 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import Auth from '../modules/Auth';
+import Auth from '../../modules/Auth';
 
-import componentImg from '../images/components/v1/bjt.png';
-
-
+import componentImg from '../../images/components/v1/bjt.png';
 
 let loadCircuitListItem = function ({
     name,

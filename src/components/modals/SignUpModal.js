@@ -20,7 +20,6 @@ const SignUpForm = ({
     user
 }) => (
     <form action="/" onSubmit={onSubmit}>
-
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">

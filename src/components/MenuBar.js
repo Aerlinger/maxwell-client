@@ -5,7 +5,6 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import RaisedButton from 'material-ui/RaisedButton';
 
 import MainToolbarStyle from '../styles/MainToolbar.css';
-import ToolbarMenuItem from './ToolbarMenuItem';
 
 import jQuery from 'jquery'
 

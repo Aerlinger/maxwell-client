@@ -33,7 +33,7 @@ const styles = {
   }
 };
 
-class SettingsDialog extends React.Component {
+class SettingsModal extends React.Component {
   state = {
     open: false
   };
@@ -102,6 +102,4 @@ class SettingsDialog extends React.Component {
   }
 }
 
-SettingsDialog.defaultProps = {};
-
-export default SettingsDialog;
+export default SettingsModal;
