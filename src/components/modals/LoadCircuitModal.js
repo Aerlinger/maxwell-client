@@ -8,8 +8,6 @@ import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Auth from '../../modules/Auth';
 
-import componentImg from '../../images/components/v1/bjt.png';
-
 class LoadCircuitModal extends React.Component {
   loadCircuitListItem({
       name,
@@ -17,7 +15,7 @@ class LoadCircuitModal extends React.Component {
       description,
       createdAt,
       updatedAt,
-      thumbnail
+      thumbnail = 'https://placehold.it/300x200'
   } = {}) {
     return <div key={name + createdAt}>
       <Link key={name} to={`/circuit/${_id}`} onClick={this.props.closeModal}>
@@ -25,11 +23,22 @@ class LoadCircuitModal extends React.Component {
             primaryText={
               name
             }
-            leftAvatar={<Avatar src={componentImg}/>}
+            leftAvatar={
+              <Avatar src={thumbnail}
+                      size={40}
+                      style={{borderRadius: 0}}
+              />
+            }
             rightAvatar={
-              <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
-                Updated: {new Date(createdAt).toDateString()}
-              </small>
+              <div>
+                <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
+                  Created: {new Date(createdAt).toDateString()}
+                </small>
+                <br />
+                <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
+                  Updated: {new Date(updatedAt).toDateString()}
+                </small>
+              </div>
             }
             secondaryText={
               <p>{description}</p>
@@ -39,13 +48,13 @@ class LoadCircuitModal extends React.Component {
       </Link>
       <Divider />
     </div>;
-  };
+  }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      circuits: [],
+      circuits: []
     }
   }
 

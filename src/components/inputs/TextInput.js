@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {blueGrey900, green100, green200} from 'material-ui/styles/colors';
+import {green100} from 'material-ui/styles/colors';
 
 let styles = {
   textField: {
@@ -9,7 +9,7 @@ let styles = {
     color: '#FFF'
   },
   floatingLabelStyle: {
-    fontSize: '16px',
+    fontSize: '16px'
     //color: '#0FF'
   },
 
@@ -32,7 +32,7 @@ export default class TextInput extends React.Component {
     super(props);
 
     this.state = {
-      value: 'Property Value',
+      value: 'Property Value'
     };
   }
 
@@ -67,4 +67,4 @@ export default class TextInput extends React.Component {
         />
     );
   }
-};
+}

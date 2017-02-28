@@ -19,19 +19,18 @@ import EditMenu from './menus/EditMenu';
 import RunMenu from './menus/RunMenu';
 import ExploreMenu from './menus/ExploreMenu';
 
-import LoadCircuitModal from './modals/LoadCircuitModal';
 import SignUpModal from './modals/SignUpModal';
 import bjtImg from '../images/components/v1/bjt.png';
 import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   chip: {
-    margin: 0,
+    margin: 0
   },
   wrapper: {
     display: 'flex',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap'
+  }
 };
 
 class MainToolbar extends React.Component {

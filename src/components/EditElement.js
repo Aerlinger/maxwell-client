@@ -7,14 +7,12 @@ import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
-import {blueGrey900} from 'material-ui/styles/colors';
 
 import {TimeSeries, SmoothieChart} from 'smoothie';
 
 import componentImg from '../images/components/v1/bjt.png';
 import Subheader from 'material-ui/Subheader';
 
-import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
 import ToggleInput from './inputs/ToggleInput';
 import NumberField from './inputs/NumberField';
@@ -180,7 +178,6 @@ class RightPanel extends React.Component {
       name,
       title,
       description = 'description',
-      unit,
       value,
       select_values
   }) {
@@ -390,7 +387,7 @@ class RightPanel extends React.Component {
             </Table>
 
             <Divider />
-            <Subheader style={{backgroundColor: "#222"}}>Properties</Subheader>
+            <Subheader style={{backgroundColor: '#222'}}>Properties</Subheader>
             <Divider />
 
           </div>

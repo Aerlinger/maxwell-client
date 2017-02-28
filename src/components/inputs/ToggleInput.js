@@ -1,13 +1,22 @@
 import React from 'react';
 import Toggle from 'material-ui/Toggle';
-import {List, ListItem} from 'material-ui/List';
+import {ListItem} from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui/svg-icons/action/info-outline';
 
 let styles = {
-  label: {
-    fontSize: '12px',
-    fontFamily: 'Courier New',
+  innerDiv: {
+    paddingTop: 10,
+    paddingBottom: 6
+  },
+  iconStyle: {
+    width: 18,
+    height: 18,
+    opacity: 0.5
+  },
+  iconButtonStyle: {
+    right: 24,
+    top: -8
   }
 };
 
@@ -31,11 +40,11 @@ export default class ToggleInput extends React.Component {
   }
 
   description(text) {
-    return <IconButton iconStyle={{width: 18, height: 18, opacity: 0.5}}
+    return <IconButton iconStyle={styles.iconStyle}
                        tooltip={text}
                        touch={true}
                        tooltipPosition="top-left"
-                       style={{right: 24, top: -8}}>
+                       style={styles.iconButtonStyle}>
       <InfoIcon />
     </IconButton>
   }
@@ -44,7 +53,7 @@ export default class ToggleInput extends React.Component {
     let description = this.props.description ? this.description(this.props.description) : null;
 
     return <ListItem
-        innerDivStyle={{paddingTop: 10, paddingBottom: 6}}
+        innerDivStyle={styles.innerDiv}
         disableTouchRipple={true}
         rightIcon={description}
     >
@@ -55,4 +64,4 @@ export default class ToggleInput extends React.Component {
               onToggle={this.handleChange.bind(this)}/>
     </ListItem>
   }
-};
+}

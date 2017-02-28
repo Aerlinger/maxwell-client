@@ -1,13 +1,13 @@
 import React from 'react';
 import SelectField from 'material-ui/SelectField';
-import {List, ListItem} from 'material-ui/List';
+import {ListItem} from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui/svg-icons/action/info-outline';
 
 let styles = {
   label: {
     fontSize: '12px',
-    fontFamily: 'Courier New',
+    fontFamily: 'Courier New'
   }
 };
 
@@ -16,7 +16,7 @@ export default class SelectInput extends React.Component {
     super(props);
 
     this.state = {
-      value: 'Property Value',
+      value: 'Property Value'
     };
   }
 
@@ -61,4 +61,4 @@ export default class SelectInput extends React.Component {
         </ListItem>
     );
   }
-};
+}

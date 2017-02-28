@@ -106,7 +106,7 @@ class RootContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(`RootContainer will receive props:`, nextProps);
+    console.log('RootContainer will receive props:', nextProps);
   }
 
   componentDidMount() {

@@ -5,7 +5,6 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 class RunMenu extends React.Component {
   constructor(props) {

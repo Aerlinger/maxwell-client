@@ -1,13 +1,11 @@
 import React from 'react';
-import {List, ListItem} from 'material-ui/List';
+import {ListItem} from 'material-ui/List';
 import NumberInput from 'material-ui-number-input';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui/svg-icons/action/info-outline';
-import UnitIcon from 'material-ui/svg-icons/action/check-circle';
-import {blueGrey900, green100, green200, indigo900, blue300, transparent} from 'material-ui/styles/colors';
+import {green100, blue300, transparent} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 import numeral from 'numeral';
-
 
 let styles = {
   textField: {
@@ -16,7 +14,7 @@ let styles = {
     color: '#FFF'
   },
   floatingLabelStyle: {
-    fontSize: '16px',
+    fontSize: '16px'
     //color: '#0FF'
   },
 
@@ -52,7 +50,7 @@ export default class NumberField extends React.Component {
 
   handleChange(event, value) {
     this.setValue(value);
-  };
+  }
 
   onValid(valid) {
     let validFormatted = numeral(valid).format('0.00e+0');
@@ -115,4 +113,4 @@ export default class NumberField extends React.Component {
         </ListItem>
     );
   }
-};
+}

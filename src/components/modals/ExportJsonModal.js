@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -48,16 +47,14 @@ export default class ExportJsonModal extends React.Component {
             modal={false}
             open={this.props.open}
             onRequestClose={this.props.closeModal}
+            autoScrollBodyContent={true}
         >
-
             <textarea
                 readOnly
                 ref={(input) => this.textarea = input}
                 style={{width: '100%', height: 600, fontFamily: 'Courier New', color: 'black', fontSize: 12}}
                 defaultValue={circuit && JSON.stringify(circuit.serialize(), null, 2)}
             />
-
-          <Divider />
 
         </Dialog>
     );

@@ -70,8 +70,6 @@ class CircuitMenu extends React.Component {
     let openJsonExportModal = this.openExportJsonModal.bind(this);
     let closeJsonExportModal = this.closeExportJsonModal.bind(this);
 
-    console.log("STATE", this.state);
-
     return (
         <div>
           <LoadCircuitModal

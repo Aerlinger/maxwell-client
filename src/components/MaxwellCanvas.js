@@ -146,7 +146,7 @@ class MaxwellCanvas extends React.Component {
           components: data['components']
         };
 
-        Maxwell.createContext(data["_id"], circuit_data, canvas, function (circuitApplication) {
+        Maxwell.createContext(data['_id'], circuit_data, canvas, function (circuitApplication) {
           circuitApplication.run();
 
           canvasComponent.setPlaceElement = circuitApplication.setPlaceComponent.bind(circuitApplication);
@@ -206,7 +206,7 @@ class MaxwellCanvas extends React.Component {
       let loadUserCircuit = this.loadUserCircuit.bind(this);
       loadUserCircuit(circuit_id);
     }
-    else if(circuit_name) {
+    else if (circuit_name) {
       let loadPresetCircuit = this.loadPresetCircuit.bind(this);
       loadPresetCircuit(circuit_name);
     }

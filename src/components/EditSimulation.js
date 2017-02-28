@@ -1,25 +1,16 @@
 import React from 'react';
 import {List, ListItem} from 'material-ui/List';
+import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
-import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CardText} from 'material-ui/Card';
-import MenuItem from 'material-ui/MenuItem';
-import Toggle from 'material-ui/Toggle';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import {blueGrey900} from 'material-ui/styles/colors';
 
 import componentImg from '../images/components/v1/bjt.png';
 
-import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
 import ToggleInput from './inputs/ToggleInput';
 import NumberField from './inputs/NumberField';
@@ -53,7 +44,7 @@ let styles = {
  */
 class EditSimulation extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
 
@@ -88,7 +79,7 @@ class EditSimulation extends React.Component {
 
   handleNestedListToggle = (item) => {
     this.setState({
-      open: item.state.open,
+      open: item.state.open
     });
   };
 
@@ -107,6 +98,13 @@ class EditSimulation extends React.Component {
               secondaryText={this.state.name}
               style={{backgroundColor: blueGrey900}}
               />
+
+          <ToggleInput
+              label='Public'
+              labelPosition='right'
+              description='Simulation speed (higher value resuls in faster simulation)'
+              defaultToggled={false}
+          />
 
           <NumberField
               labelText='Time step'
@@ -136,7 +134,6 @@ class EditSimulation extends React.Component {
               value='99'
           />
 
-
           <Divider />
 
           <ListItem
@@ -146,7 +143,15 @@ class EditSimulation extends React.Component {
               open={this.state.open}
               onNestedListToggle={this.handleNestedListToggle}
               nestedItems={[
-                <ListItem key={1} primaryText="Drafts" leftIcon={<CommunicationChatBubble />} />,
+                <SelectInput
+                    floatingLabelText={'title'}
+                    description={'description'}
+                    value={'1'}
+                >
+                  {
+                    <MenuItem value={'1'} label='result' primaryText='primaryText'/>
+                  }
+                </SelectInput>
               ]}
           />
 
