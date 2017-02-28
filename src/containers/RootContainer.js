@@ -105,8 +105,8 @@ class RootContainer extends React.Component {
     );
   }
 
-  componentWillReceiveProps() {
-    console.log('RootContainer wil receive props');
+  componentWillReceiveProps(nextProps) {
+    console.log(`RootContainer will receive props:`, nextProps);
   }
 
   componentDidMount() {
@@ -132,6 +132,7 @@ class RootContainer extends React.Component {
           <MaxwellCanvas
               top={top}
               circuit_name={this.props.params.circuit_name}
+              circuit_id={this.props.params.circuit_id}
               placeElement={this.state.placeElement}
               setCircuit={
                 (circuit) => this.setState({circuit: circuit})

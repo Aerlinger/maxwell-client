@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router'
 
 import Divider from 'material-ui/Divider';
 import Dialog from 'material-ui/Dialog';
@@ -9,49 +10,44 @@ import Auth from '../../modules/Auth';
 
 import componentImg from '../../images/components/v1/bjt.png';
 
-let loadCircuitListItem = function ({
-    name,
-    description,
-    createdAt,
-    updatedAt,
-    thumbnail
-}) {
-  return <div key={name + createdAt}>
-    <ListItem
-        primaryText={name}
-        leftAvatar={<Avatar src={componentImg}/>}
-        rightAvatar={
-          <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
-            Updated: {new Date(createdAt).toDateString()}
-          </small>
-        }
-        secondaryText={
-          <p>
-            {description}
-          </p>
-        }
-    >
-    </ListItem>
-    <Divider />
-  </div>;
-};
-
 class LoadCircuitModal extends React.Component {
+  loadCircuitListItem({
+      name,
+      _id,
+      description,
+      createdAt,
+      updatedAt,
+      thumbnail
+  } = {}) {
+    return <div key={name + createdAt}>
+      <Link key={name} to={`/circuit/${_id}`} onClick={this.props.closeModal}>
+        <ListItem
+            primaryText={
+              name
+            }
+            leftAvatar={<Avatar src={componentImg}/>}
+            rightAvatar={
+              <small style={{fontSize: 11, color: '#777', fontStyle: 'italic'}}>
+                Updated: {new Date(createdAt).toDateString()}
+              </small>
+            }
+            secondaryText={
+              <p>{description}</p>
+            }
+        >
+        </ListItem>
+      </Link>
+      <Divider />
+    </div>;
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      circuits: []
+      circuits: [],
     }
   }
-
-  handleOpen = () => {
-    // this.setState({open: true});
-  };
-
-  handleClose = () => {
-    // this.setState({open: false});
-  };
 
   componentDidMount() {
     const xhr = new XMLHttpRequest();
@@ -76,13 +72,7 @@ class LoadCircuitModal extends React.Component {
     const actions = [
       <FlatButton
           label='Cancel'
-          primary={false}
-          onTouchTap={this.props.closeModal}
-      />,
-      <FlatButton
-          label='Load'
-          primary={false}
-          keyboardFocused={true}
+          secondary={true}
           onTouchTap={this.props.closeModal}
       />
     ];
@@ -104,7 +94,7 @@ class LoadCircuitModal extends React.Component {
             <List>
 
               {
-                this.state.circuits.map(circuit => loadCircuitListItem(circuit))
+                this.state.circuits.map(circuit => this.loadCircuitListItem(circuit))
               }
 
             </List>

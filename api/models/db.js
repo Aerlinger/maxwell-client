@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
+let config = require('config');
 
-module.exports.connect = (uri) => {
+module.exports.connect = (uri = config.dbUri) => {
   let gracefulShutdown;
 
 // Establish a connection to the database

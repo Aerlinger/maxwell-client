@@ -16,7 +16,7 @@ router.get('/circuit/:circuit_id', function(req, res) {
 
   let current_user = req.User;
 
-  let circuit = current_user.children.id(_id);
+  let circuit = current_user.circuits.id(circuit_id);
 
   res.json(circuit);
 });

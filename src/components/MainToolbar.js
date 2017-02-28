@@ -38,7 +38,6 @@ class MainToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadCircuitModalOpen: false,
       signInModalOpen: false,
       signUpModalOpen: false
     };
@@ -112,13 +111,6 @@ class MainToolbar extends React.Component {
     return (
         <div>
           <ExportJsonModal />
-
-          <LoadCircuitModal
-              open={this.state.loadCircuitModalOpen}
-              closeModal={
-                () => this.setState({loadCircuitModalOpen: false})
-              }
-          />
 
           <SignUpModal
               open={this.state.signUpModalOpen}

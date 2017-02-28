@@ -44,6 +44,17 @@ const routes = {
         //   callback(null, RootContainer);
         // }
       // }
+    },
+    {
+      path: 'circuit/:circuit_id',
+      component: RootContainer
+      // getComponent: (location, callback) => {
+      // if (Auth.isUserAuthenticated()) {
+      //   callback(null, Dashboard);
+      // } else {
+      //   callback(null, RootContainer);
+      // }
+      // }
     }
   ]
 };

@@ -6,13 +6,15 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import LoadCircuitModal from '../modals/LoadCircuitModal';
 
 class CircuitMenu extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      loadCircuitModalOpen: false
     };
   }
 
@@ -32,9 +34,30 @@ class CircuitMenu extends React.Component {
     });
   };
 
+  openLoadCircuitModal() {
+    this.setState({
+      open: false,
+      loadCircuitModalOpen: true
+    })
+  }
+
+  closeLoadCircuitModal() {
+    this.setState({
+      loadCircuitModalOpen: false
+    })
+  }
+
   render() {
+    let openLoadCircuitModal = this.openLoadCircuitModal.bind(this);
+    let closeLoadCircuitModal = this.closeLoadCircuitModal.bind(this);
+
     return (
         <div>
+          <LoadCircuitModal
+              open={this.state.loadCircuitModalOpen}
+              closeModal={closeLoadCircuitModal}
+          />
+
           <div className='button-wrapper'>
             <FlatButton
                 onTouchTap={this.handleTouchTap}
@@ -67,7 +90,8 @@ class CircuitMenu extends React.Component {
             <Menu desktop={true} width={256}>
               <MenuItem primaryText="New Circuit" secondaryText="&#8984;N"/>
               <MenuItem primaryText="Save Circuit" secondaryText="&#8984;S"/>
-              <MenuItem primaryText="Load Circuit..." secondaryText="&#8984;O"/>
+              <MenuItem primaryText="Load Circuit..." onClick={openLoadCircuitModal} secondaryText="&#8984;O"/>
+
               <Divider />
               <MenuItem primaryText="Import Circuit..." secondaryText="&#8984;I"/>
               <MenuItem primaryText="Export Circuit..."
