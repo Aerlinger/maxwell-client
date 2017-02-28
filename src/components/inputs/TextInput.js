@@ -27,26 +27,44 @@ let styles = {
   }
 };
 
-module.exports = function (props) {
-  return (
+export default class TextInput extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <TextField
-          key={name}
+    this.state = {
+      value: 'Property Value',
+    };
+  }
 
-          inputStyle={styles.textField}
-          //textareaStyle={styles.textField}
-          //hintStyle={styles.textField}
-          //underlineFocusStyle={styles.underlineFocusStyle}
-          //underlineStyle={styles.underlineStyle}
-          floatingLabelStyle={styles.floatingLabelStyle}
-          //floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-          //errorStyle={styles.errorStyle}
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  };
 
-          //errorText={props.errorText}
-          floatingLabelText={props.labelText}
-          floatingLabelFixed={true}
-          value={props.value}
+  componentWillReceiveProps(nextProps) {
+    this.setState({value: nextProps.value});
+  }
 
-      />
-  );
+  render() {
+    return (
+        <TextField
+            key={name}
+
+            inputStyle={styles.textField}
+            //textareaStyle={styles.textField}
+            //hintStyle={styles.textField}
+            //underlineFocusStyle={styles.underlineFocusStyle}
+            //underlineStyle={styles.underlineStyle}
+            floatingLabelStyle={styles.floatingLabelStyle}
+            //floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            //errorStyle={styles.errorStyle}
+
+            //errorText={props.errorText}
+            floatingLabelText={this.props.labelText}
+            floatingLabelFixed={true}
+
+            value={this.state.value}
+            onChange={this.handleChange}
+        />
+    );
+  }
 };

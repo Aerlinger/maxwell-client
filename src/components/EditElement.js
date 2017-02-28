@@ -2,9 +2,6 @@ import React from 'react';
 import update from 'immutability-helper';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import Toggle from 'material-ui/Toggle';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
@@ -18,6 +15,9 @@ import componentImg from '../images/components/v1/bjt.png';
 import Subheader from 'material-ui/Subheader';
 
 import TextInput from './inputs/TextInput';
+import SelectInput from './inputs/SelectInput';
+import ToggleInput from './inputs/ToggleInput';
+import NumberField from './inputs/NumberField';
 
 let styles = {
   smallRowColumn: {
@@ -154,8 +154,8 @@ class RightPanel extends React.Component {
     super(props);
 
     this.state = {
-        ...fields,
-        clientHeight: 200
+      ...fields,
+      clientHeight: 200
     };
   }
 
@@ -183,35 +183,42 @@ class RightPanel extends React.Component {
       value,
       select_values
   }) {
-    return (
-        <SelectField
-            key={name}
-            floatingLabelText={title}
-            errorText={hint}
-            value={value}
-            onChange={this.handleChange.bind(this, name)}
-        >
-          {
-            Object.keys(select_values).map((key, index) => (
-                <MenuItem value={select_values[key]} key={index} primaryText={key}/>
-            ))
-          }
-        </SelectField>
-    )
+    return <SelectInput
+        key={name}
+        floatingLabelText={title}
+        errorText={hint}
+        value={value}
+    >
+      {
+        Object.keys(select_values).map((key, index) => (
+            <MenuItem value={select_values[key]} key={index} label={key} primaryText={key}/>
+        ))
+      }
+    </SelectInput>;
   }
 
   addTextField({
       name,
       title,
-      hint,
-      value
-  }) {
-    return <TextInput
+      description,
+      symbol,
+      unit,
+      value,
+      range
+  } = {}) {
+    let min = range ? range[0] : -Infinity;
+    let max = range ? range[1] : Infinity;
+
+    return <NumberField
+        key={title}
         hintText={'props.hintText'}
         errorText={'props.errorText'}
-        labelText={'props.labelText'}
-        value={'props.value'}
-      />;
+        unit={unit}
+        labelText={title}
+        min={min}
+        max={max}
+        value={value.toString()}
+    />;
   }
 
   addBooleanField({
@@ -219,11 +226,12 @@ class RightPanel extends React.Component {
       title,
       value
   }) {
-    return (<Toggle label={title}
-                    key={name}
-                    labelPosition='right'
-                    value={value}
-                    onChange={this.handleChange.bind(this, name)}/>);
+    return <ToggleInput label={title}
+                   key={title}
+                   labelPosition='right'
+                   toggled={value}
+                   defaultToggled={value}
+                   onChange={this.handleChange.bind(this, name)}/>;
   }
 
   addField(obj) {
@@ -305,7 +313,7 @@ class RightPanel extends React.Component {
     this.setupVoltageScope.bind(this)();
     this.setupCurrentScope.bind(this)();
 
-    let { clientHeight } = this.refs.elementHeader;
+    let {clientHeight} = this.refs.elementHeader;
 
     this.setState({editHeaderHeight: clientHeight});
   }
@@ -325,14 +333,11 @@ class RightPanel extends React.Component {
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
                 style={{backgroundColor: blueGrey900}}
-            >
-
-            </ListItem>
+            />
 
             <Divider />
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false}>
-
                 <TableRow>
                   <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
                   <TableRowColumn style={styles.centerColumn}>
@@ -395,11 +400,10 @@ class RightPanel extends React.Component {
             >
 
               {
-                //this.state.params.map((paramObj) => addField(paramObj))
-                Object.keys(fields).map(
-                    fieldKey => addField(fields[fieldKey])
-                )
+                Object.keys(fields).map(fieldKey => addField(fields[fieldKey]))
               }
+
+              <Divider />
 
               <RaisedButton label='Update' fullWidth={true} primary={true}/>
             </CardText>

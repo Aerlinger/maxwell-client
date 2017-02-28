@@ -20,6 +20,10 @@ class ExportJsonModal extends React.Component {
 
   handleOpen = () => {
     this.setState({open: true});
+
+    if (this.textarea) {
+      this.textarea.select();
+    }
   };
 
   handleClose = () => {
@@ -31,10 +35,6 @@ class ExportJsonModal extends React.Component {
    */
   constructor(props, context) {
     super(props, context);
-  }
-
-  componentDidMount() {
-    this.textarea.select();
   }
 
   render() {
