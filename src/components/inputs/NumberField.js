@@ -6,6 +6,8 @@ import InfoIcon from 'material-ui/svg-icons/action/info-outline';
 import UnitIcon from 'material-ui/svg-icons/action/check-circle';
 import {blueGrey900, green100, green200, indigo900, blue300, transparent} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
+import numeral from 'numeral';
+
 
 let styles = {
   textField: {
@@ -43,7 +45,7 @@ export default class NumberField extends React.Component {
   }
 
   setValue(value) {
-    this.setState({value: value});
+    this.setState({value: numeral(value).format('0.00e+0')});
 
     this.props.selectedElement.update({[this.props.name]: value});
   }
@@ -53,15 +55,13 @@ export default class NumberField extends React.Component {
   };
 
   onValid(valid) {
-    this.setState({valid: valid});
+    let validFormatted = numeral(valid).format('0.00e+0');
+
+    this.setState({valid: validFormatted});
   }
 
   onRequestValue(value) {
     this.setValue(value);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({value: nextProps.value});
   }
 
   rightSymbol(symbol) {

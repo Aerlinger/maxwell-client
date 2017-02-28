@@ -246,7 +246,6 @@ class RightPanel extends React.Component {
   }
 
   addField(obj) {
-
     let elmParams = this.props.selectedElement.params;
 
     let value = elmParams[obj['name']];
