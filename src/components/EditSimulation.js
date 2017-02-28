@@ -6,6 +6,8 @@ import SelectField from 'material-ui/SelectField';
 import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Avatar from 'material-ui/Avatar';
+import IconButton from 'material-ui/IconButton';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,7 +17,7 @@ import Toggle from 'material-ui/Toggle';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import {blueGrey900} from 'material-ui/styles/colors';
 
-import NumberField from './NumberField';
+import NumberField from './inputs/NumberField';
 
 import componentImg from '../images/components/v1/bjt.png';
 
@@ -147,13 +149,12 @@ class EditSimulation extends React.Component {
           />
           <Divider />
 
-
           <ListItem
-
-              rightAvatar={
-                <Avatar size={20}>
-                  Right
-                </Avatar>
+              innerDivStyle={{paddingTop: 0}}
+              rightIcon={
+                <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left" style={{position: 'absolute', right: '10px', top: 15}}>
+                  <ActionGrade />
+                </IconButton>
               }
           >
             <TextField
@@ -162,6 +163,25 @@ class EditSimulation extends React.Component {
                 value={'value'}
             />
           </ListItem>
+
+          <ListItem
+              innerDivStyle={{paddingTop: 0, paddingBottom: 0}}
+              disableTouchRipple={true}
+              rightIcon={
+                <IconButton iconStyle={{width: 24, height: 24}} tooltip="top-left" touch={true} tooltipPosition="top-left" style={{position: 'absolute', right: 15, top: 15}}>
+                  <ActionGrade />
+                </IconButton>
+              }
+          >
+            <TextField
+                floatingLabelText={'title'}
+                floatingLabelFixed={true}
+                value={'value'}
+            />
+          </ListItem>
+
+          <NumberField/>
+
 
           <div style={styles.cardText}>
 

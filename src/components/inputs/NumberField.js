@@ -1,6 +1,11 @@
 import React from 'react';
+import {List, ListItem} from 'material-ui/List';
 import NumberInput from 'material-ui-number-input';
-import {blueGrey900, green100, green200} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import InfoIcon from 'material-ui/svg-icons/action/info-outline';
+import UnitIcon from 'material-ui/svg-icons/action/check-circle';
+import {blueGrey900, green100, green200, indigo900, blue300, transparent} from 'material-ui/styles/colors';
+import Avatar from 'material-ui/Avatar';
 
 let styles = {
   textField: {
@@ -38,7 +43,7 @@ export default class NumberField extends React.Component {
   }
 
   setValue(value) {
-    this.setState({ value: value });
+    this.setState({value: value});
   }
 
   handleChange(event, value) {
@@ -57,11 +62,37 @@ export default class NumberField extends React.Component {
     this.setState({value: nextProps.value});
   }
 
+  rightSymbol(symbol) {
+    return <Avatar size={24}
+                   color={blue300}
+                   backgroundColor={transparent}
+                   style={{position: 'absolute', right: 15, top: 20, marginTop: 20, marginRight: 5}}>
+      {symbol}
+    </Avatar>
+  }
+
+  description(text) {
+    return <IconButton iconStyle={{width: 18, height: 18, opacity: 0.5}}
+                       tooltip={text}
+                       touch={true}
+                       tooltipPosition="top-left"
+                       style={{right: 16, top: -6}}>
+      <InfoIcon />
+    </IconButton>
+  }
+
   render() {
     let unitText = this.props.unit ? ` (${this.props.unit})` : '';
+    let symbol = this.props.symbol ? this.rightSymbol(this.props.symbol) : null;
+    let description = this.props.description ? this.description(this.props.description) : null;
 
     return (
-        <div>
+        <ListItem
+            innerDivStyle={{paddingTop: 0, paddingBottom: 0}}
+            disableTouchRipple={true}
+            rightIcon={description}
+            rightAvatar={symbol}
+        >
           <NumberInput
               key={name}
 
@@ -79,7 +110,7 @@ export default class NumberField extends React.Component {
               onChange={this.handleChange.bind(this)}
               onValid={this.onValid.bind(this)}
           />
-        </div>
+        </ListItem>
     );
   }
 };

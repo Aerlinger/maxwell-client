@@ -179,14 +179,15 @@ class RightPanel extends React.Component {
   addSelectField({
       name,
       title,
-      hint,
+      description = 'description',
+      unit,
       value,
       select_values
   }) {
     return <SelectInput
         key={name}
         floatingLabelText={title}
-        errorText={hint}
+        description={description}
         value={value}
     >
       {
@@ -200,7 +201,7 @@ class RightPanel extends React.Component {
   addTextField({
       name,
       title,
-      description,
+      description = 'description',
       symbol,
       unit,
       value,
@@ -215,6 +216,8 @@ class RightPanel extends React.Component {
         errorText={'props.errorText'}
         unit={unit}
         labelText={title}
+        description={description}
+        symbol={symbol}
         min={min}
         max={max}
         value={value.toString()}
@@ -224,11 +227,14 @@ class RightPanel extends React.Component {
   addBooleanField({
       name,
       title,
-      value
+      description = 'description',
+      value,
+      range
   }) {
     return <ToggleInput label={title}
                    key={title}
                    labelPosition='right'
+                        description={description}
                    toggled={value}
                    defaultToggled={value}
                    onChange={this.handleChange.bind(this, name)}/>;
@@ -325,21 +331,23 @@ class RightPanel extends React.Component {
     let fields = selectedElement.constructor.Fields;
 
     return (
-        <List>
+        <List style={{padding: 0}}>
           <div className='editElementHeader' ref='elementHeader'>
 
             <ListItem
                 primaryText={selectedElement.getName()}
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'
-                style={{backgroundColor: blueGrey900}}
-            />
+                style={{backgroundColor: '#222'}}
+            >
+            </ListItem>
 
-            <Divider />
             <Table selectable={false}>
               <TableBody displayRowCheckbox={false}>
                 <TableRow>
-                  <TableRowColumn style={styles.leftColumn}>Voltage</TableRowColumn>
+                  <TableRowColumn style={styles.leftColumn}>
+                    Voltage
+                  </TableRowColumn>
                   <TableRowColumn style={styles.centerColumn}>
                     <span className='quantity'>{this.state.voltage}</span>
                     <span className='symbol'>V</span>
@@ -360,11 +368,11 @@ class RightPanel extends React.Component {
             </Table>
             <Divider />
 
-            <Table selectable={false}>
+            <Table selectable={false} fixedHeader={false}>
               <TableBody displayRowCheckbox={false} stripedRows>
                 {
                   this.state.info.map((infoObj, i) => (
-                      <TableRow key={i} style={styles.smallRow}>
+                      <TableRow displayBorder={false} key={i} style={styles.smallRow}>
                         <TableRowColumn style={styles.smallRowColumn}>{infoObj['label']}</TableRowColumn>
                         <TableRowColumn style={styles.smallRowColumn}>{infoObj['value']}</TableRowColumn>
                       </TableRow>
@@ -375,7 +383,7 @@ class RightPanel extends React.Component {
             </Table>
 
             <Divider />
-            <Subheader>Properties</Subheader>
+            <Subheader style={{backgroundColor: "#222"}}>Properties</Subheader>
             <Divider />
 
           </div>
@@ -389,10 +397,10 @@ class RightPanel extends React.Component {
                 bottom: 0
               }}>
 
-            <CardText
+            <div
                 style={{
                   height: '100%',
-                  position: 'absolute',
+                  //position: 'absolute',
                   overflowY: 'auto',
                   overflowX: 'hidden',
                   backgroundColor: '#444'
@@ -403,10 +411,12 @@ class RightPanel extends React.Component {
                 Object.keys(fields).map(fieldKey => addField(fields[fieldKey]))
               }
 
-              <Divider />
+              <br />
 
+              <CardText>
               <RaisedButton label='Update' fullWidth={true} primary={true}/>
-            </CardText>
+              </CardText>
+            </div>
           </div>
 
         </List>

@@ -1,5 +1,8 @@
 import React from 'react';
 import Toggle from 'material-ui/Toggle';
+import {List, ListItem} from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import InfoIcon from 'material-ui/svg-icons/action/info-outline';
 
 let styles = {
   label: {
@@ -25,11 +28,29 @@ export default class ToggleInput extends React.Component {
     this.setState({toggled: nextProps.toggled});
   }
 
+  description(text) {
+    return <IconButton iconStyle={{width: 18, height: 18, opacity: 0.5}}
+                       tooltip={text}
+                       touch={true}
+                       tooltipPosition="top-left"
+                       style={{right: 24, top: -8}}>
+      <InfoIcon />
+    </IconButton>
+  }
+
   render() {
-    return <Toggle label={this.props.label}
-                   labelPosition='right'
-                   toggled={this.state.toggled}
-                   defaultToggled={this.props.defaultToggled}
-                   onToggle={this.handleChange.bind(this)}/>
+    let description = this.props.description ? this.description(this.props.description) : null;
+
+    return <ListItem
+        innerDivStyle={{paddingTop: 10, paddingBottom: 6}}
+        disableTouchRipple={true}
+        rightIcon={description}
+    >
+      <Toggle label={this.props.label}
+              labelPosition='right'
+              toggled={this.state.toggled}
+              defaultToggled={this.props.defaultToggled}
+              onToggle={this.handleChange.bind(this)}/>
+    </ListItem>
   }
 };
