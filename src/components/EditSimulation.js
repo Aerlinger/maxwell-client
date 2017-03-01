@@ -12,7 +12,6 @@ import {blueGrey900} from 'material-ui/styles/colors';
 import componentImg from '../images/components/v1/bjt.png';
 
 import SelectInput from './inputs/SelectInput';
-import ToggleInput from './inputs/ToggleInput';
 import NumberField from './inputs/NumberField';
 
 
@@ -99,13 +98,6 @@ class EditSimulation extends React.Component {
               style={{backgroundColor: blueGrey900}}
               />
 
-          <ToggleInput
-              label='Public'
-              labelPosition='right'
-              description='Simulation speed (higher value resuls in faster simulation)'
-              defaultToggled={false}
-          />
-
           <NumberField
               labelText='Time step'
               description='Simulation speed (higher value resuls in faster simulation)'
@@ -144,6 +136,7 @@ class EditSimulation extends React.Component {
               onNestedListToggle={this.handleNestedListToggle}
               nestedItems={[
                 <SelectInput
+                    key={'AdvancedOptions'}
                     floatingLabelText={'title'}
                     description={'description'}
                     value={'1'}

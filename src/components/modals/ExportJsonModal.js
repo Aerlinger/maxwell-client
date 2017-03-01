@@ -39,25 +39,23 @@ export default class ExportJsonModal extends React.Component {
 
     let circuit = this.props.circuit;
 
-    return (
-        <Dialog
-            contentStyle={customContentStyle}
-            title="JSON"
-            actions={actions}
-            modal={false}
-            open={this.props.open}
-            onRequestClose={this.props.closeModal}
-            autoScrollBodyContent={true}
-        >
+    return <Dialog
+        contentStyle={customContentStyle}
+        title="JSON"
+        actions={actions}
+        modal={false}
+        open={this.props.open}
+        onRequestClose={this.props.closeModal}
+    >
             <textarea
                 readOnly
-                ref={(input) => this.textarea = input}
+                ref={(input) => {this.textarea = input;}}
                 style={{width: '100%', height: 600, fontFamily: 'Courier New', color: 'black', fontSize: 12}}
                 defaultValue={circuit && JSON.stringify(circuit.serialize(), null, 2)}
             />
 
-        </Dialog>
-    );
+    </Dialog>
+
   }
 }
 

@@ -12,8 +12,6 @@ import {blue300, indigo900} from 'material-ui/styles/colors';
 
 import Avatar from 'material-ui/Avatar';
 
-import ExportJsonModal from './modals/ExportJsonModal';
-
 import CircuitMenu from './menus/CircuitMenu';
 import EditMenu from './menus/EditMenu';
 import RunMenu from './menus/RunMenu';
@@ -109,8 +107,6 @@ class MainToolbar extends React.Component {
   render() {
     return (
         <div>
-          <ExportJsonModal />
-
           <SignUpModal
               open={this.state.signUpModalOpen}
               closeModal={

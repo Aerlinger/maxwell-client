@@ -190,8 +190,8 @@ class RightPanel extends React.Component {
         selectedElement={this.props.selectedElement}
     >
       {
-        Object.keys(select_values).map((key, index) => (
-            <MenuItem value={select_values[key]} key={index} label={key} primaryText={key}/>
+        Object.keys(select_values).map((key) => (
+            <MenuItem value={select_values[key]} key={key} label={key} primaryText={key}/>
         ))
       }
     </SelectInput>;
@@ -343,6 +343,7 @@ class RightPanel extends React.Component {
           <div className='editElementHeader' ref='elementHeader'>
 
             <ListItem
+                key={selectedElement.toString()}
                 primaryText={selectedElement.getName()}
                 leftAvatar={<Avatar src={this.state.icon}/>}
                 secondaryText='Description'

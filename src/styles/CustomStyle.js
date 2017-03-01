@@ -1,5 +1,4 @@
 import {
-  cyan50,
   cyan700,
   grey500,
   grey600,
@@ -15,7 +14,7 @@ import {
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
-import {darken, fade, emphasize, lighten} from 'material-ui/utils/colorManipulator';
+import {darken, fade, emphasize} from 'material-ui/utils/colorManipulator';
 
 let baseTheme = {
   spacing: spacing,
@@ -50,7 +49,7 @@ let overrides = {
     textColor: fullWhite,
     primaryColor: green500,
     primaryTextColor: fullWhite,
-    secondaryColor: red900,
+    secondaryColor: darken(red900, 0.1),
     secondaryTextColor: fullWhite,
     disabledTextColor: grey500
   },
@@ -66,7 +65,7 @@ let overrides = {
   textField: {
     errorColor: indigoA700,
     borderColor: lightBlue50,
-    focusColor: cyan50,
+    focusColor: emphasize(lightBlue50),
     floatingLabelColor: lightBlue50,
     textColor: lightBlue50
   },
@@ -76,8 +75,8 @@ let overrides = {
     selectedTextColor: fullWhite
   },
   inkBar: {
-    backgroundColor: '#0F0',
-  },
+    backgroundColor: '#0F0'
+  }
 };
 
 /**

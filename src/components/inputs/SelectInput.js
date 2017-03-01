@@ -45,11 +45,13 @@ export default class SelectInput extends React.Component {
 
     return (
         <ListItem
+            key={this.props.name}
             innerDivStyle={{paddingTop: 0, paddingBottom: 0}}
             disableTouchRipple={true}
             rightIcon={description}
         >
           <SelectField
+              key={this.props.name}
               floatingLabelText={this.props.floatingLabelText}
               errorText={this.props.errorText}
               labelStyle={styles.label}

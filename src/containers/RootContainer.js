@@ -111,7 +111,6 @@ class RootContainer extends React.Component {
 
   componentDidMount() {
     this.bindKeyEvents();
-    console.log('RootContainer mount');
   }
 
   selectionChanged(elements) {
